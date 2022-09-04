@@ -12,4 +12,4 @@ Hello world! Hello world! Hello world!
 greeting = f"{input('Enter a greeting: ')} "
 recipient = f"{input('Enter a recipient: ')}! "
 repeat = input("How many times to repeat: ")
-print((greeting + recipient) * 3)
+print((greeting + recipient) * repeat)
