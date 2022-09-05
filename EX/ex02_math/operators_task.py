@@ -85,11 +85,12 @@ def volume(a: int, b: int, c: int) -> int:
 
 
 def clock(days: int, hours: int, minutes: int, seconds: int) -> float:
+    """Clock calculation."""
     return days * 1440 + hours * 60 + minutes + seconds / 60
 
 
 def calculate(operator: int, operand_1: int, operand_2: int) -> float:
-
+    """Simple calculation."""
     if operator == 0:
         return operand_1 + operand_2
     elif operator == 1:
