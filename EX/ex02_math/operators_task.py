@@ -17,9 +17,9 @@ def multiply(x: int, y: int) -> int:
     return x * y
 
 
-def div(x: int, y: int) -> int:
+def div(x: int, y: int) -> float:
     """Divide x by y."""
-    return x - y
+    return x / y
 
 
 def modulus(x: int, y: int) -> int:
