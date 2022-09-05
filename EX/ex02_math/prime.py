@@ -15,13 +15,12 @@ def is_prime_number(number: int) -> bool:
     :return: boolean True if number is a prime number or False if number is not a prime number.
     """
 
-    match number:
-        case 0 | 1:
-            return False
-        case _:
-            for i in range(2, number):
-                if number % i == 0:
-                    return False
+    if (number == 0 or number == 1):
+        return False
+    else:
+        for i in range(2, number):
+            if number % i == 0:
+                return False
 
     return True
 

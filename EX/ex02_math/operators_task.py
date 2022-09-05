@@ -85,15 +85,15 @@ def clock(days: int, hours: int, minutes: int, seconds: int) -> float:
 
 
 def calculate(operator: int, operand_1: int, operand_2: int) -> float:
-    match operator:
-        case 0:
-            return operand_1 + operand_2
-        case 1:
-            return operand_1 - operand_2
-        case 2:
-            return operand_1 * operand_2
-        case 3:
-            return operand_1 / operand_2
+
+    if operator == 0:
+        return operand_1 + operand_2
+    elif operator == 1:
+        return operand_1 - operand_2
+    elif operator == 2:
+        return operand_1 * operand_2
+    elif operator == 3:
+        return operand_1 / operand_2
 
 
 if __name__ == '__main__':
