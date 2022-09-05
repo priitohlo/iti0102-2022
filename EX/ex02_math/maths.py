@@ -27,7 +27,11 @@ def school_pressure(ects: int, weeks: int) -> float:
     school_pressure(1, 1) == 26
     school_pressure(1, 0) == -1
     """
-    ects_per_week = ects / weeks
+    try:
+        ects_per_week = ects * 26 / weeks
+    except ZeroDivisionError:
+        return -1
+
     return ects_per_week if ects_per_week <= 168 else -1
 
 
@@ -52,3 +56,5 @@ def add_fractions(a: int, b: int, c: int, d: int) -> str:
     denominator = b * d
 
     return str(f"{numerator}/{denominator}")
+
+print(school_pressure(1, 0))
