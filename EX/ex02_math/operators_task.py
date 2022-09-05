@@ -81,7 +81,7 @@ def volume(a: int, b: int, c: int) -> int:
 
 
 def clock(days: int, hours: int, minutes: int, seconds: int) -> float:
-    return days / 1440 + hours / 60 + minutes + seconds * 60
+    return days * 1440 + hours * 60 + minutes + seconds / 60
 
 
 def calculate(operator: int, operand_1: int, operand_2: int) -> float:
