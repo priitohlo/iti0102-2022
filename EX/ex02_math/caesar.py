@@ -25,8 +25,9 @@ def encode(message: str, shift: int) -> str:
     :param shift: shift for encoding
     :return: encoded message
     """
-    alpha = string.ascii_lowercase * 2
     encoded_message: str = ""
+
+    alpha = string.ascii_lowercase * (shift // len(string.ascii_lowercase) + 2)
 
     for c in message:
         if not c.isalpha():
