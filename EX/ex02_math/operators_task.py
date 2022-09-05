@@ -70,13 +70,17 @@ def if_else(a: int, b: int, c: int, d: int) -> int:
 
 
 def surface(a: int, b: int) -> int:
-    """Add the missing parameters to calculate the surface of a rectangle. Calculate and return the value of the
-    surface. """
+    """
+    Surface calculation.
+
+    Add the missing parameters to calculate the surface of a rectangle. Calculate and return the value of the
+    surface.
+    """
     return a * b
 
 
 def volume(a: int, b: int, c: int) -> int:
-    """Add the missing parameters to calculate the volume of a cubiod. Calculate and return the value of the volume."""
+    """Add the missing parameters to calculate the volume of a cuboid. Calculate and return the value of the volume."""
     return a * b * c
 
 
@@ -110,8 +114,8 @@ if __name__ == '__main__':
     print(x_is_not_y(1, 2))  # True
     print(if_else(1, 3, 5, 99))  # 3
     print(if_else(2, 1, 10, 5))  # 0
-    print(surface(1, 2)) # 2
-    print(volume(5, 5, 5)) # 125
+    print(surface(1, 2))  # 2
+    print(volume(5, 5, 5))  # 125
     print(clock(0, 0, 1, 15))  # 1.25
     print(clock(0, 1, 5, 0))  # 65
     print(calculate(2, 5, 4))

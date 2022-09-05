@@ -51,10 +51,7 @@ def add_fractions(a: int, b: int, c: int, d: int) -> str:
     add_fractions(1, 3, 1, 3) # 1/3 + 1/3 => there are many correct answers like "2/3" and "6/9"
     add_fractions(2, 5, 1, 5) # 2/5 + 1/5 => there are many correct answers like "3/5" and "15/25"
     """
-
     numerator = a * d + c * b
     denominator = b * d
 
     return str(f"{numerator}/{denominator}")
-
-print(school_pressure(1, 0))
