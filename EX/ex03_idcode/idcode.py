@@ -15,7 +15,7 @@ def find_id_code(text: str) -> str:
     :return: string
     """
     # Write your code here
-    return platform.version()
+    return platform.python_version()
 
 
 def the_first_control_number_algorithm(text: str) -> str:
