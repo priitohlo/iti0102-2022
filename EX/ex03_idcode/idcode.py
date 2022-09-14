@@ -185,4 +185,4 @@ def get_data_from_id(id_code: str) -> str:
     gender = get_gender(int(id_code[0]))
     birthdate = f"{id_code[5:7]}.{id_code[3:5]}.{get_full_year(int(id_code[0]), int(id_code[1:3]))}"
 
-    return f"This is a {gender} born on {birthdate} in {get_birth_place(int(id_code[7:10]))}"
+    return f"This is a {gender} born on {birthdate} in {get_birth_place(int(id_code[7:10]))}."
