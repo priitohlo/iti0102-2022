@@ -150,7 +150,8 @@ def is_valid_control_number(id_code: str) -> bool:
 
     checksum = weighted_sum % 11
 
-    return True if checksum == int(id_code[-1]) or (checksum == 10 and id_code[-1] == 0) else False
+    return id_code
+    #return True if checksum == int(id_code[-1]) or (checksum == 10 and id_code[-1] == 0) else False
 
 
 def is_valid_day_number(gender_number: int, year_number: int, month_number: int, day_number: int) -> bool:
@@ -184,8 +185,8 @@ def get_data_from_id(id_code: str) -> str:
     gender = get_gender(int(id_code[0]))
     birthdate = f"{id_code[1:3]}.{id_code[3:5]}.{get_full_year(int(id_code[0]), int(id_code[5:7]))}"
 
-    return id_code
-    #return f"This is a {gender} born on {birthdate} in {get_birth_place(int(id_code[8:11]))}"
+    #return id_code
+    return f"This is a {gender} born on {birthdate} in {get_birth_place(int(id_code[8:11]))}"
 
 
 if __name__ == '__main__':
