@@ -171,11 +171,10 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
     return False
 
 
-def is_id_valid(id_code: str) -> bool | str:
+def is_id_valid(id_code: str) -> bool:
     """Check if given ID code is valid and return the result (True or False)."""
-    return id_code
-    # return True if is_valid_day_number(int(id_code[0]), int(id_code[1:3]), int(id_code[3:5]), int(id_code[5:7]))
-    # and is_valid_control_number(id_code) else False
+    return True if is_valid_day_number(int(id_code[0]), int(id_code[1:3]), int(id_code[3:5]), int(id_code[5:7])) and \
+                   is_valid_birth_number(int(id_code[7:10])) and is_valid_control_number(id_code) else False
 
 
 def get_data_from_id(id_code: str) -> str:
@@ -186,9 +185,4 @@ def get_data_from_id(id_code: str) -> str:
     gender = get_gender(int(id_code[0]))
     birthdate = f"{id_code[1:3]}.{id_code[3:5]}.{get_full_year(int(id_code[0]), int(id_code[5:7]))}"
 
-    #return id_code
     return f"This is a {gender} born on {birthdate} in {get_birth_place(int(id_code[8:11]))}"
-
-
-if __name__ == '__main__':
-    print(is_valid_control_number(str(60102031670)))
