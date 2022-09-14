@@ -133,7 +133,7 @@ def get_birth_place(birth_number: int) -> str:
         return "undefined"
 
 
-def is_valid_control_number(id_code: str) -> bool | str:
+def is_valid_control_number(id_code: str) -> bool:
     """Check if given value is correct for control number in ID code."""
     first_check = the_first_control_number_algorithm(id_code)
 
@@ -150,8 +150,7 @@ def is_valid_control_number(id_code: str) -> bool | str:
 
     checksum = weighted_sum % 11
 
-    return id_code
-    #return True if checksum == int(id_code[-1]) or (checksum == 10 and id_code[-1] == 0) else False
+    return True if checksum == int(id_code[-1]) or (checksum == 10 and id_code[-1] == 0) else False
 
 
 def is_valid_day_number(gender_number: int, year_number: int, month_number: int, day_number: int) -> bool:
@@ -189,4 +188,4 @@ def get_data_from_id(id_code: str) -> str:
 
 
 if __name__ == '__main__':
-    print(is_leap_year(1800))
+    print(is_valid_control_number(str(51809170123)))
