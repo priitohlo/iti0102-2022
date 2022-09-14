@@ -98,14 +98,14 @@ def is_valid_birth_number(birth_number: int) -> bool:
 
 def is_leap_year(year_number: int) -> bool:
     """Check whether given year is a leap year."""
-    if year_number % 400 == 0:
-        return True
-    elif year_number % 4 == 0 and year_number % 100 != 0:
-        return True
-    elif year_number % 100 == 0 and year_number % 400 != 0:
-        return True
-    else:
+    if year_number % 4 != 0:
         return False
+    elif year_number % 100 != 0:
+        return True
+    elif year_number % 400 != 0:
+        return False
+    else:
+        return True
 
 
 def get_full_year(gender_number: int, year_number: int) -> int:
@@ -188,32 +188,4 @@ def get_data_from_id(id_code: str) -> str:
 
 
 if __name__ == '__main__':
-    # print(is_leap_year(2005))
-    # print("\nControl number:")
-    # print(is_valid_control_number("49808270244"))  # -> True
-    # print(is_valid_control_number("60109200187"))  # -> False, it must be 6
-    #
-    # print("\nDay number:")
-    # print(is_valid_day_number(4, 5, 12, 25))  # -> True
-    # print(is_valid_day_number(3, 10, 8, 32))  # -> False
-    # print("\nFebruary check:")
-    # print(
-    #     is_valid_day_number(4, 96, 2, 30))  # -> False (February cannot contain more than 29 days in any circumstances)
-    # print(is_valid_day_number(4, 99, 2, 29))  # -> False (February contains 29 days only during leap year)
-    # print(is_valid_day_number(4, 8, 2, 29))  # -> True
-    # print("\nMonth contains 30 or 31 days check:")
-    # print(is_valid_day_number(4, 22, 4, 31))  # -> False (April contains max 30 days)
-    # print(is_valid_day_number(4, 18, 10, 31))  # -> True
-    # print(is_valid_day_number(4, 15, 9, 31))  # -> False (September contains max 30 days)
-
-    print("\nOverall ID check::")
-    print(is_id_valid("49808270244"))  # -> True
-    print(is_id_valid("12345678901"))  # -> False
-
-    print("\nFull message:")
-    print(get_data_from_id("49808270244"))  # -> "This is a female born on 27.08.1998 in Tallinn."
-    print(get_data_from_id("60109200187"))  # -> "Given invalid ID code!"
-
-    # print("\nTest now your own ID code:")
-    # personal_id = input()  # type your own id in command prompt
-    # print(is_id_valid(personal_id))  # -> True
+    print(is_leap_year(1800))
