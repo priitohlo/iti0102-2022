@@ -78,7 +78,7 @@ def is_valid_gender_number(gender_number: int) -> bool:
 
 def get_gender(gender_number: int) -> str:
     """Return the gender in textual form."""
-    return "male" if gender_number % 2 == 0 else "female"
+    return "female" if gender_number % 2 == 0 else "male"
 
 
 def is_valid_year_number(year_number: int) -> bool:
