@@ -171,9 +171,10 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
     return False
 
 
-def is_id_valid(id_code: str) -> bool:
+def is_id_valid(id_code: str) -> bool | str:
     """Check if given ID code is valid and return the result (True or False)."""
-    return True if is_valid_day_number(int(id_code[0]), int(id_code[1:3]), int(id_code[3:5]),
+    return id_code
+    #return True if is_valid_day_number(int(id_code[0]), int(id_code[1:3]), int(id_code[3:5]),
                                        int(id_code[5:7])) and is_valid_control_number(id_code) else False
 
 
