@@ -142,16 +142,17 @@ def is_valid_control_number(id_code: str) -> bool:
     elif first_check == "Incorrect ID code!":
         return False
 
+    id_code_clean = find_id_code(id_code)
     weights = 3456789123
     weighted_sum = 0
 
-    for i, w in zip(id_code, str(weights)):
+    for i, w in zip(id_code_clean, str(weights)):
         weighted_sum += int(i) * int(w)
 
     checksum = weighted_sum % 11
 
     #return id_code
-    return True if checksum == int(id_code[-1]) or (checksum == 10 and int(id_code[-1]) == 0) else False
+    return True if checksum == int(id_code_clean[-1]) or (checksum == 10 and int(id_code_clean[-1]) == 0) else False
 
 
 def is_valid_day_number(gender_number: int, year_number: int, month_number: int, day_number: int) -> bool:
@@ -173,8 +174,7 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
 
 def is_id_valid(id_code: str) -> bool:
     """Check if given ID code is valid and return the result (True or False)."""
-    return True if is_valid_day_number(int(id_code[0]), int(id_code[1:3]), int(id_code[3:5]), int(id_code[5:7])) and \
-                   is_valid_birth_number(int(id_code[7:10])) and is_valid_control_number(id_code) else False
+    return True if is_valid_control_number(id_code) and is_valid_day_number(int(id_code[0]), int(id_code[1:3]), int(id_code[3:5]), int(id_code[5:7])) and is_valid_birth_number(int(id_code[7:10])) else False
 
 
 def get_data_from_id(id_code: str) -> str:
