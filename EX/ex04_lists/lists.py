@@ -11,8 +11,8 @@ def list_of_cars(all_cars: str) -> list:
     "Audi A4,Skoda Superb,Audi A4" => ["Audi A4", "Skoda Superb", "Audi A4"]
     """
     try:
-        return all_cars.split(',')
-    except:
+        return all_cars.split(',') if len(all_cars.split(',')) > 0
+    except IndexError:
         return []
 
 
