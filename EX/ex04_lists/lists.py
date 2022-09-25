@@ -12,7 +12,7 @@ def list_of_cars(all_cars: str) -> list:
     """
     retval = all_cars.split(',')
 
-    return retval if retval > 0 else []
+    return retval if len(retval) > 0 else []
 
 
 def car_makes(all_cars: str) -> list:
