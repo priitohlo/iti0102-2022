@@ -23,13 +23,13 @@ def car_makes(all_cars: str) -> list:
     """
     makes = []
 
-    for c in all_cars.split(','):
-        car_make = c.split(' ',1)[0]
-        try:
+    try:
+        for c in all_cars.split(','):
+            car_make = c.split(' ',1)[0]
             if car_make not in [d for d in makes]:
                 makes.append(car_make)
-        except IndexError:
-            pass
+    except IndexError:
+        pass
     return makes
 
 
@@ -43,13 +43,13 @@ def car_models(all_cars: str) -> list:
     """
     makes = []
 
-    for c in all_cars.split(','):
-        car_model = c.split(' ', 1)[1]
-        try:
+    try:
+        for c in all_cars.split(','):
+            car_model = c.split(' ', 1)[1]
             if car_model not in [d for d in makes]:
                 makes.append(car_model)
-        except IndexError:
-            pass
+    except IndexError:
+        pass
     return makes
 
 
@@ -126,6 +126,6 @@ print(car_makes("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon,Skoda Super
 
 print(car_makes( "Mazda 6,Mazda 6,Mazda 6,Mazda 6")) # ['Mazda']
 
-print(car_makes("")) # []
+print(car_makes()) # []
 
 print(car_models("Audi A4,Skoda Superb,Audi A4,Audi A6"))  # ["A4", "Superb", "A6"]
