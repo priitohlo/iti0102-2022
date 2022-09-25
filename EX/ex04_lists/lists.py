@@ -10,10 +10,9 @@ def list_of_cars(all_cars: str) -> list:
 
     "Audi A4,Skoda Superb,Audi A4" => ["Audi A4", "Skoda Superb", "Audi A4"]
     """
-    try:
-        return all_cars.split(',') if len(all_cars.split(',')) > 0
-    except IndexError:
-        return []
+    retval = all_cars.split(',')
+
+    return retval if retval > 0 else []
 
 
 def car_makes(all_cars: str) -> list:
