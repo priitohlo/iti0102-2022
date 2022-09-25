@@ -10,9 +10,9 @@ def list_of_cars(all_cars: str) -> list:
 
     "Audi A4,Skoda Superb,Audi A4" => ["Audi A4", "Skoda Superb", "Audi A4"]
     """
-    retval = all_cars.split(',')
+    retval = list(filter(None, all_cars.split(',')))
 
-    return retval if len(retval) > 0 else []
+    return retval
 
 
 def car_makes(all_cars: str) -> list:
@@ -26,9 +26,9 @@ def car_makes(all_cars: str) -> list:
     makes = []
 
     try:
-        for c in all_cars.split(','):
+        for c in list(filter(None, all_cars.split(','))):
             car_make = c.split(' ',1)[0]
-            if car_make not in [d for d in makes] and len(car_make) > 0:
+            if car_make not in [d for d in makes]:
                 makes.append(car_make)
     except IndexError:
         pass
@@ -46,9 +46,9 @@ def car_models(all_cars: str) -> list:
     makes = []
 
     try:
-        for c in all_cars.split(','):
+        for c in list(filter(None, all_cars.split(','))):
             car_model = c.split(' ', 1)[1]
-            if car_model not in [d for d in makes] and len(car_model) > 0:
+            if car_model not in [d for d in makes]:
                 makes.append(car_model)
     except IndexError:
         pass
@@ -120,3 +120,5 @@ def add_cars(car_list: list, all_cars: str) -> list:
     [['Audi', ['A4', 'A6']], ['Skoda', ['Superb']], ['BMW', ['A B C']]]
     """
     return []
+
+print(car_makes(''))
