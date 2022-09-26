@@ -66,6 +66,7 @@ def search_by_make(cars: str, mark: str) -> list:
 
 
 def search_by_model(cars: str, model: str) -> list:
+    """Search car by model."""
     result = []
 
     for e in cars.split(','):
@@ -78,6 +79,7 @@ def search_by_model(cars: str, model: str) -> list:
 def car_make_and_models(all_cars: str) -> list:
     """
     Create a list of structured information about makes and models.
+
     For each different car make in the input string an element is created in the output list.
     The element itself is a list, where the first position is the name of the make (string),
     the second element is a list of models for the given make (list of strings).
@@ -133,6 +135,7 @@ def add_cars(car_list: list, all_cars: str) -> list:
 def number_of_cars(all_cars: str) -> list:
     """
     Create a list of tuples with make quantities.
+
     The result is a list of tuples.
     Each tuple is in the form: (make_name: str, quantity: int).
     The order of the tuples (makes) is the same as the first appearance in the list.
