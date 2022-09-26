@@ -27,7 +27,7 @@ def car_makes(all_cars: str) -> list:
 
     try:
         for c in list(filter(None, all_cars.split(','))):
-            car_make = c.split(' ',1)[0]
+            car_make = c.split(' ', 1)[0]
             if car_make not in [d for d in makes]:
                 makes.append(car_make)
     except IndexError:
@@ -68,8 +68,8 @@ def search_by_make(cars: str, mark: str) -> list:
 def search_by_model(cars: str, model: str) -> list:
     result = []
 
-    for e in cars.split(',', 1):
-        if e.split()[0].lower() == model.lower():
+    for e in cars.split(','):
+        if model.lower() in [item.lower() for item in e.split()]:
             result.append(e)
 
     return result
@@ -121,4 +121,5 @@ def add_cars(car_list: list, all_cars: str) -> list:
     """
     return []
 
-print(search_by_make('Audi A4,Skoda Superb,Seat Leon','Audi'))
+
+print(search_by_model("Audi A4,Audi a4 2021,Audi A40", 'A4'))
