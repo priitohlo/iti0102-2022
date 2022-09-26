@@ -56,6 +56,7 @@ def car_models(all_cars: str) -> list:
 
 
 def search_by_make(cars: str, mark: str) -> list:
+    """Search car by make."""
     result = []
 
     for e in cars.split(','):
@@ -115,7 +116,6 @@ def add_cars(car_list: list, all_cars: str) -> list:
 
     [['Audi', ['A4', 'A6']], ['Skoda', ['Superb']], ['BMW', ['A B C']]]
     """
-
     retlist = car_list
 
     if not all_cars.strip():
@@ -140,7 +140,6 @@ def number_of_cars(all_cars: str) -> list:
     Each tuple is in the form: (make_name: str, quantity: int).
     The order of the tuples (makes) is the same as the first appearance in the list.
     """
-
     retlist = []
 
     if not all_cars.strip():
@@ -168,7 +167,6 @@ def car_list_as_string(cars: list) -> str:
     [['Audi', ['A4']], ['Skoda', ['Superb']]] =>
     "Audi A4,Skoda Superb"
     """
-
     retval = ""
 
     for c in cars:
