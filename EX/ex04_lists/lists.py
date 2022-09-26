@@ -92,11 +92,12 @@ def car_make_and_models(all_cars: str) -> list:
     retlist = []
 
     for c in all_cars.split(','):
-        if c[0] not in [d[0] for d in retlist]:
-            retlist.append([c, []])
+        car = c.split(' ', 1)
+        if car[0] not in [d[0] for d in retlist]:
+            retlist.append([car[0], []])
         for i, cars in enumerate(retlist):
-            if cars[0] == c:
-                retlist[i][1].append(c[1])
+            if car[0] == cars[0] and car[1] not in retlist[i][1]:
+                retlist[i][1].append(car[1])
 
     return retlist
 
@@ -122,4 +123,4 @@ def add_cars(car_list: list, all_cars: str) -> list:
     return []
 
 
-print(search_by_model("Audi A4,Skoda Superb,Seat Leon,Skoda Superb,Audi A4", 'Audi'))
+print(car_make_and_models("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon Lux,Skoda Superb,Skoda Superb,BMW x5"))
