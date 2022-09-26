@@ -172,4 +172,4 @@ def car_list_as_string(cars: list) -> str:
         for d in c[1]:
             retval += f"{c[0]} {d},"
 
-    return retval[:-1] if retval[-1] == ',' else retval
+    return retval[:-1] if retval and retval[-1] == ',' else retval
