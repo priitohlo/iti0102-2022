@@ -91,6 +91,9 @@ def car_make_and_models(all_cars: str) -> list:
     """
     retlist = []
 
+    if not all_cars.strip():
+        return []
+
     for c in all_cars.split(','):
         car = c.split(' ', 1)
         if car[0] not in [d[0] for d in retlist]:
@@ -123,4 +126,4 @@ def add_cars(car_list: list, all_cars: str) -> list:
     return []
 
 
-print(car_make_and_models("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon Lux,Skoda Superb,Skoda Superb,BMW x5"))
+print(car_make_and_models(""))
