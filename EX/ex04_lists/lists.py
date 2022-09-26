@@ -89,20 +89,10 @@ def car_make_and_models(all_cars: str) -> list:
     "Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon Lux,Skoda Superb,Skoda Superb,BMW x5" =>
     [['Audi', ['A4']], ['Skoda', ['Super', 'Octavia', 'Superb']], ['BMW', ['530', 'x5']], ['Seat', ['Leon Lux']]]
     """
-    retlist = []
-
     if not all_cars.strip():
         return []
 
-    for c in all_cars.split(','):
-        car = c.split(' ', 1)
-        if car[0] not in [d[0] for d in retlist]:
-            retlist.append([car[0], []])
-        for i, cars in enumerate(retlist):
-            if car[0] == cars[0] and car[1] not in retlist[i][1]:
-                retlist[i][1].append(car[1])
-
-    return retlist
+    return add_cars([], all_cars)
 
 
 def add_cars(car_list: list, all_cars: str) -> list:
@@ -123,7 +113,18 @@ def add_cars(car_list: list, all_cars: str) -> list:
 
     [['Audi', ['A4', 'A6']], ['Skoda', ['Superb']], ['BMW', ['A B C']]]
     """
-    return []
+
+    retlist = car_list
+
+    for c in all_cars.split(','):
+        car = c.split(' ', 1)
+        if car[0] not in [d[0] for d in retlist]:
+            retlist.append([car[0], []])
+        for i, cars in enumerate(retlist):
+            if car[0] == cars[0] and car[1] not in retlist[i][1]:
+                retlist[i][1].append(car[1])
+
+    return retlist
 
 
-print(car_make_and_models(""))
+print(add_cars([['Audi', ['A4']], ['Skoda', ['Superb']]], "Audi A6,BMW A B C,Audi A4"))
