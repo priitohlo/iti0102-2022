@@ -62,7 +62,7 @@ def search_by_make(cars: str, mark: str) -> list:
         if mark in e[1].lower():
             result += e
 
-    return result
+    return cars
 
 
 def search_by_model(cars: str, model: str) -> list:
