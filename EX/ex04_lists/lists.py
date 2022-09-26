@@ -69,10 +69,10 @@ def search_by_model(cars: str, model: str) -> list:
     result = []
 
     for e in cars.split(','):
-        if model.lower() in [item.lower() for item in e.split()]:
+        if model.lower() in [item.lower() for item in e.split(' ', 1)[1].split()]:
             result.append(e)
 
-    return cars + model
+    return result
 
 
 def car_make_and_models(all_cars: str) -> list:
@@ -122,4 +122,4 @@ def add_cars(car_list: list, all_cars: str) -> list:
     return []
 
 
-print(search_by_model("Audi A4,Audi a4 2021,Audi A40", 'A4'))
+print(search_by_model("Audi A4,Skoda Superb,Seat Leon,Skoda Superb,Audi A4", 'Audi'))
