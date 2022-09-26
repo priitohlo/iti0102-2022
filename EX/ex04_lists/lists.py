@@ -130,4 +130,46 @@ def add_cars(car_list: list, all_cars: str) -> list:
     return retlist
 
 
-print(add_cars([], ""))
+def number_of_cars(all_cars: str) -> list:
+    """
+    Create a list of tuples with make quantities.
+    The result is a list of tuples.
+    Each tuple is in the form: (make_name: str, quantity: int).
+    The order of the tuples (makes) is the same as the first appearance in the list.
+    """
+
+    retlist = []
+
+    if not all_cars.strip():
+        return retlist
+
+    for c in all_cars.split(','):
+        car = c.split(' ', 1)
+        if car[0] not in [d[0] for d in retlist]:
+            retlist.append((car[0], 1))
+        else:
+            for i, car_from_list in enumerate(retlist):
+                if car[0] == car_from_list[0]:
+                    retlist[i] = (car_from_list[0], car_from_list[1] + 1)
+                    break
+
+    return retlist
+
+
+def car_list_as_string(cars: list) -> str:
+    """
+    Create a list of cars.
+
+    The input list is in the same format as the result of car_make_and_models function.
+    The order of the elements in the string is the same as in the list.
+    [['Audi', ['A4']], ['Skoda', ['Superb']]] =>
+    "Audi A4,Skoda Superb"
+    """
+
+    retval = ""
+
+    for c in cars:
+        for d in c[1]:
+            retval += f"{c[0]} {d},"
+
+    return retval[:-1] if retval[-1] == ',' else retval
