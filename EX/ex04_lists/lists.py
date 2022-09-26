@@ -116,6 +116,9 @@ def add_cars(car_list: list, all_cars: str) -> list:
 
     retlist = car_list
 
+    if not all_cars.strip():
+        return retlist
+
     for c in all_cars.split(','):
         car = c.split(' ', 1)
         if car[0] not in [d[0] for d in retlist]:
@@ -127,4 +130,4 @@ def add_cars(car_list: list, all_cars: str) -> list:
     return retlist
 
 
-print(add_cars([['Audi', ['A4']], ['Skoda', ['Superb']]], "Audi A6,BMW A B C,Audi A4"))
+print(add_cars([], ""))
