@@ -62,7 +62,9 @@ def search_by_make(cars: str, mark: str) -> list:
         if mark in e[1].lower():
             result += e
 
-    return cars
+    #'Audi A4,Skoda Superb,Seat Leon'
+
+    return mark
 
 
 def search_by_model(cars: str, model: str) -> list:
