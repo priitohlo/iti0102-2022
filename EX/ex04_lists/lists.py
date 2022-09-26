@@ -72,7 +72,7 @@ def search_by_model(cars: str, model: str) -> list:
         if model.lower() in [item.lower() for item in e.split()]:
             result.append(e)
 
-    return result
+    return cars + model
 
 
 def car_make_and_models(all_cars: str) -> list:
