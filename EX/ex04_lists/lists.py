@@ -59,20 +59,18 @@ def search_by_make(cars: str, mark: str) -> list:
     result = []
 
     for e in cars.split(','):
-        if mark in e[1].lower():
-            result += e
+        if e.split()[0].lower() == mark.lower():
+            result.append(e)
 
-    #'Audi A4,Skoda Superb,Seat Leon'
-
-    return mark
+    return result
 
 
 def search_by_model(cars: str, model: str) -> list:
     result = []
 
     for e in cars.split(',', 1):
-        if model in e[1].lower():
-            result += e
+        if e.split()[0].lower() == model.lower():
+            result.append(e)
 
     return result
 
@@ -123,4 +121,4 @@ def add_cars(car_list: list, all_cars: str) -> list:
     """
     return []
 
-print(car_makes(''))
+print(search_by_make('Audi A4,Skoda Superb,Seat Leon','Audi'))
