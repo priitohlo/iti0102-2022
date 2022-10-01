@@ -14,7 +14,7 @@ def common_end(a: list, b: list) -> bool:
     :param b: List of integers.
     :return: The last or the first elements are the same.
     """
-    return a[0] == b[0] or b[-1] == b[-1]
+    return a[0] == b[0] or a[-1] == b[-1]
 
 
 def alarm_clock(day: int, vacation: bool) -> str:
