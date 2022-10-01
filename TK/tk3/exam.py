@@ -63,10 +63,9 @@ def sum_of_a_beach(s: str) -> int:
     s_lower = s.lower()
 
     for w in ["sand", "water", "fish", "sun"]:
-        if w in s_lower:
-            counter += 1
+        counter += s_lower.count(w)
 
-    return s
+    return counter
 
 
 def min_index_value(nums: list) -> int:
