@@ -112,4 +112,3 @@ def mirror_ends(s: str) -> str:
             matching_string = s[:i]
 
     return matching_string
-
