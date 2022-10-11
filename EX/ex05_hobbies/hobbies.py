@@ -160,7 +160,7 @@ def find_people_with_hobbies(data: str, hobbies: list) -> set:
     return people_set
 
 
-def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
+def find_two_people_with_most_common_hobbies(data: str) -> tuple | None | set:
     """
     Find a pair of people who have the highest ratio of common to different hobbies.
 
@@ -253,10 +253,10 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
                 highest_ratio_people = (k, l)
                 highest_ratio = ratio
 
-    return highest_ratio_people
+    return set(highest_ratio_people)
 
 
-#if __name__ == '__main__':
+if __name__ == '__main__':
     # sample_data = """Jack:crafting\nPeter:hiking\nWendy:gaming\nMonica:tennis\nChris:origami\nSophie:sport\nMonica:design\nCarmen:sport\nChris:sport\nMonica:skateboarding\nCarmen:cooking\nWendy:photography\nMonica:tennis\nCooper:yoga\nWendy:sport\nCooper:movies\nMonica:theatre\nCooper:yoga\nChris:gaming\nMolly:fishing\nJack:skateboarding\nWendy:fishing\nJack:drawing\nMonica:baking\nSophie:baking\nAlfred:driving\nAlfred:shopping\nAlfred:crafting\nJack:drawing\nCarmen:shopping\nCarmen:driving\nPeter:drawing\nCarmen:shopping\nWendy:fitness\nAlfred:travel\nJack:origami\nSophie:design\nJack:pets\nCarmen:dance\nAlfred:baking\nSophie:sport\nPeter:gaming\nJack:skateboarding\nCooper:football\nAlfred:sport\nCooper:fitness\nChris:yoga\nWendy:football\nMolly:design\nJack:hiking\nMonica:pets\nCarmen:photography\nJack:baking\nPeter:driving\nChris:driving\nCarmen:driving\nPeter:theatre\nMolly:hiking\nWendy:puzzles\nJack:crafting\nPeter:photography\nCarmen:theatre\nSophie:crafting\nCarmen:cooking\nAlfred:gaming\nPeter:theatre\nCooper:hiking\nChris:football\nChris:pets\nJack:football\nMonica:skateboarding\nChris:driving\nCarmen:pets\nCooper:gaming\nChris:hiking\nJack:cooking\nPeter:fishing\nJack:gaming\nPeter:origami\nCarmen:movies\nSophie:driving\nJack:sport\nCarmen:theatre\nWendy:shopping\nCarmen:pets\nWendy:gaming\nSophie:football\nWendy:theatre\nCarmen:football\nMolly:theatre\nPeter:theatre\nMonica:flowers\nMolly:skateboarding\nPeter:driving\nSophie:travel\nMonica:photography\nCooper:cooking\nJack:fitness\nPeter:cooking\nChris:gaming"""
     #
     # sort_result = sort_names_and_hobbies(sample_data)
@@ -281,5 +281,5 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
     # print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
 
     #sample_data = """name0:hobby5\nname10:hobby5\nname1:hobby10\nname1:hobby4\nname9:hobby0\nname0:hobby5\nname4:hobby2\nname6:hobby9\nname6:hobby9\nname9:hobby1"""
-#    sample_data = """name2:hobby0\nname2:hobby6\nname1:hobby3\nname2:hobby7\nname3:hobby7\nname6:hobby7\nname4:hobby11\nname3:hobby0\nname6:hobby0\nname0:hobby3\nname2:hobby10"""
-#    print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
+    sample_data = """name3:hobby9\nname7:hobby1\nname10:hobby1\nname2:hobby2\nname9:hobby9\nname2:hobby2\nname14:hobby10\nname10:hobby7\nname5:hobby1\nname6:hobby4\nname7:hobby5\nname12:hobby4\nname7:hobby9\nname10:hobby5\nname1:hobby8\nname0:hobby5"""
+    print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
