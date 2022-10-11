@@ -50,7 +50,7 @@ def create_dictionary_with_hobbies(data: str) -> dict:
     :param data: given string from database
     :return: dictionary, where keys are hobbies and values are lists of people. Values are sorted alphabetically
     """
-    hobbies_dict = create_dictionary_with_hobbies(data)
+    hobbies_dict = create_dictionary(data)
     sorted_dict = sort_dictionary(hobbies_dict)
     retDict = {}
 
