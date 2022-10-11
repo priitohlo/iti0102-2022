@@ -246,11 +246,11 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
                 ratio = len(set(v).intersection(w))
                 if ratio > highest_ratio:
                     highest_ratio = len(set(v).intersection(w))
-                    highest_ratio_people = (l, k)
+                    highest_ratio_people = (k, l)
                 zero_found = True
                 continue
             if ratio > highest_ratio and not zero_found:
-                highest_ratio_people = (l, k)
+                highest_ratio_people = (k, l)
                 highest_ratio = ratio
 
     return highest_ratio_people
