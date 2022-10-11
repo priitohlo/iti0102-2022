@@ -57,6 +57,6 @@ def create_dictionary_with_hobbies(data: str) -> dict:
         hobby = p.split(":")
         if hobby[1] not in return_dict.keys():
             return_dict[hobby[1]] = set()
-        return_dict[hobby[0]].add(hobby[0])
+        return_dict[hobby[1]].add(hobby[0])
 
     return sort_dictionary(return_dict)
