@@ -246,11 +246,11 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
                 ratio = len(set(v).intersection(w))
                 if ratio > 0 and ratio > highest_ratio:
                     highest_ratio = len(set(v).intersection(w))
-                    highest_ratio_people = (k, l)
+                    highest_ratio_people = (l, k)
                 zero_found = True
                 continue
             if ratio > 0 and ratio > highest_ratio and not zero_found:
-                highest_ratio_people = (k, l)
+                highest_ratio_people = (l, k)
                 highest_ratio = ratio
 
     return highest_ratio_people
@@ -280,5 +280,5 @@ if __name__ == '__main__':
     # sample_data = """John:running\nJohn:walking\nMary:dancing\nMary:running\nNora:running\nNora:singing\nNora:dancing"""
     # print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
 
-    sample_data = """a:1\na:2\nb:3\nb:4\nc:5\nc:6"""
-    print(len(find_two_people_with_most_common_hobbies(sample_data)))  # ('Mary', 'Nora')
+    sample_data = """name0:hobby5\nname10:hobby5\nname1:hobby10\nname1:hobby4\nname9:hobby0\nname0:hobby5\nname4:hobby2\nname6:hobby9\nname6:hobby9\nname9:hobby1"""
+    print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
