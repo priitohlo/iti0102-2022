@@ -10,7 +10,6 @@ def create_dictionary(data: str) -> dict:
     :param data: given string from database
     :return: dictionary where keys are people and values are lists of hobbies
     """
-
     return_dict = {}
 
     for p in data.splitlines():
@@ -37,7 +36,6 @@ def sort_dictionary(dic: dict) -> dict:
     :param dic: dictionary to sort
     :return: sorted dictionary
     """
-
     return_dic = {}
 
     for e in dic:
@@ -54,10 +52,10 @@ def sort_dictionary(dic: dict) -> dict:
 def create_dictionary_with_hobbies(data: str) -> dict:
     """
     Create dictionary about hobbies and their hobbyists ie. {hobby1: [name1, name2, ...], hobby2: [...]}.
+
     :param data: given string from database
     :return: dictionary, where keys are hobbies and values are lists of people. Values are sorted alphabetically
     """
-
     return_dict = {}
 
     for p in data.splitlines():
@@ -72,6 +70,7 @@ def create_dictionary_with_hobbies(data: str) -> dict:
 def find_people_with_most_hobbies(data: str) -> list:
     """
     Find the people who have the most hobbies.
+
     :param data: given string from database
     :return: list of people with most hobbies. Sorted alphabetically.
     """
@@ -160,7 +159,7 @@ def find_people_with_hobbies(data: str, hobbies: list) -> set:
     return people_set
 
 
-def find_two_people_with_most_common_hobbies(data: str) -> tuple | None | set:
+def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
     """
     Find a pair of people who have the highest ratio of common to different hobbies.
 
@@ -237,8 +236,8 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None | set:
         return None
 
     for k, v in data_dict.items():
-        for l, w in data_dict.items():
-            if k == l:
+        for m, w in data_dict.items():
+            if k == m:
                 continue
             try:
                 ratio = len(set(v).intersection(w)) / len(set(v).symmetric_difference(w))
@@ -246,40 +245,17 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None | set:
                 ratio = len(set(v).intersection(w))
                 if ratio > highest_ratio:
                     highest_ratio = len(set(v).intersection(w))
-                    highest_ratio_people = (k, l)
+                    highest_ratio_people = (k, m)
                 zero_found = True
                 continue
             if ratio > highest_ratio and not zero_found:
-                highest_ratio_people = (k, l)
+                highest_ratio_people = (k, m)
                 highest_ratio = ratio
 
-    return set(highest_ratio_people)
+    return highest_ratio_people
 
 
 if __name__ == '__main__':
-    # sample_data = """Jack:crafting\nPeter:hiking\nWendy:gaming\nMonica:tennis\nChris:origami\nSophie:sport\nMonica:design\nCarmen:sport\nChris:sport\nMonica:skateboarding\nCarmen:cooking\nWendy:photography\nMonica:tennis\nCooper:yoga\nWendy:sport\nCooper:movies\nMonica:theatre\nCooper:yoga\nChris:gaming\nMolly:fishing\nJack:skateboarding\nWendy:fishing\nJack:drawing\nMonica:baking\nSophie:baking\nAlfred:driving\nAlfred:shopping\nAlfred:crafting\nJack:drawing\nCarmen:shopping\nCarmen:driving\nPeter:drawing\nCarmen:shopping\nWendy:fitness\nAlfred:travel\nJack:origami\nSophie:design\nJack:pets\nCarmen:dance\nAlfred:baking\nSophie:sport\nPeter:gaming\nJack:skateboarding\nCooper:football\nAlfred:sport\nCooper:fitness\nChris:yoga\nWendy:football\nMolly:design\nJack:hiking\nMonica:pets\nCarmen:photography\nJack:baking\nPeter:driving\nChris:driving\nCarmen:driving\nPeter:theatre\nMolly:hiking\nWendy:puzzles\nJack:crafting\nPeter:photography\nCarmen:theatre\nSophie:crafting\nCarmen:cooking\nAlfred:gaming\nPeter:theatre\nCooper:hiking\nChris:football\nChris:pets\nJack:football\nMonica:skateboarding\nChris:driving\nCarmen:pets\nCooper:gaming\nChris:hiking\nJack:cooking\nPeter:fishing\nJack:gaming\nPeter:origami\nCarmen:movies\nSophie:driving\nJack:sport\nCarmen:theatre\nWendy:shopping\nCarmen:pets\nWendy:gaming\nSophie:football\nWendy:theatre\nCarmen:football\nMolly:theatre\nPeter:theatre\nMonica:flowers\nMolly:skateboarding\nPeter:driving\nSophie:travel\nMonica:photography\nCooper:cooking\nJack:fitness\nPeter:cooking\nChris:gaming"""
-    #
-    # sort_result = sort_names_and_hobbies(sample_data)
-    # # if the condition after assert is False, error will be thrown
-    # assert isinstance(sort_result, tuple)
-    # assert len(sort_result) == 10
-    # assert sort_result[0][0] == 'Alfred'
-    # assert len(sort_result[0][1]) == 7
-    # assert sort_result[-1] == (
-    # 'Wendy', ('fishing', 'fitness', 'football', 'gaming', 'photography', 'puzzles', 'shopping', 'sport', 'theatre'))
-    # # if you see this line below, then everything seems to be ok!
-    # print("sorting works!")
-    #
-    # sample_data = """Jack:painting\nPeter:painting\nJack:running\nMary:running\nSmith:walking"""
-    # print(find_people_with_hobbies(sample_data, ["running", "painting"]))
-    # print(find_people_with_hobbies(
-    #     "John:running\nMary:running\nJohn:dancing\nJack:dancing\nJack:painting\nSmith:painting",
-    #     ["running", "dancing"]
-    # ))  # {"John", "Mary", "Jack"}
-    #
-    # sample_data = """John:running\nJohn:walking\nMary:dancing\nMary:running\nNora:running\nNora:singing\nNora:dancing"""
-    # print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
 
-    #sample_data = """name0:hobby5\nname10:hobby5\nname1:hobby10\nname1:hobby4\nname9:hobby0\nname0:hobby5\nname4:hobby2\nname6:hobby9\nname6:hobby9\nname9:hobby1"""
-    sample_data = """name3:hobby9\nname7:hobby1\nname10:hobby1\nname2:hobby2\nname9:hobby9\nname2:hobby2\nname14:hobby10\nname10:hobby7\nname5:hobby1\nname6:hobby4\nname7:hobby5\nname12:hobby4\nname7:hobby9\nname10:hobby5\nname1:hobby8\nname0:hobby5"""
+    sample_data = """name5:hobby8\nname0:hobby10\nname0:hobby10\nname0:hobby0\nname5:hobby6\nname4:hobby3\nname1:hobby4\nname0:hobby8\nname5:hobby2\nname4:hobby10"""
     print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
