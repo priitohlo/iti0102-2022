@@ -126,12 +126,15 @@ def sort_names_and_hobbies(data: str) -> tuple:
     and the second element is an ordered tuple of hobbies (ordered alphabetically).
     All those person-tuples are ordered by the name of the person and are inside a tuple.
     """
-    return_tupe = ()
+    return_tuple = ()
 
+    hobbies_dict = sort_dictionary(create_dictionary(data))
 
+    for k, v in  hobbies_dict.items():
+        person_tuple = (k, tuple(v))
+        return_tuple += person_tuple
 
-
-    return ()
+    return return_tuple
 
 
 def find_people_with_hobbies(data: str, hobbies: list) -> set:
@@ -220,27 +223,27 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple:
     return ()
 
 
-# if __name__ == '__main__':
-#     sample_data = """Jack:crafting\nPeter:hiking\nWendy:gaming\nMonica:tennis\nChris:origami\nSophie:sport\nMonica:design\nCarmen:sport\nChris:sport\nMonica:skateboarding\nCarmen:cooking\nWendy:photography\nMonica:tennis\nCooper:yoga\nWendy:sport\nCooper:movies\nMonica:theatre\nCooper:yoga\nChris:gaming\nMolly:fishing\nJack:skateboarding\nWendy:fishing\nJack:drawing\nMonica:baking\nSophie:baking\nAlfred:driving\nAlfred:shopping\nAlfred:crafting\nJack:drawing\nCarmen:shopping\nCarmen:driving\nPeter:drawing\nCarmen:shopping\nWendy:fitness\nAlfred:travel\nJack:origami\nSophie:design\nJack:pets\nCarmen:dance\nAlfred:baking\nSophie:sport\nPeter:gaming\nJack:skateboarding\nCooper:football\nAlfred:sport\nCooper:fitness\nChris:yoga\nWendy:football\nMolly:design\nJack:hiking\nMonica:pets\nCarmen:photography\nJack:baking\nPeter:driving\nChris:driving\nCarmen:driving\nPeter:theatre\nMolly:hiking\nWendy:puzzles\nJack:crafting\nPeter:photography\nCarmen:theatre\nSophie:crafting\nCarmen:cooking\nAlfred:gaming\nPeter:theatre\nCooper:hiking\nChris:football\nChris:pets\nJack:football\nMonica:skateboarding\nChris:driving\nCarmen:pets\nCooper:gaming\nChris:hiking\nJack:cooking\nPeter:fishing\nJack:gaming\nPeter:origami\nCarmen:movies\nSophie:driving\nJack:sport\nCarmen:theatre\nWendy:shopping\nCarmen:pets\nWendy:gaming\nSophie:football\nWendy:theatre\nCarmen:football\nMolly:theatre\nPeter:theatre\nMonica:flowers\nMolly:skateboarding\nPeter:driving\nSophie:travel\nMonica:photography\nCooper:cooking\nJack:fitness\nPeter:cooking\nChris:gaming"""
-#
-#     sort_result = sort_names_and_hobbies(sample_data)
-#     # if the condition after assert is False, error will be thrown
-#     assert isinstance(sort_result, tuple)
-#     assert len(sort_result) == 10
-#     assert sort_result[0][0] == 'Alfred'
-#     assert len(sort_result[0][1]) == 7
-#     assert sort_result[-1] == ('Wendy', ('fishing', 'fitness', 'football', 'gaming', 'photography', 'puzzles', 'shopping', 'sport', 'theatre'))
-#     # if you see this line below, then everything seems to be ok!
-#     print("sorting works!")
-#
-#     sample_data = """Jack:painting\nPeter:painting\nJack:running\nMary:running\nSmith:walking"""
-#     print(find_people_with_hobbies(sample_data, ["running", "painting"]))
-#     print(find_people_with_hobbies(
-#         "John:running\nMary:running\nJohn:dancing\nJack:dancing\nJack:painting\nSmith:painting",
-#         ["running", "dancing"]
-#     ))  # {"John", "Mary", "Jack"}
-#
-#     sample_data = """John:running\nJohn:walking\nMary:dancing\nMary:running\nNora:running\nNora:singing\nNora:dancing"""
-#     print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
+if __name__ == '__main__':
+    sample_data = """Jack:crafting\nPeter:hiking\nWendy:gaming\nMonica:tennis\nChris:origami\nSophie:sport\nMonica:design\nCarmen:sport\nChris:sport\nMonica:skateboarding\nCarmen:cooking\nWendy:photography\nMonica:tennis\nCooper:yoga\nWendy:sport\nCooper:movies\nMonica:theatre\nCooper:yoga\nChris:gaming\nMolly:fishing\nJack:skateboarding\nWendy:fishing\nJack:drawing\nMonica:baking\nSophie:baking\nAlfred:driving\nAlfred:shopping\nAlfred:crafting\nJack:drawing\nCarmen:shopping\nCarmen:driving\nPeter:drawing\nCarmen:shopping\nWendy:fitness\nAlfred:travel\nJack:origami\nSophie:design\nJack:pets\nCarmen:dance\nAlfred:baking\nSophie:sport\nPeter:gaming\nJack:skateboarding\nCooper:football\nAlfred:sport\nCooper:fitness\nChris:yoga\nWendy:football\nMolly:design\nJack:hiking\nMonica:pets\nCarmen:photography\nJack:baking\nPeter:driving\nChris:driving\nCarmen:driving\nPeter:theatre\nMolly:hiking\nWendy:puzzles\nJack:crafting\nPeter:photography\nCarmen:theatre\nSophie:crafting\nCarmen:cooking\nAlfred:gaming\nPeter:theatre\nCooper:hiking\nChris:football\nChris:pets\nJack:football\nMonica:skateboarding\nChris:driving\nCarmen:pets\nCooper:gaming\nChris:hiking\nJack:cooking\nPeter:fishing\nJack:gaming\nPeter:origami\nCarmen:movies\nSophie:driving\nJack:sport\nCarmen:theatre\nWendy:shopping\nCarmen:pets\nWendy:gaming\nSophie:football\nWendy:theatre\nCarmen:football\nMolly:theatre\nPeter:theatre\nMonica:flowers\nMolly:skateboarding\nPeter:driving\nSophie:travel\nMonica:photography\nCooper:cooking\nJack:fitness\nPeter:cooking\nChris:gaming"""
+
+    sort_result = sort_names_and_hobbies(sample_data)
+    # if the condition after assert is False, error will be thrown
+    assert isinstance(sort_result, tuple)
+    assert len(sort_result) == 10
+    assert sort_result[0][0] == 'Alfred'
+    assert len(sort_result[0][1]) == 7
+    assert sort_result[-1] == ('Wendy', ('fishing', 'fitness', 'football', 'gaming', 'photography', 'puzzles', 'shopping', 'sport', 'theatre'))
+    # if you see this line below, then everything seems to be ok!
+    print("sorting works!")
+
+    sample_data = """Jack:painting\nPeter:painting\nJack:running\nMary:running\nSmith:walking"""
+    print(find_people_with_hobbies(sample_data, ["running", "painting"]))
+    print(find_people_with_hobbies(
+        "John:running\nMary:running\nJohn:dancing\nJack:dancing\nJack:painting\nSmith:painting",
+        ["running", "dancing"]
+    ))  # {"John", "Mary", "Jack"}
+
+    sample_data = """John:running\nJohn:walking\nMary:dancing\nMary:running\nNora:running\nNora:singing\nNora:dancing"""
+    print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
 
 
