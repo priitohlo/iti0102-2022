@@ -232,7 +232,6 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
     highest_ratio_people = ()
     highest_ratio = 0
     zero_found = False
-    ratio = 0
 
     if len(data_dict.keys()) < 2:
         return None
