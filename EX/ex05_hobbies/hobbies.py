@@ -130,8 +130,8 @@ def sort_names_and_hobbies(data: str) -> tuple:
 
     hobbies_dict = sort_dictionary(create_dictionary(data))
 
-    for k, v in  hobbies_dict.items():
-        person_tuple = (k, tuple(v))
+    for k, v in hobbies_dict.items():
+        person_tuple = ((k, tuple(v)),)
         return_tuple += person_tuple
 
     return return_tuple
