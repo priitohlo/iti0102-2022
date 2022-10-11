@@ -43,7 +43,7 @@ def sort_dictionary(dic: dict) -> dict:
     for e in dic:
         dic[e] = sorted(dic[e])
 
-    sorted_keys = sorted(dic.keys())
+    sorted_keys = sorted(list(dic.keys()))
 
     for k in sorted_keys:
         return_dic[k] = sorted_keys[k]
