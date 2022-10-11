@@ -280,5 +280,5 @@ if __name__ == '__main__':
     # sample_data = """John:running\nJohn:walking\nMary:dancing\nMary:running\nNora:running\nNora:singing\nNora:dancing"""
     # print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
 
-    sample_data = """John:running\nJohn:walking\nMary:running\nMary:walking\nNora:running\nOprah:running\nAlbert:tennis\nAlbert:basketball\nAlbert:football\nXena:tennis\nXena:basketball\nXena:football\nXena:dancing"""
-    print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
+    #sample_data = """John:asd\nJohn:asdasd\nMary:asdasdasd\nMary:asdasdasdasdasdggggasd\nNora:asdasdasdasdasdasd\nOprah:rudsadasdanning\nAlbert:tenfsdnis\nAlbert:baskgfdetball\nAlbert:footsdfball\nXena:tenhhhgnis\nXena:baskegdstball\nXena:foowertball\nXena:danhgsfdcing"""
+    #print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
