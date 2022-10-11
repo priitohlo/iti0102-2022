@@ -48,7 +48,7 @@ def sort_dictionary(dic: dict) -> dict:
     for k in sorted_keys:
         return_dic[k] = sorted_keys[k]
 
-    return dic
+    return return_dic
 
 
 def create_dictionary_with_hobbies(data: str) -> dict:
