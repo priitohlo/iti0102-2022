@@ -12,7 +12,7 @@ def create_dictionary(data: str) -> dict:
 
     ret_dict = {}
 
-    for p in str.splitlines():
+    for p in data.splitlines():
         hobby = p.split(":")
         if p not in ret_dict:
             ret_dict[hobby[0]] = set(hobby[1])
