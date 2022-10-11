@@ -159,7 +159,7 @@ def find_people_with_hobbies(data: str, hobbies: list) -> set:
     return people_set
 
 
-def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
+def find_two_people_with_most_common_hobbies(data: str) -> tuple | None | set:
     """
     Find a pair of people who have the highest ratio of common to different hobbies.
 
@@ -252,11 +252,11 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
                 highest_ratio_people = (k, m)
                 highest_ratio = ratio
 
-    return highest_ratio_people
+    return set(highest_ratio_people)
 
 
-# if __name__ == '__main__':
-#
-#     sample_data = """name3:hobby9\nname7:hobby1\nname10:hobby1\nname2:hobby2\nname9:hobby9\nname2:hobby2\nname14:hobby10\nname10:hobby7\nname7:hobby7\nname5:hobby1\nname6:hobby4\nname7:hobby5\nname12:hobby4\nname7:hobby9\nname10:hobby5\nname1:hobby8\nname0:hobby5,"""
-#     data = find_two_people_with_most_common_hobbies(sample_data)
-#     print(data)  # ('Mary', 'Nora')
+if __name__ == '__main__':
+
+    sample_data = """name3:hobby9\nname7:hobby1\nname10:hobby1\nname2:hobby2\nname9:hobby9\nname2:hobby2\nname14:hobby10\nname10:hobby7\nname7:hobby7\nname5:hobby1\nname6:hobby4\nname7:hobby5\nname12:hobby4\nname7:hobby9\nname10:hobby5\nname1:hobby8\nname0:hobby5,"""
+    data = find_two_people_with_most_common_hobbies(sample_data)
+    print(data)
