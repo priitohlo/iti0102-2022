@@ -14,10 +14,9 @@ def create_dictionary(data: str) -> dict:
 
     for p in data.splitlines():
         hobby = p.split(":")
-        if p not in ret_dict:
-            ret_dict[hobby[0]] = set(hobby[1])
-        else:
-            ret_dict[hobby[0]].add(hobby[1])
+        if hobby[0] not in ret_dict.keys():
+            ret_dict[hobby[0]] = set()
+        ret_dict[hobby[0]].add(hobby[1])
 
     return ret_dict
 
@@ -38,8 +37,10 @@ def sort_dictionary(dic: dict) -> dict:
     :return: sorted dictionary
     """
 
+    for e in dic:
+        dic[e] = sorted(dic[e])
 
-    return {}
+    return dic
 
 
 if __name__ == '__main__':
