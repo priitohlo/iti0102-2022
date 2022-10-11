@@ -72,7 +72,7 @@ def find_people_with_most_hobbies(data: str) -> list:
     max_hobbies = 0
     people = []
 
-    for k, v in people_dict.values():
+    for k, v in people_dict.items():
         if len(v) > max_hobbies:
             people = [k]
         elif len(v) == max_hobbies:
@@ -92,7 +92,7 @@ def find_least_popular_hobbies(data: str) -> list:
     min_people = 0
     hobbies = []
 
-    for k, v in hobbies_dict.values():
+    for k, v in hobbies_dict.items():
         if len(v) < min_people or min_people == 0:
             hobbies = [k]
         elif len(v) == min_people:
