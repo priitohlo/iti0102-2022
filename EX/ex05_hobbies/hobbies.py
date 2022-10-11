@@ -110,7 +110,6 @@ def find_least_popular_hobbies(data: str) -> list:
     return sorted(hobbies)
 
 
-
 def sort_names_and_hobbies(data: str) -> tuple:
     """
     Create a tuple of sorted names and their hobbies.
@@ -229,7 +228,25 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple:
 
     If there are less than 2 people in the input, return None.
     """
-    return ()
+    data_dict = create_dictionary(data)
+    highest_ratio_people = ()
+    highest_ratio = 0
+    ratio = 0
+
+    for k, v in data_dict.items():
+        for l, w in data_dict.items():
+            if k == l:
+                continue
+            try:
+                ratio = len(set(v).intersection(w)) / len(set(v).symmetric_difference(w))
+            except ZeroDivisionError:
+                highest_ratio = len(set(v).intersection(w))
+                continue
+            if ratio > highest_ratio:
+                highest_ratio_people = (k, l)
+                highest_ratio = ratio
+
+    return highest_ratio_people
 
 
 if __name__ == '__main__':
@@ -241,7 +258,8 @@ if __name__ == '__main__':
     assert len(sort_result) == 10
     assert sort_result[0][0] == 'Alfred'
     assert len(sort_result[0][1]) == 7
-    assert sort_result[-1] == ('Wendy', ('fishing', 'fitness', 'football', 'gaming', 'photography', 'puzzles', 'shopping', 'sport', 'theatre'))
+    assert sort_result[-1] == (
+    'Wendy', ('fishing', 'fitness', 'football', 'gaming', 'photography', 'puzzles', 'shopping', 'sport', 'theatre'))
     # if you see this line below, then everything seems to be ok!
     print("sorting works!")
 
@@ -254,5 +272,3 @@ if __name__ == '__main__':
 
     sample_data = """John:running\nJohn:walking\nMary:dancing\nMary:running\nNora:running\nNora:singing\nNora:dancing"""
     print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
-
-
