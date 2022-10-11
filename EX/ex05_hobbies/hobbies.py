@@ -255,7 +255,8 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
     return highest_ratio_people
 
 
-if __name__ == '__main__':
-
-    sample_data = """name5:hobby8\nname0:hobby10\nname0:hobby10\nname0:hobby0\nname5:hobby6\nname4:hobby3\nname1:hobby4\nname0:hobby8\nname5:hobby2\nname4:hobby10"""
-    print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
+# if __name__ == '__main__':
+#
+#     sample_data = """name3:hobby9\nname7:hobby1\nname10:hobby1\nname2:hobby2\nname9:hobby9\nname2:hobby2\nname14:hobby10\nname10:hobby7\nname7:hobby7\nname5:hobby1\nname6:hobby4\nname7:hobby5\nname12:hobby4\nname7:hobby9\nname10:hobby5\nname1:hobby8\nname0:hobby5,"""
+#     data = find_two_people_with_most_common_hobbies(sample_data)
+#     print(data)  # ('Mary', 'Nora')
