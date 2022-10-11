@@ -160,7 +160,7 @@ def find_people_with_hobbies(data: str, hobbies: list) -> set:
     return people_set
 
 
-def find_two_people_with_most_common_hobbies(data: str) -> tuple:
+def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
     """
     Find a pair of people who have the highest ratio of common to different hobbies.
 
@@ -233,6 +233,9 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple:
     highest_ratio = 0
     zero_found = False
     ratio = 0
+
+    if len(data_dict.keys()) < 2:
+        return None
 
     for k, v in data_dict.items():
         for l, w in data_dict.items():
