@@ -149,7 +149,16 @@ def find_people_with_hobbies(data: str, hobbies: list) -> set:
     Result:
         {"John", "Mary", "Jack"}
     """
-    return set()
+    people_set = set()
+    hobbies_set = set(hobbies)
+    data_dict = create_dictionary(data)
+
+    for k, v in data_dict.items():
+        common_hobbies = hobbies_set.intersection(set(v))
+        if common_hobbies:
+            people_set.add(k)
+
+    return people_set
 
 
 def find_two_people_with_most_common_hobbies(data: str) -> tuple:
