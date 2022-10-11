@@ -229,8 +229,8 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
     If there are less than 2 people in the input, return None.
     """
     data_dict = create_dictionary(data)
-    highest_ratio_people = ("John", "Mary")
-    highest_ratio = 0
+    highest_ratio_people = ()
+    highest_ratio = -1
     zero_found = False
 
     if len(data_dict.keys()) < 2:
@@ -244,12 +244,12 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
                 ratio = len(set(v).intersection(w)) / len(set(v).symmetric_difference(w))
             except ZeroDivisionError:
                 ratio = len(set(v).intersection(w))
-                if ratio > 0 and ratio > highest_ratio:
+                if ratio > highest_ratio:
                     highest_ratio = len(set(v).intersection(w))
                     highest_ratio_people = (l, k)
                 zero_found = True
                 continue
-            if ratio > 0 and ratio > highest_ratio and not zero_found:
+            if ratio > highest_ratio and not zero_found:
                 highest_ratio_people = (l, k)
                 highest_ratio = ratio
 
@@ -280,5 +280,6 @@ if __name__ == '__main__':
     # sample_data = """John:running\nJohn:walking\nMary:dancing\nMary:running\nNora:running\nNora:singing\nNora:dancing"""
     # print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
 
-    sample_data = """name0:hobby5\nname10:hobby5\nname1:hobby10\nname1:hobby4\nname9:hobby0\nname0:hobby5\nname4:hobby2\nname6:hobby9\nname6:hobby9\nname9:hobby1"""
+    #sample_data = """name0:hobby5\nname10:hobby5\nname1:hobby10\nname1:hobby4\nname9:hobby0\nname0:hobby5\nname4:hobby2\nname6:hobby9\nname6:hobby9\nname9:hobby1"""
+    sample_data = """a:b\nc:d"""
     print(find_two_people_with_most_common_hobbies(sample_data))  # ('Mary', 'Nora')
