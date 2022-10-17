@@ -159,7 +159,7 @@ def find_people_with_hobbies(data: str, hobbies: list) -> set:
     return people_set
 
 
-def find_two_people_with_most_common_hobbies(data: str) -> tuple | None | set:
+def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
     """
     Find a pair of people who have the highest ratio of common to different hobbies.
 
@@ -252,7 +252,7 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None | set:
                 highest_ratio_people = (m, k)
                 highest_ratio = ratio
 
-    return set(highest_ratio_people)
+    return highest_ratio_people
 
 
 if __name__ == '__main__':
