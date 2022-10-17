@@ -248,7 +248,7 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None | set:
                     highest_ratio_people = (m, k)
                 zero_found = True
                 continue
-            if ratio > highest_ratio and not zero_found:
+            if ratio >= highest_ratio and not zero_found:
                 highest_ratio_people = (m, k)
                 highest_ratio = ratio
 
