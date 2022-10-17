@@ -257,6 +257,6 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
 
 if __name__ == '__main__':
 
-    sample_data = """name4:hobby7\nname8:hobby4\nname5:hobby11\nname1:hobby0\nname6:hobby9\nname5:hobby9\nname3:hobby10\nname2:hobby0\nname1:hobby0\nname4:hobby2"""
+    sample_data = """name3:hobby9\nname7:hobby1\nname10:hobby1\nname2:hobby2\nname9:hobby9\nname2:hobby2\nname14:hobby10\nname10:hobby7\nname7:hobby7\nname5:hobby1\nname6:hobby4\nname7:hobby5\nname12:hobby4\nname7:hobby9\nname10:hobby5\nname1:hobby8\nname0:hobby5"""
     data = find_two_people_with_most_common_hobbies(sample_data)
     print(data)
