@@ -110,10 +110,14 @@ def find_years(text: str) -> list:
     :param text: given string to find years from
     :return: list of years (integers) found in given string
     """
-    pattern = "(?:[\D]|^)(\d{4})(?:[\D]|$)"
-    words = re.findall(pattern, text)
+    pattern = "(?:\D|\b)+(\d{4})(?:\D|\b)+"
+    years = re.findall(pattern, text)
+    ret_list = []
 
-    return text
+    for y in years:
+        ret_list.append(int(y))
+
+    return ret_list
 
 
 def find_phone_numbers(text: str) -> dict:
@@ -148,7 +152,7 @@ def find_phone_numbers(text: str) -> dict:
                 phone_dict[''] = []
             phone_dict[''].append(''.join(n[0:]).strip())
 
-    return text
+    return phone_dict
 
 
 if __name__ == '__main__':
@@ -174,5 +178,5 @@ if __name__ == '__main__':
     print(find_years("1998sef672387fh3f87fh83777f777f7777f73wfj893w8938434343"))
     # [1998, 7777]
 
-    print(find_phone_numbers("+372 56887364  +37256887364  +33359835647  56887364 +11 1234567 +327 1 11111111"))
+    print(find_phone_numbers("+372 56887364 +37256887364 +33359835647 56887364"))
     # {'+372': ['56887364', '56887364'], '+333': ['59835647'], '': ['56887364', '1234567', '11111111']}
