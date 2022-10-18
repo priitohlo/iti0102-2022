@@ -54,7 +54,7 @@ def find_sentences(text: str) -> list:
     :param text: given string to find sentences from
     :return: list of sentences found in given string
     """
-    pattern = "[A-ZÕÄÖÜ][A-Za-zõäöü\,\ \-]+[\.!?]"
+    pattern = "[A-ZÕÄÖÜ][\w\, \-]+[.!?]"
     words = re.findall(pattern, text)
 
     return words
@@ -158,7 +158,7 @@ if __name__ == '__main__':
     print(find_words_with_vowels('KanaMunaPelmeenApelsinÕunMandariinKakaoHernesAhven'))
     # ['Apelsin', 'Õun', 'Ahven']
 
-    print(find_sentences('See on esimene - lause. See on ä teine lause! see ei ole lause. Aga kas see on? jah, oli. Aga see on kohe kindlasti lause. Üks, kaks, kolm! Ja lauses võib ka nime kasutada, näiteks Ago.'))
+    print(find_sentences('See on esimene - lause. See on ä teine lause! see ei ole lause. Aga kas see on? jah, oli. Aga see on kohe kindlasti lause. Üks, kaks, kolm! Ja lauses võib ka nime kasutada, näiteks Ago. Ma olen 12-aastane. Kui vana sina oled?'))
     # ['See on esimene - lause.', 'See on ä teine lause!', 'Aga kas see on?']
 
     print(find_sentences('ei ole lause. See on!!! See ka...Ja see... See pole'))
