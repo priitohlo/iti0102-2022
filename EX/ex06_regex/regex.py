@@ -139,23 +139,23 @@ def find_phone_numbers(text: str) -> dict:
     :param text: given string to find phone numbers from
     :return: dict containing the numbers
     """
-    pattern = r"((?:\+\d{3}\s?)?\d{7,8})(?:\s|$)"
+    pattern = r"((\+\d{3}\s?)?\d{7,8})(?:\D|\s|$)"
     numbers = re.findall(pattern, text)
     phone_dict = dict()
 
-    print(numbers)
+    #print(numbers)
 
     for n in numbers:
-        if n[0] == '+':
-            if n[0:4] not in phone_dict:
-                phone_dict[n[0:4]] = []
-            phone_dict[n[0:4]].append(''.join(n[4:]).strip())
+        if n[0][0] == '+':
+            if n[0][0:4] not in phone_dict:
+                phone_dict[n[0][0:4]] = []
+            phone_dict[n[0][0:4]].append(''.join(n[0][4:]).strip())
         else:
             if '' not in phone_dict:
                 phone_dict[''] = []
-            phone_dict[''].append(''.join(n[0:]).strip())
+            phone_dict[''].append(''.join(n[0][0:]).strip())
 
-    return text
+    return phone_dict
 
 
 if __name__ == '__main__':
@@ -183,4 +183,6 @@ if __name__ == '__main__':
     # [1998, 7777]
 
     print(find_phone_numbers("+372 56887364 +37256887364 +33359835647 56887364"))
-    # {'+372': ['56887364', '56887364'], '+333': ['59835647'], '': ['56887364', '1234567', '11111111']}
+    # {'': ['56887364'], '+333': ['59835647'], '+372': ['56887364', '56887364']}
+    print(find_phone_numbers("+37256772345wdaea+372123+45389023524...++233 32489456"))
+    # {'+233': ['32489456'], '+372': ['56772345'], '+453': ['89023524']}
