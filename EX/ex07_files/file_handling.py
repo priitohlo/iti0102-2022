@@ -186,18 +186,18 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
     for i, r in enumerate(towns):
         for j, s in enumerate(dates):
             if towns[i][0] == dates[j][0]:
-                out_contents.append([towns[i][0], dates[j][1], towns[i][1]])
+                out_contents.append([dates[j][0], towns[i][1], dates[j][1]])
                 towns.pop(i)
                 dates.pop(j)
 
     for d in dates:
-        out_contents.append([d[0], d[1], "-"])
+        out_contents.append([d[0], "-", d[1]])
 
     for t in towns:
-        out_contents.append([t[0], "-", t[1]])
+        out_contents.append([t[0], t[1], "-"])
 
     write_csv_file(csv_output_filename, out_contents)
 
     return None
 
-#merge_dates_and_towns_into_csv("dates", "towns", "out")
+merge_dates_and_towns_into_csv("dates", "towns", "out")
