@@ -1,10 +1,10 @@
+"""Docstring siia."""
 import csv
-import os
-
 
 def read_file_contents(filename: str) -> str:
     """
     Read file contents into string.
+
     In this exercise, we can assume the file exists.
 
     :param filename: File to read.
@@ -123,8 +123,8 @@ def write_csv_file(filename: str, data: list) -> None:
     """
     with open(filename, "w") as file:
         writer = csv.writer(file)
-        for l in data:
-            writer.writerow(l)
+        for line in data:
+            writer.writerow(line)
 
     return None
 
@@ -183,7 +183,7 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
         towns = list(csv.reader(file, delimiter=':'))
 
     for i, r in enumerate(dates):
-        out_contents.append([dates[i][0], dates[i][1], towns[i][1]])
+        out_contents.append([dates[i][0], towns[i][1], dates[i][1]])
 
     write_csv_file(csv_output_filename, out_contents)
 
