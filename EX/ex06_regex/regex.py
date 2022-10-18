@@ -113,7 +113,7 @@ def find_years(text: str) -> list:
     pattern = "(?:[\D]|^)(\d{4})(?:[\D]|$)"
     words = re.findall(pattern, text)
 
-    return words
+    return text
 
 
 def find_phone_numbers(text: str) -> dict:
