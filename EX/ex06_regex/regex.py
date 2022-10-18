@@ -16,7 +16,7 @@ def find_words(text: str) -> list:
      find words from
     :return: list of words found in given string
     """
-    pattern = "[A-ZÕÄÖÜ][a-zõäöü]+"
+    pattern = r"[A-ZÕÄÖÜ][a-zõäöü]+"
     words = re.findall(pattern, text)
 
     return words
@@ -35,7 +35,7 @@ def find_words_with_vowels(text: str) -> list:
     :param text: given string to find words from
     :return: list of words that start with a vowel found in given string
     """
-    pattern = "[AEIOUÕÄÖÜ][a-zõäöü]+"
+    pattern = r"[AEIOUÕÄÖÜ][a-zõäöü]+"
     words = re.findall(pattern, text)
 
     return words
@@ -54,7 +54,7 @@ def find_sentences(text: str) -> list:
     :param text: given string to find sentences from
     :return: list of sentences found in given string
     """
-    pattern = "[A-ZÕÄÖÜ][\w\, \-\:]+[.!?]+"
+    pattern = r"[A-ZÕÄÖÜ][\w\, \-\:]+[.!?]+"
     words = re.findall(pattern, text)
 
     return words
@@ -74,7 +74,7 @@ def find_words_from_sentence(sentence: str) -> list:
     :param sentence: given sentence to find words from
     :return: list of words found in given sentence
     """
-    pattern = "[\s\W]*(\w+)[\s\W]*"
+    pattern = r"[\s\W]*(\w+)[\s\W]*"
     words = re.findall(pattern, sentence)
 
     return words
@@ -110,14 +110,15 @@ def find_years(text: str) -> list:
     :param text: given string to find years from
     :return: list of years (integers) found in given string
     """
-    pattern = "(?:\D|\b)+(\d{4})(?:\D|\b)+"
+    pattern = r"(?:\D|\b)(\d{4})(?:\D|\b)"
     years = re.findall(pattern, text)
     ret_list = []
 
+    print(years)
     for y in years:
         ret_list.append(int(y))
 
-    return text
+    return ret_list
 
 
 def find_phone_numbers(text: str) -> dict:
@@ -138,7 +139,7 @@ def find_phone_numbers(text: str) -> dict:
     :param text: given string to find phone numbers from
     :return: dict containing the numbers
     """
-    pattern = "((?:\+\d{3}\s?)?\d{7,8})(?:\s|$)"
+    pattern = r"(?:\D|\b)+(\d{4})(?:\D|\b)+"
     numbers = re.findall(pattern, text)
     phone_dict = dict()
 
@@ -175,7 +176,8 @@ if __name__ == '__main__':
         'See on esimene - ä lause. See, on teine: lause! see ei ole lause. Aga kas see on? jah, oli.'))
     # ['See', 'on', 'esimene', 'ä', 'lause', 'See', 'on', 'teine', 'lause', 'Aga', 'kas', 'see', 'on']
 
-    print(find_years("1998sef672387fh3f87fh83777f777f7777f73wfj893w8938434343"))
+    #print(find_years("1998sef672387fh3f87fh83777f777f7777f73wfj893w8938434343'"))
+    print(find_years("1998,1998!45676??7777-1234"))
     # [1998, 7777]
 
     print(find_phone_numbers("+372 56887364 +37256887364 +33359835647 56887364"))
