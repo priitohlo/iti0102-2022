@@ -183,12 +183,12 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
     with open(towns_filename, "r") as file:
         towns = list(csv.reader(file, delimiter=':'))
 
-    for i, r in enumerate(towns):
-        for j, s in enumerate(dates):
-            if (towns[i][0] == dates[j][0]) and towns[i][1] and dates[j][1]:
-                out_contents.append([dates[j][0], towns[i][1], dates[j][1]])
-                towns[i][1] = None
-                dates[j][1] = None
+    for i, r in enumerate(dates):
+        for j, s in enumerate(towns):
+            if (dates[i][0] == towns[j][0]) and dates[i][1] and towns[j][1]:
+                out_contents.append([dates[i][0], towns[j][1], dates[i][1]])
+                towns[j][1] = None
+                dates[i][1] = None
 
     for d in dates:
         if d[1]:
