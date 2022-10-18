@@ -1,6 +1,7 @@
 """Docstring siia."""
 import csv
 
+
 def read_file_contents(filename: str) -> str:
     """
     Read file contents into string.
@@ -183,8 +184,12 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
         towns = list(csv.reader(file, delimiter=':'))
 
     for i, r in enumerate(dates):
-        out_contents.append([dates[i][0], towns[i][1], dates[i][1]])
+        for j, s in enumerate(towns):
+            if dates[i][0] == towns[j][0]:
+                out_contents.append([dates[i][0], towns[j][1], dates[i][1]])
 
     write_csv_file(csv_output_filename, out_contents)
 
     return None
+
+merge_dates_and_towns_into_csv("dates", "towns", "out")
