@@ -243,10 +243,12 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
                 ratio = len(v.intersection(w)) / len(v.symmetric_difference(w))
             except ZeroDivisionError:
                 ratio = len(v.intersection(w))
+                if not zero_found:
+                    highest_ratio = 0
+                    zero_found = True
                 if ratio >= highest_ratio:
                     highest_ratio = len(v.intersection(w))
                     highest_ratio_people = (m, k)
-                zero_found = True
                 continue
             if ratio >= highest_ratio and not zero_found:
                 highest_ratio_people = (m, k)
@@ -257,6 +259,6 @@ def find_two_people_with_most_common_hobbies(data: str) -> tuple | None:
 
 if __name__ == '__main__':
 
-    sample_data = """name0:hobby5\nname10:hobby5\nname1:hobby10\nname1:hobby4\nname9:hobby0\nname0:hobby5\nname4:hobby2\nname6:hobby9\nname6:hobby9\nname9:hobby1"""
+    sample_data = """name4:hobby7\nname8:hobby4\nname5:hobby11\nname1:hobby0\nname6:hobby9\nname5:hobby9\nname3:hobby10\nname2:hobby0\nname1:hobby0\nname4:hobby2"""
     data = find_two_people_with_most_common_hobbies(sample_data)
     print(data)
