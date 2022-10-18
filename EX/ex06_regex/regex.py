@@ -54,7 +54,7 @@ def find_sentences(text: str) -> list:
     :param text: given string to find sentences from
     :return: list of sentences found in given string
     """
-    pattern = "[A-ZÕÄÖÜ][\w\, \-]+[.!?]"
+    pattern = "[A-ZÕÄÖÜ][\w\, \-\:]+[.!?]"
     words = re.findall(pattern, text)
 
     return words
