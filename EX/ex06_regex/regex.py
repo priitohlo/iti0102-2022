@@ -155,7 +155,7 @@ def find_phone_numbers(text: str) -> dict:
                 phone_dict[''] = []
             phone_dict[''].append(''.join(n[0:]).strip())
 
-    return phone_dict
+    return text
 
 
 if __name__ == '__main__':
