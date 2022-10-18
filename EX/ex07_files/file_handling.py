@@ -236,10 +236,12 @@ def read_csv_file_into_list_of_dicts(filename: str) -> list:
     list_data = read_csv_file(filename)
     return_dicts = []
 
-    for e in list_data:
-        return_dicts.append({e[0]: e[1]})
+    keys = list_data[0]
 
-    return list_data
+    for i, e in enumerate(list_data[1:]):
+        return_dicts.append({keys[i]: e[i]})
+
+    return return_dicts
 
 
 def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
