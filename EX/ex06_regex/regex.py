@@ -117,7 +117,7 @@ def find_years(text: str) -> list:
     for y in years:
         ret_list.append(int(y))
 
-    return ret_list
+    return text
 
 
 def find_phone_numbers(text: str) -> dict:
