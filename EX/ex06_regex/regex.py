@@ -154,4 +154,3 @@ def find_phone_numbers(text: str) -> dict:
             phone_dict[''].append(''.join(n[0][0:]).strip())
 
     return phone_dict
-
