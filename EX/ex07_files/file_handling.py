@@ -239,7 +239,9 @@ def read_csv_file_into_list_of_dicts(filename: str) -> list:
     keys = list_data[0]
 
     for i, e in enumerate(list_data[1:]):
-        return_dicts.append({keys[i]: e[i]})
+        return_dicts.append(dict())
+        for j, f in enumerate(e):
+            return_dicts[i][keys[i]] = e[j]
 
     return return_dicts
 
@@ -283,3 +285,5 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     :param data: List of dictionaries to write to the file.
     :return: None
     """
+
+print(read_csv_file_into_list_of_dicts("out"))
