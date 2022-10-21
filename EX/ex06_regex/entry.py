@@ -56,7 +56,7 @@ class Entry:
                self.date_of_birth == other.date_of_birth and self.address == other.address
 
 
-def parse(row: str) -> Entry | str:
+def parse(row: str) -> Entry:
     """
     Parse data from input string.
 
@@ -66,7 +66,7 @@ def parse(row: str) -> Entry | str:
     pattern = r"(^[A-ZÕÄÖÜ][a-zõäöü]+)?" \
               r"([A-ZÕÄÖÜ][a-zõäöü]+)?" \
               r"(\d{11})?" \
-              r"(\+\d{3} \d{7,8})?" \
+              r"((?:\+\d{3} ?)?\d{7,8})?" \
               r"(\d{2}\-\d{2}\-\d{4})?" \
               r"(.*$)"
     match = re.findall(pattern, row)
@@ -78,8 +78,7 @@ def parse(row: str) -> Entry | str:
     date_of_birth, \
     address = [e if e else None for e in match[0]]
 
-    return row
-    #return Entry(first_name, last_name, id_code, phone_number, date_of_birth, address)
+    return Entry(first_name, last_name, id_code, phone_number, date_of_birth, address)
 
 
 if __name__ == '__main__':
