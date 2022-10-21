@@ -56,7 +56,7 @@ class Entry:
                self.date_of_birth == other.date_of_birth and self.address == other.address
 
 
-def parse(row: str) -> Entry:
+def parse(row: str) -> Entry | str:
     """
     Parse data from input string.
 
@@ -78,7 +78,8 @@ def parse(row: str) -> Entry:
     date_of_birth, \
     address = [e if e else None for e in match[0]]
 
-    return Entry(first_name, last_name, id_code, phone_number, date_of_birth, address)
+    return row
+    #return Entry(first_name, last_name, id_code, phone_number, date_of_birth, address)
 
 
 if __name__ == '__main__':
