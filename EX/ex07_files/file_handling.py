@@ -1,6 +1,7 @@
 """Docstring siia."""
 import csv
 import datetime
+import itertools
 import re
 
 
@@ -393,10 +394,12 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
 
     for i, e in enumerate(input_dicts):
         output_dicts.append(dict())
+        r = re.compile(r"\d{2}\.\d{2}\.\d{4}")
+        print(list(itertools.filterfalse(r.match, [e["date1"] for e in input_dicts])))
         for k, v in e.items():
             if v.isnumeric() and "".join([e[k] for e in input_dicts]).isnumeric():
                 output_dicts[i][k] = int(v)
-            elif re.match("\d{2}\.\d{2}\.\d{4}", v):
+            elif r.match(v) and not list(itertools.filterfalse(r.match, [e[k] for e in input_dicts])):
                 output_dicts[i][k] = datetime.datetime.strptime(v, '%d.%m.%Y').date()
             elif v == "-":
                 output_dicts[i][k] = None
