@@ -63,7 +63,7 @@ def create_schedule_string(input_string: str) -> str:
     times_dict = dict()
     #pattern = "(\d{1,2}:\d{1,2}) (([a-zA-Z]+)(, [a-zA-Z]*)*)"
     #pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]*)"
-    pattern = r"(\d{1,2}:\d{1,2}) ([a-zA-Z]+)"
+    pattern = r"(?<= )(\d{1,2}:\d{1,2}) +([a-zA-Z]+)"
 
 
     match = re.findall(pattern, input_string)
@@ -72,7 +72,8 @@ def create_schedule_string(input_string: str) -> str:
             time = time_normalize(m[0])
             if time not in times_dict.keys():
                 times_dict[time] = []
-            times_dict[time].append(m[1])
+            if m[1] not in times_dict[time]:
+                times_dict[time].append(m[1])
         except ValueError:
             continue
 
@@ -82,5 +83,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("s 11:34 12:45 .  15:03 correct 11:12"))
+    print(create_schedule_string("s asfasf  15:03       correct   11:12asdf"))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
