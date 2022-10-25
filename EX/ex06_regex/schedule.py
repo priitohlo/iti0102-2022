@@ -83,3 +83,8 @@ def create_schedule_string(input_string: str) -> str:
     table = create_table(times_dict)
 
     return table
+
+
+if __name__ == '__main__':
+    print(create_schedule_string(
+        "start biqyzb notgnw tdbbuwoa ejoucpuhz kujqwdy proeirhegp zeilmuz zsrkzphy ikltfjtswg 2?22    ZHWfPO ucmoykbop rcqvw eydsqdsqh pikjyjti 03-13 GGmsCWUk mcmalri kagvku vtctjrzpf mxwww yfvznqybo igcvd hbgrhiqut heyike 17,17    KLktWf ipqzn bfwsnoouue wuwsq cinuqdqnly gmynvuqqom ckggeumkt fjceciiopk -1!51   oIFpsbHt kzjstmou uxhus 7.48   kMtmOt vhdwode yswscpcbg bekoikg aulbpipn eyfcyk vaknatrfvt 05=08   kLKtwf gkgsibgegn fyeerhhs cqtbfhcvax hpcdeah vvngcvp zgshlrn hbstynav 18b25    GGMscWUk drynccsro nsivjjqpg xjrec 1=10    KmTmOT dbnawornat jkhzsxv 15-49 gGmsCWUk uodot qtugxyoiq pzundj tglajbyoy ajqffr gkvbc uqrysrt nzmykv giqbk 22?18   lKjVQea klonmmmp paxldmkpu jrmcqsjh clmklb jhzhfxk ythrorlcxp qyygxaiin ahhrih ntalg jugqc"))
