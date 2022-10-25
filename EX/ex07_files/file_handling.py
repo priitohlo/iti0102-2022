@@ -392,14 +392,13 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
     """
     input_dicts = read_csv_file_into_list_of_dicts(filename)
     output_dicts = []
-    dates = []
-    r = re.compile(r"\d{2}\.\d{2}\.\d{4}")
+    dates = set()
+    r = re.compile(r"(\d{2}\.\d{2}\.\d{4})|(-)")
 
     for e in input_dicts:
         for k, v in e.items():
-            if r.match(v) and (not list(itertools.filterfalse(r.match, [e[k] for e in input_dicts]))
-                                 or list(filter(lambda x: x == '-', [e[k] for e in input_dicts]))):
-                dates.append(k)
+            if r.match(v) and not list(itertools.filterfalse(r.match, [e[k] for e in input_dicts])):
+                dates.add(k)
 
     for i, e in enumerate(input_dicts):
         output_dicts.append(dict())
@@ -407,8 +406,11 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
             if v.isnumeric() and "".join(
                     list(itertools.filterfalse(lambda x: x == '-', [e[k] for e in input_dicts]))).isnumeric():
                 output_dicts[i][k] = int(v)
-            elif r.match(v) and k in dates:
-                output_dicts[i][k] = datetime.datetime.strptime(v, '%d.%m.%Y').date()
+            elif k in dates:
+                if r.match(v)[0] != "-":
+                    output_dicts[i][k] = datetime.datetime.strptime(v, '%d.%m.%Y').date()
+                else:
+                    output_dicts[i][k] = None
             elif v == "-":
                 output_dicts[i][k] = None
             else:
