@@ -22,7 +22,7 @@ def create_table(input_dict: dict) -> str:
     if longest_entry_length > 0:
         for k, v in sorted_input_dict.items():
             out_buffer += '| '
-            out_buffer += ' ' + k if len(k) == 8 else '  ' + k
+            out_buffer += k if len(k) == 8 else ' ' + k
             out_buffer += ' | '
             out_buffer += v + (longest_entry_length - len(v)) * ' '
             out_buffer += ' |\n'
