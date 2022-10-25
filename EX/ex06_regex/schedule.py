@@ -8,7 +8,6 @@ def create_table(input_dict: dict) -> str:
                                     key=lambda x: datetime.strptime(x[0], '%I:%M %p')))
     longest_entry_length = len(max(sorted_input_dict.values(), key=len, default=''))
 
-
     if longest_entry_length:
         top_bottom_border = longest_entry_length * '-' + 15 * '-' + '\n'
         header = '|     time | entries' + (longest_entry_length - 6) * ' ' + '|\n'
@@ -23,7 +22,7 @@ def create_table(input_dict: dict) -> str:
     if longest_entry_length > 0:
         for k, v in sorted_input_dict.items():
             out_buffer += '| '
-            out_buffer += k
+            out_buffer += k if len(k) == 8 else ' ' + k
             out_buffer += ' | '
             out_buffer += v + (longest_entry_length - len(v)) * ' '
             out_buffer += ' |\n'
@@ -46,12 +45,10 @@ def create_schedule_file(input_filename: str, output_filename: str) -> None:
     with open(input_filename, 'r') as rf:
         schedule_string = create_schedule_string(rf.read())
 
-
     with open(output_filename, 'w') as wf:
         wf.write(schedule_string)
 
     return None
-
 
 
 def create_schedule_string(input_string: str) -> str:
@@ -72,5 +69,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    #print(create_schedule_string("wat 11:00 teine tekst 11:0 jah ei 10:00 pikktekst "))
+    # print(create_schedule_string("wat 11:00 teine tekst 11:0 jah ei 10:00 pikktekst "))
     create_schedule_file("schedule_input.txt", "schedule_output.txt")
