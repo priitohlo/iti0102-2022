@@ -6,37 +6,38 @@ import re
 def create_table(input_dict: dict) -> str:
     sorted_input_dict = dict(sorted(input_dict.items(),
                                     key=lambda x: datetime.strptime(x[0], '%I:%M %p')))
-    longest_entry_length = len(max(sorted_input_dict.values(), key=len, default=''))
+
     longest_time_length = len(max(sorted_input_dict.keys(), key=len, default=''))
+    content_buffer = []
+    out_buffer = []
 
-    if longest_entry_length:
-        top_bottom_border = f"{'-' * 7 if longest_entry_length < 7 else '-' * longest_entry_length}" \
-                            f"{'-' if longest_time_length == 8 else ''}" \
-                            f"{14 * '-'}\n"
-        header = f"|{' ' if longest_time_length == 8 else ''}    time " \
-                 f"| entries{' ' if longest_entry_length < 7 else ' ' * (longest_entry_length - 6)}|\n"
-    else:
-        top_bottom_border = 20 * '-' + '\n'
-        header = '|  time | entries  |\n'
-
-    out_buffer = top_bottom_border
-    out_buffer += header
-    out_buffer += top_bottom_border
-
-    if longest_entry_length > 0:
+    if sorted_input_dict:
         for k, v in sorted_input_dict.items():
-            out_buffer += f"|{' ' if longest_time_length == 8 and len(k) == 7 else ''} "
-            out_buffer += k
-            out_buffer += ' | '
-            out_buffer += v + (longest_entry_length - len(v)) * ' '
-            out_buffer += f"{' ' * (7 - longest_entry_length) if longest_entry_length < 7 else ''}"
-            out_buffer += ' |\n'
+            content_buffer.append(f"|{' ' if longest_time_length == 8 and len(k) == 7 else ''} " +
+                                    f"{k}" +
+                                    f" | " \
+                                    f"{(', '.join([w for w in v]))}".rstrip(", ") +
+                                    f"{' ' * (5 - len(v)) if len(v) < 7 else ''}"
+                                    f" |")
     else:
-        out_buffer += '| No entries found |\n'
+        content_buffer += '| No entries found |\n'
 
-    out_buffer += top_bottom_border
+    if sorted_input_dict:
+        content_length = len(content_buffer[0])
+        top_bottom_border = f"{'-' * content_length if content_length > 21 else '-' * 21}"
+        header = f"|{' ' if longest_time_length == 8 else ''}    time " \
+                 f"| entries{' ' * (content_length - 20) if content_length > 20 else ' '}|"
+    else:
+        top_bottom_border = 20 * '-' + ''
+        header = '|  time | entries  |'
 
-    return out_buffer
+    out_buffer.append(top_bottom_border)
+    out_buffer.append(header)
+    out_buffer.append(top_bottom_border)
+    out_buffer += content_buffer
+    out_buffer.append(top_bottom_border)
+
+    return '\n'.join(out_buffer)
 
 
 def time_normalize(date: str):
@@ -59,12 +60,17 @@ def create_schedule_file(input_filename: str, output_filename: str) -> None:
 def create_schedule_string(input_string: str) -> str:
     """Create schedule string from the given input string."""
     times_dict = dict()
-    pattern = "(\d{1,2}:\d{1,2}) (([a-zA-Z]+)(, [a-zA-Z]*)*)"
+    #pattern = "(\d{1,2}:\d{1,2}) (([a-zA-Z]+)(, [a-zA-Z]*)*)"
+    pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]*)"
+
 
     match = re.findall(pattern, input_string)
     for m in match:
         try:
-            times_dict[time_normalize(m[0])] = m[1]
+            time = time_normalize(m[0])
+            if time not in times_dict.keys():
+                times_dict[time] = []
+            times_dict[time].append(m[1])
         except ValueError:
             continue
 
@@ -74,5 +80,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("1:02 correct done"))
+    print(create_schedule_string("1:02 terertertetrert"))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
