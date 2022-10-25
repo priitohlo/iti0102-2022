@@ -238,10 +238,13 @@ def read_csv_file_into_list_of_dicts(filename: str) -> list:
 
     keys = list_data[0]
 
-    for i, e in enumerate(list_data[1:]):
-        return_dicts.append(dict())
-        for j, f in enumerate(e):
-            return_dicts[i][keys[i]] = e[j]
+    try:
+        for i, e in enumerate(list_data[1:]):
+            return_dicts.append(dict())
+            for j, f in enumerate(e):
+                return_dicts[i][keys[j]] = e[j]
+    except IndexError:
+        pass
 
     return return_dicts
 
@@ -287,4 +290,4 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     """
 
 if __name__ == '__main__':
-    print(read_csv_file_into_list_of_dicts("out"))
+    print(read_csv_file_into_list_of_dicts("in"))
