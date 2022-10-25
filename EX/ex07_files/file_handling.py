@@ -1,5 +1,7 @@
 """Docstring siia."""
 import csv
+import datetime
+import re
 
 
 def read_file_contents(filename: str) -> str:
@@ -304,16 +306,106 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
                 out_buffer += ","
         out_buffer += "\n"
 
-
     with open(filename, 'w') as f:
         f.writelines(keys_buffer)
         f.writelines(out_buffer)
 
     return None
 
+
+def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
+    """
+    Read data from file and cast values into different datatypes.
+    If a field contains only numbers, turn this into int.
+    If a field contains only dates (in format dd.mm.yyyy), turn this into date.
+    Otherwise the datatype is string (default by csv reader).
+
+    Example:
+    name,age
+    john,11
+    mary,14
+
+    Becomes ('age' is int):
+    [
+      {'name': 'john', 'age': 11},
+      {'name': 'mary', 'age': 14}
+    ]
+
+    But if all the fields cannot be cast to int, the field is left to string.
+    Example:
+    name,age
+    john,11
+    mary,14
+    ago,unknown
+
+    Becomes ('age' cannot be cast to int because of "ago"):
+    [
+      {'name': 'john', 'age': '11'},
+      {'name': 'mary', 'age': '14'},
+      {'name': 'ago', 'age': 'unknown'}
+    ]
+
+    Example:
+    name,date
+    john,01.01.2020
+    mary,07.09.2021
+
+    Becomes:
+    [
+      {'name': 'john', 'date': datetime.date(2020, 1, 1)},
+      {'name': 'mary', 'date': datetime.date(2021, 9, 7)},
+    ]
+
+    Example:
+    name,date
+    john,01.01.2020
+    mary,late 2021
+
+    Becomes:
+    [
+      {'name': 'john', 'date': "01.01.2020"},
+      {'name': 'mary', 'date': "late 2021"},
+    ]
+
+    Value "-" indicates missing value and should be None in the result
+    Example:
+    name,date
+    john,-
+    mary,07.09.2021
+
+    Becomes:
+    [
+      {'name': 'john', 'date': None},
+      {'name': 'mary', 'date': datetime.date(2021, 9, 7)},
+    ]
+
+    None value also doesn't affect the data type
+    (the column will have the type based on the existing values).
+
+    The order of the elements in the list should be the same
+    as the lines in the file.
+
+    For date, strptime can be used:
+    https://docs.python.org/3/library/datetime.html#examples-of-usage-date
+    """
+    input_dicts = read_csv_file_into_list_of_dicts(filename)
+    output_dicts = []
+
+    for i, e in enumerate(input_dicts):
+        output_dicts.append(dict())
+        for k, v in e.items():
+            if v.isnumeric():
+                output_dicts[i][k] = int(v)
+            elif re.match("\d{2}\.\d{2}\.\d{4}", v):
+                print(v)
+                output_dicts[i][k] = datetime.datetime.strptime(v, '%d.%m.%Y')
+            elif v == "-":
+                output_dicts[i][k] = None
+            else:
+                output_dicts[i][k] = v
+
+
+    return output_dicts
+
 if __name__ == '__main__':
-    #write_list_of_dicts_to_csv_file("out", read_csv_file_into_list_of_dicts("in"))
-    write_list_of_dicts_to_csv_file("out1", [{'name': 'john', 'age': '12'},
-                                             {'town': 'London'},
-                                             {'age': '16', 'sex': 'F'},
-                                             {'name': 'mary', 'sex': 'F'}])
+    print(read_csv_file_into_list_of_dicts_using_datatypes("in"))
