@@ -20,7 +20,7 @@ def create_table(input_dict: dict) -> str:
                                     f"{' ' * (5 - len(v)) if len(v) < 7 else ''}"
                                     f" |")
     else:
-        content_buffer += '| No entries found |\n'
+        content_buffer.append('| No entries found |')
 
     if sorted_input_dict:
         content_length = len(content_buffer[0])
@@ -80,5 +80,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("1:02 terertertetrert"))
+    print(create_schedule_string("tere tere siin pole uhtegi kellaaega, aga moned numbrid on nagu 12 h ."))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
