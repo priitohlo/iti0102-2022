@@ -37,7 +37,7 @@ def create_table(input_dict: dict) -> str:
 
 def time_normalize(date: str):
     """Add missing 0's to the minutes and remove extra 0's from hours."""
-    return datetime.strftime(datetime.strptime(date, '%H:%M'), '%I:%M %p')
+    return datetime.strftime(datetime.strptime(date, '%H:%M'), '%I:%M %p').lstrip('0')
 
 
 def create_schedule_file(input_filename: str, output_filename: str) -> None:
