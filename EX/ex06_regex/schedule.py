@@ -18,7 +18,7 @@ def create_table(input_dict: dict) -> str:
                                     k +
                                     f" | " +
                                     entry +
-                                    f"{' ' * (5 - len(entry)) if len(entry) < 7 else ''}"
+                                    f"{' ' * (7 - len(entry)) if len(entry) < 7 else ''}"
                                     f" |")
     else:
         content_buffer.append('| No entries found |')
@@ -44,6 +44,7 @@ def create_table(input_dict: dict) -> str:
 def time_normalize(date: str):
     """Add missing 0's to the minutes and remove extra 0's from hours."""
     date = date.replace('-', ':')
+    date = date.replace(' ', ':')
     return datetime.strftime(datetime.strptime(date, '%H:%M'), '%I:%M %p').lstrip('0')
 
 
@@ -64,7 +65,7 @@ def create_schedule_string(input_string: str) -> str:
     times_dict = dict()
     #pattern = "(\d{1,2}:\d{1,2}) (([a-zA-Z]+)(, [a-zA-Z]*)*)"
     #pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]*)"
-    pattern = r"(\d{1,2}[:-]\d{1,2}) +([a-zA-Z]+)"
+    pattern = r"((?<!\d|\w)\d{1,2}[\s:-]\d{1,2}) +([a-zA-Z]+)"
 
 
     match = re.findall(pattern, input_string)
@@ -73,8 +74,8 @@ def create_schedule_string(input_string: str) -> str:
             time = time_normalize(m[0])
             if time not in times_dict.keys():
                 times_dict[time] = []
-            if m[1] not in times_dict[time]:
-                times_dict[time].append(m[1])
+            if m[1].lower() not in times_dict[time]:
+                times_dict[time].append(m[1].lower())
         except ValueError:
             continue
 
@@ -84,5 +85,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("s asdf  15-03 correct asfd"))
+    print(create_schedule_string("here 01:12 def some more 01:12 abc 1:12 YES"))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
