@@ -62,7 +62,8 @@ def create_schedule_string(input_string: str) -> str:
     """Create schedule string from the given input string."""
     times_dict = dict()
     #pattern = "(\d{1,2}:\d{1,2}) (([a-zA-Z]+)(, [a-zA-Z]*)*)"
-    pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]*)"
+    #pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]*)"
+    pattern = r"(\d{1,2}:\d{1,2}) ([a-zA-Z]+)"
 
 
     match = re.findall(pattern, input_string)
@@ -81,5 +82,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("go 15:03 correct done"))
+    print(create_schedule_string("s 11:34 12:45 .  15:03 correct 11:12"))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
