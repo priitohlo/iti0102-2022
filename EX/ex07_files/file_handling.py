@@ -236,9 +236,8 @@ def read_csv_file_into_list_of_dicts(filename: str) -> list:
     list_data = read_csv_file(filename)
     return_dicts = []
 
-    keys = list_data[0]
-
     try:
+        keys = list_data[0]
         for i, e in enumerate(list_data[1:]):
             return_dicts.append(dict())
             for j, f in enumerate(e):
