@@ -17,9 +17,12 @@ def create_table(input_dict: dict) -> str:
             content_buffer.append(f"|{' ' if longest_time_length == 8 and len(k) == 7 else ''} " +
                                     k +
                                     f" | " +
-                                    entry +
-                                    f"{' ' * (7 - len(entry)) if len(entry) < 7 else ''}"
-                                    f" |")
+                                    entry)
+        length_longest_content_row = len(max(content_buffer, key=len))
+        for i, r in enumerate(content_buffer):
+            asd = len(r)
+            content_buffer[i] += ' ' * (length_longest_content_row - len(r))
+            content_buffer[i] += ' |'
     else:
         content_buffer.append('| No entries found |')
 
@@ -27,7 +30,7 @@ def create_table(input_dict: dict) -> str:
         content_length = len(content_buffer[0])
         top_bottom_border = f"{'-' * content_length if content_length > 21 else '-' * 21}"
         header = f"|{' ' if longest_time_length == 8 else ''}    time " \
-                 f"| entries{' ' * (content_length - 20) if content_length > 20 else ' '}|"
+                 f"| entries{' ' * (content_length - 21) if content_length > 21 else ' '}|"
     else:
         top_bottom_border = 20 * '-' + ''
         header = '|  time | entries  |'
@@ -43,9 +46,8 @@ def create_table(input_dict: dict) -> str:
 
 def time_normalize(date: str):
     """Add missing 0's to the minutes and remove extra 0's from hours."""
-    date = date.replace('-', ':')
-    date = date.replace(' ', ':')
-    return datetime.strftime(datetime.strptime(date, '%H:%M'), '%I:%M %p').lstrip('0')
+    date_clean = re.sub(r"\D", ':', date)
+    return datetime.strftime(datetime.strptime(date_clean, '%H:%M'), '%I:%M %p').lstrip('0')
 
 
 def create_schedule_file(input_filename: str, output_filename: str) -> None:
@@ -65,7 +67,7 @@ def create_schedule_string(input_string: str) -> str:
     times_dict = dict()
     #pattern = "(\d{1,2}:\d{1,2}) (([a-zA-Z]+)(, [a-zA-Z]*)*)"
     #pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]*)"
-    pattern = r"((?<!\d|\w)\d{1,2}[\s:-]\d{1,2}) +([a-zA-Z]+)"
+    pattern = r"((?<!\d|\w)\d{1,2}[\W\w]\d{1,2}) +([a-zA-Z]+)"
 
 
     match = re.findall(pattern, input_string)
@@ -85,5 +87,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("here 01:12 def some more 01:12 abc 1:12 YES"))
+    print(create_schedule_string("s asdf  15q03 correct asfd"))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
