@@ -317,6 +317,7 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
 def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
     """
     Read data from file and cast values into different datatypes.
+
     If a field contains only numbers, turn this into int.
     If a field contains only dates (in format dd.mm.yyyy), turn this into date.
     Otherwise the datatype is string (default by csv reader).
@@ -404,10 +405,11 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
     for i, e in enumerate(input_dicts):
         output_dicts.append(dict())
         for k, v in e.items():
-            if v.isnumeric() and "".join(list(itertools.filterfalse(lambda x: x == '-', [e[k] for e in input_dicts]))).isnumeric():
+            if v.isnumeric() and "".join(
+                    list(itertools.filterfalse(lambda x: x == '-', [e[k] for e in input_dicts]))).isnumeric():
                 output_dicts[i][k] = int(v)
-            elif r.match(v) and (not list(itertools.filterfalse(r.match, [e[k] for e in input_dicts])) \
-                    or list(filter(lambda x: x == '-', [e[k] for e in input_dicts]))) and k not in dates:
+            elif r.match(v) and (not list(itertools.filterfalse(r.match, [e[k] for e in input_dicts]))
+                                 or list(filter(lambda x: x == '-', [e[k] for e in input_dicts]))) and k not in dates:
                 output_dicts[i][k] = datetime.datetime.strptime(v, '%d.%m.%Y').date()
             elif k in dates:
                 output_dicts[i][k] = None
@@ -416,8 +418,8 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
             else:
                 output_dicts[i][k] = v
 
-
     return output_dicts
+
 
 if __name__ == '__main__':
     print(read_csv_file_into_list_of_dicts_using_datatypes("in"))
