@@ -32,7 +32,7 @@ def create_table(input_dict: dict) -> str:
         content_length = len(content_buffer[0])
         top_bottom_border = f"{'-' * content_length if content_length > 21 else '-' * 21}"
         header = f"|{' ' if longest_time_length == 8 else ''}    time " \
-                 f"| entries{' ' * (content_length - 21 + 8 - longest_time_length) if content_length > 22 else ' '}|"
+                 f"| entries{' ' * (content_length - 21 + 8 - longest_time_length) if content_length > 21 else ' '}|"
     else:
         top_bottom_border = 20 * '-' + ''
         header = '|  time | entries  |'
@@ -89,7 +89,8 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("a 1:2 tere 1:2 tsau 1:2 tere"))
+    print(create_schedule_string("here 01:12 abc some more 01:12 def"))
+    print(create_schedule_string("a 11:2 tere 11:2 ts 11:2 tere"))
     print(create_schedule_string("go 15:03 correct done"))
     print(create_schedule_string("x 00:59 incredible regex 0:0 midnight party 00:15 hippo 00:00 viego drinking water 0:00 incident"))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
