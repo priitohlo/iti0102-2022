@@ -288,20 +288,32 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     :return: None
     """
     keys = []
-    out_buffer = []
-    try:
-        keys = list(data[0].keys())
-        out_buffer = []
-        for e in data:
-            out_buffer.append(','.join(list(e.values())) + '\n')
-    except IndexError:
-        pass
+    for e in data:
+        for k in e.keys():
+            if k not in keys:
+                keys.append(k)
+
+    keys_buffer = ','.join(keys) + '\n' if keys else []
+    out_buffer = ''
+
+    for e in data:
+        for k in keys:
+            if k in e.keys():
+                out_buffer += f"{e[k]},"
+            else:
+                out_buffer += ","
+        out_buffer += "\n"
+
 
     with open(filename, 'w') as f:
-        f.writelines(','.join(keys) + '\n')
+        f.writelines(keys_buffer)
         f.writelines(out_buffer)
 
     return None
 
 if __name__ == '__main__':
-    print(write_list_of_dicts_to_csv_file("out", read_csv_file_into_list_of_dicts("in")))
+    #write_list_of_dicts_to_csv_file("out", read_csv_file_into_list_of_dicts("in"))
+    write_list_of_dicts_to_csv_file("out1", [{'name': 'john', 'age': '12'},
+                                             {'town': 'London'},
+                                             {'age': '16', 'sex': 'F'},
+                                             {'name': 'mary', 'sex': 'F'}])
