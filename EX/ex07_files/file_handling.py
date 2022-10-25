@@ -391,6 +391,7 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
     """
     input_dicts = read_csv_file_into_list_of_dicts(filename)
     output_dicts = []
+    dates = []
 
     for i, e in enumerate(input_dicts):
         output_dicts.append(dict())
@@ -401,6 +402,9 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
             elif r.match(v) and (not list(itertools.filterfalse(r.match, [e[k] for e in input_dicts])) \
                     or list(filter(lambda x: x == '-', [e[k] for e in input_dicts]))):
                 output_dicts[i][k] = datetime.datetime.strptime(v, '%d.%m.%Y').date()
+                dates.append(k)
+            elif k in dates:
+                output_dicts[i][k] = None
             elif v == "-":
                 output_dicts[i][k] = None
             else:
