@@ -7,10 +7,12 @@ def create_table(input_dict: dict) -> str:
     sorted_input_dict = dict(sorted(input_dict.items(),
                                     key=lambda x: datetime.strptime(x[0], '%I:%M %p')))
     longest_entry_length = len(max(sorted_input_dict.values(), key=len, default=''))
+    longest_time_length = len(max(sorted_input_dict.keys(), key=len, default=''))
 
     if longest_entry_length:
         top_bottom_border = longest_entry_length * '-' + 15 * '-' + '\n'
-        header = '|     time | entries' + (longest_entry_length - 6) * ' ' + '|\n'
+        header = f'|{" " if longest_time_length == 8 else ""}     time ' \
+                 f'| entries{(longest_entry_length - 7) * " "}|\n'
     else:
         top_bottom_border = 20 * '-' + '\n'
         header = '|  time | entries  |\n'
