@@ -23,7 +23,7 @@ def create_table(input_dict: dict) -> str:
             if length_longest_content_row > 21:
                 content_buffer[i] += ' ' * (length_longest_content_row - len(r))
             else:
-                content_buffer[i] += ' ' * (21 - len(r))
+                content_buffer[i] += ' ' * (19 - len(r))
             content_buffer[i] += ' |'
     else:
         content_buffer.append('| No entries found |')
