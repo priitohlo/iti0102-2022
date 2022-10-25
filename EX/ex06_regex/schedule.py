@@ -10,11 +10,11 @@ def create_table(input_dict: dict) -> str:
     longest_time_length = len(max(sorted_input_dict.keys(), key=len, default=''))
 
     if longest_entry_length:
-        top_bottom_border = f"{longest_entry_length * '-'}" \
+        top_bottom_border = f"{'-' * 7 if longest_entry_length < 7 else '-' * longest_entry_length}" \
                             f"{'-' if longest_time_length == 8 else ''}" \
                             f"{14 * '-'}\n"
-        header = f'|{" " if longest_time_length == 8 else ""}    time ' \
-                 f'| entries{(longest_entry_length - 6) * " "}|\n'
+        header = f"|{' ' if longest_time_length == 8 else ''}    time " \
+                 f"| entries{' ' if longest_entry_length < 7 else ' ' * (longest_entry_length - 6)}|\n"
     else:
         top_bottom_border = 20 * '-' + '\n'
         header = '|  time | entries  |\n'
@@ -29,6 +29,7 @@ def create_table(input_dict: dict) -> str:
             out_buffer += k
             out_buffer += ' | '
             out_buffer += v + (longest_entry_length - len(v)) * ' '
+            out_buffer += f"{' ' * (7 - longest_entry_length) if longest_entry_length < 7 else ''}"
             out_buffer += ' |\n'
     else:
         out_buffer += '| No entries found |\n'
@@ -58,7 +59,7 @@ def create_schedule_file(input_filename: str, output_filename: str) -> None:
 def create_schedule_string(input_string: str) -> str:
     """Create schedule string from the given input string."""
     times_dict = dict()
-    pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]+)"
+    pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z, ]+)"
 
     match = re.findall(pattern, input_string)
     for m in match:
@@ -73,5 +74,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("wat 1:00 teine tekst 1:0 jah ei 1:00 pikktekst "))
+    print(create_schedule_string("1:02 asdaaaaaaa"))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
