@@ -43,6 +43,7 @@ def create_table(input_dict: dict) -> str:
 
 def time_normalize(date: str):
     """Add missing 0's to the minutes and remove extra 0's from hours."""
+    date = date.replace('-', ':')
     return datetime.strftime(datetime.strptime(date, '%H:%M'), '%I:%M %p').lstrip('0')
 
 
@@ -63,7 +64,7 @@ def create_schedule_string(input_string: str) -> str:
     times_dict = dict()
     #pattern = "(\d{1,2}:\d{1,2}) (([a-zA-Z]+)(, [a-zA-Z]*)*)"
     #pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]*)"
-    pattern = r"(?<= )(\d{1,2}:\d{1,2}) +([a-zA-Z]+)"
+    pattern = r"(\d{1,2}[:-]\d{1,2}) +([a-zA-Z]+)"
 
 
     match = re.findall(pattern, input_string)
@@ -83,5 +84,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("s asfasf  15:03       correct   11:12asdf"))
+    print(create_schedule_string("s asdf  15-03 correct asfd"))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
