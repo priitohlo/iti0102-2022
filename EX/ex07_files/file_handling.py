@@ -394,10 +394,9 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
     for i, e in enumerate(input_dicts):
         output_dicts.append(dict())
         for k, v in e.items():
-            if v.isnumeric():
+            if v.isnumeric() and "".join([e[k] for e in input_dicts]).isnumeric():
                 output_dicts[i][k] = int(v)
             elif re.match("\d{2}\.\d{2}\.\d{4}", v):
-                print(v)
                 output_dicts[i][k] = datetime.datetime.strptime(v, '%d.%m.%Y').date()
             elif v == "-":
                 output_dicts[i][k] = None
