@@ -1,3 +1,4 @@
+"""Entry."""
 import re
 from datetime import datetime
 
@@ -52,8 +53,8 @@ class Entry:
         This method is perfect. Don't touch it.
         """
         return self.first_name == other.first_name and self.last_name == other.last_name and \
-               self.id_code == other.id_code and self.phone_number == other.phone_number and \
-               self.date_of_birth == other.date_of_birth and self.address == other.address
+            self.id_code == other.id_code and self.phone_number == other.phone_number and \
+            self.date_of_birth == other.date_of_birth and self.address == other.address
 
 
 def parse(row: str) -> Entry:
@@ -72,11 +73,11 @@ def parse(row: str) -> Entry:
     match = re.findall(pattern, row)
 
     first_name, \
-    last_name, \
-    id_code, \
-    phone_number, \
-    date_of_birth, \
-    address = [e if e else None for e in match[0]]
+        last_name, \
+        id_code, \
+        phone_number, \
+        date_of_birth, \
+        address = [e if e else None for e in match[0]]
 
     return Entry(first_name, last_name, id_code, phone_number, date_of_birth, address)
 

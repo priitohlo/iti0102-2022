@@ -4,6 +4,7 @@ import re
 
 
 def create_table(input_dict: dict) -> str:
+    """Create table."""
     sorted_input_dict = dict(sorted(input_dict.items(),
                                     key=lambda x: datetime.strptime(x[0], '%I:%M %p')))
 
@@ -14,10 +15,10 @@ def create_table(input_dict: dict) -> str:
     if sorted_input_dict:
         for k, v in sorted_input_dict.items():
             entry = ', '.join([w for w in v]).rstrip(", ")
-            content_buffer.append(f"|{' ' if longest_time_length == 8 and len(k) == 7 else ''} " +
-                                  k +
-                                  f" | " +
-                                  entry)
+            content_buffer.append(f"|{' ' if longest_time_length == 8 and len(k) == 7 else ''} "
+                                  + k
+                                  + " | "
+                                  + entry)
         length_longest_content_row = len(max(content_buffer, key=len))
         for i, r in enumerate(content_buffer):
             if length_longest_content_row > 21:
@@ -54,7 +55,6 @@ def time_normalize(date: str):
 
 def create_schedule_file(input_filename: str, output_filename: str) -> None:
     """Create schedule file from the given input file."""
-
     with open(input_filename, 'r') as rf:
         schedule_string = create_schedule_string(rf.read())
 
