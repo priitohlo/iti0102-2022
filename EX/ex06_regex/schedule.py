@@ -59,7 +59,7 @@ def create_schedule_file(input_filename: str, output_filename: str) -> None:
 def create_schedule_string(input_string: str) -> str:
     """Create schedule string from the given input string."""
     times_dict = dict()
-    pattern = "(\d{1,2}:\d{1,2}) (([a-zA-Z]+)(, [a-zA-Z]+))"
+    pattern = "(\d{1,2}:\d{1,2}) (([a-zA-Z]+)(, [a-zA-Z]*)*)"
 
     match = re.findall(pattern, input_string)
     for m in match:
