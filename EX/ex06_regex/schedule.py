@@ -10,22 +10,35 @@ def time_normalize(date: str):
 
 def create_schedule_file(input_filename: str, output_filename: str) -> None:
     """Create schedule file from the given input file."""
+
+    with open(input_filename, 'r') as rf:
+        schedule_string = create_schedule_string(rf.read())
+
+
+    with open(output_filename, 'w') as wf:
+        wf.write(schedule_string)
+
+    return None
+
+
+
+def create_schedule_string(input_string: str) -> str:
+    """Create schedule string from the given input string."""
     times_dict = dict()
     longest_entry_length = 0
     pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]+)"
 
-    with open(input_filename, 'r') as rf:
-        for line in rf.readlines():
-            match = re.findall(pattern, line)
-            for m in match:
-                try:
-                    times_dict[time_normalize(m[0])] = m[1]
-                except ValueError:
-                    continue
-                if len(m[1]) > longest_entry_length:
-                    longest_entry_length = len(m[1])
+    match = re.findall(pattern, input_string)
+    for m in match:
+        try:
+            times_dict[time_normalize(m[0])] = m[1]
+        except ValueError:
+            continue
+        if len(m[1]) > longest_entry_length:
+            longest_entry_length = len(m[1])
 
-    times_dict = dict(sorted(times_dict.items(), key = lambda x: datetime.strptime(x[0], '%I:%M %p')))
+    times_dict = dict(sorted(times_dict.items(), key=lambda x: datetime.strptime(x[0], '%I:%M %p')))
+
     top_bottom_border = longest_entry_length * '-' + 15 * '-' + '\n'
     out_buffer = top_bottom_border
     out_buffer += '|     time | entries' + (longest_entry_length - 6) * ' ' + '|\n'
@@ -40,20 +53,8 @@ def create_schedule_file(input_filename: str, output_filename: str) -> None:
 
     out_buffer += top_bottom_border
 
-    with open(output_filename, 'w') as wf:
-        wf.write(out_buffer)
 
-    #print(times_dict)
-    return None
-
-
-
-def create_schedule_string(input_string: str) -> str:
-    """Create schedule string from the given input string."""
-    pattern = "(\d{1,2}:\d{1,2}) ([a-zA-Z]+)"
-    match = re.findall(pattern, input_string)
-
-    return str(match)
+    return out_buffer
 
 
 if __name__ == '__main__':
