@@ -287,6 +287,19 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     :param data: List of dictionaries to write to the file.
     :return: None
     """
+    try:
+        keys = list(data[0].keys())
+        out_buffer = []
+        for e in data:
+            out_buffer.append(','.join(list(e.values())) + '\n')
+
+        with open(filename, 'w') as f:
+            f.writelines(','.join(keys) + '\n')
+            f.writelines(out_buffer)
+    except IndexError:
+        pass
+
+    return None
 
 if __name__ == '__main__':
-    print(read_csv_file_into_list_of_dicts("in"))
+    print(write_list_of_dicts_to_csv_file("out", read_csv_file_into_list_of_dicts("in")))
