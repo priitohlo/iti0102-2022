@@ -13,11 +13,12 @@ def create_table(input_dict: dict) -> str:
 
     if sorted_input_dict:
         for k, v in sorted_input_dict.items():
+            entry = ', '.join([w for w in v]).rstrip(", ")
             content_buffer.append(f"|{' ' if longest_time_length == 8 and len(k) == 7 else ''} " +
-                                    f"{k}" +
-                                    f" | " \
-                                    f"{(', '.join([w for w in v]))}".rstrip(", ") +
-                                    f"{' ' * (5 - len(v)) if len(v) < 7 else ''}"
+                                    k +
+                                    f" | " +
+                                    entry +
+                                    f"{' ' * (5 - len(entry)) if len(entry) < 7 else ''}"
                                     f" |")
     else:
         content_buffer.append('| No entries found |')
@@ -80,5 +81,5 @@ def create_schedule_string(input_string: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("tere tere siin pole uhtegi kellaaega, aga moned numbrid on nagu 12 h ."))
+    print(create_schedule_string("go 15:03 correct done"))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
