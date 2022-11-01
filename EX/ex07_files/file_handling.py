@@ -490,12 +490,7 @@ def read_people_data(directory: str) -> dict:
                     else:
                         people_data[k][key] = value
 
-
-    print(people_data)
-
-
-
-    pass
+    return people_data
 
 
 def generate_people_report(person_data_directory: str, report_filename: str) -> None:
