@@ -425,6 +425,7 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
 def read_people_data(directory: str) -> dict:
     """
     Read people data from files.
+
     Files are inside directory. Read all *.csv files.
 
     Each file has an int field "id" which should be used to merge information.
@@ -462,6 +463,7 @@ def read_people_data(directory: str) -> dict:
     :param directory: Directory where the csv files are.
     :return: Dictionary with id as keys and data dictionaries as values.
     """
+    global keys
     files_dict = dict()
     people_data = dict()
     date_regex = re.compile(r"(\d{2}\.\d{2}\.\d{4})")
