@@ -45,4 +45,9 @@ def test_lottery():
 def test_fruit_order():
     assert fruit_order(0, 0, 0) == 0
     assert fruit_order(0, 1, 0) == 0
+    assert fruit_order(1, 0, 0) == 0
+    assert fruit_order(1, 1, 0) == 0
+
+    assert fruit_order(0, 5, 1) == -1
+
 
