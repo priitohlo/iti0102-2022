@@ -5,7 +5,6 @@ def students_study(time: int, coffee_needed: bool) -> bool:
     (19, False) -> True
     (1, True) -> False.
     """
-
     if 5 <= time <= 17 and coffee_needed:
         return True
     elif 18 <= time <= 24:
@@ -46,5 +45,3 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
         return ordered_amount
     else:
         return -1
-
-print(fruit_order(10, 30, 160))
