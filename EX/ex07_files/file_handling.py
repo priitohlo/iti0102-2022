@@ -5,6 +5,8 @@ import itertools
 import os
 import re
 
+import math
+
 
 def read_file_contents(filename: str) -> str:
     """
@@ -419,6 +421,7 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
 
     return output_dicts
 
+
 def read_people_data(directory: str) -> dict:
     """
     Read people data from files.
@@ -466,7 +469,6 @@ def read_people_data(directory: str) -> dict:
     for file in os.listdir(directory):
         with open(os.path.join(directory, file), "r") as f:
             files_dict[os.path.splitext(os.path.basename(file))[0]] = f.read().splitlines()
-
 
     for f in files_dict.values():
         for i, e in enumerate(f):
@@ -537,11 +539,35 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     :return: None
     """
     people_dict = read_people_data(person_data_directory)
-    print(people_dict)
+    report_dict = dict()
+
+    for k, v in people_dict.items():
+        if people_dict[k]["birth"] is not None and people_dict[k]["death"] is not None:
+            people_dict[k]["age"] = math.floor(abs((v["death"] - v["birth"]).days / 365))
+            people_dict[k]["birth"] = datetime.datetime.strftime(people_dict[k]["birth"], '%d.%m.%Y')
+            people_dict[k]["death"] = datetime.datetime.strftime(people_dict[k]["death"], '%d.%m.%Y')
+            people_dict[k]["status"] = "dead"
+        elif people_dict[k]["birth"] is not None:
+            people_dict[k]["age"] = math.floor(abs((datetime.datetime.now().date() - v["birth"]).days / 365))
+            people_dict[k]["birth"] = datetime.datetime.strftime(people_dict[k]["birth"], '%d.%m.%Y')
+            people_dict[k]["status"] = "alive"
+        else:
+            people_dict[k]["age"] = -1
+            people_dict[k]["status"] = "alive"
+
+    report_dict = sorted(people_dict.items(), key=lambda x: (x[1]["age"], x[1]["birth"], x[1]["name"], x[1]["id"]))
+
+    #print(report_dict)
+
+    with open(report_filename, 'w') as f:
+        f.writelines(",".join(list(report_dict[0][1].keys())) + '\n')
+        for v in report_dict:
+            print(v)
+            f.writelines(",".join(str(x) for x in list(v[1].values())) + '\n')
 
     return None
 
 
 if __name__ == '__main__':
-    #print(generate_people_report("data", "out"))
-    print(read_people_data("data1"))
+    print(generate_people_report("data", "out"))
+    # print(read_people_data("data1"))
