@@ -47,4 +47,4 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
     else:
         return -1
 
-print(lottery(4, 5, 6))
+print(fruit_order(0, 1, 0))
