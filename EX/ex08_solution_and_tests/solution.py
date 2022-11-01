@@ -39,7 +39,9 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
     (4, 1, 9) -> 4
     (3, 1, 10) -> -1
     """
-    ordered_amount -= 5 * big_baskets
+    while ordered_amount > 4 and big_baskets > 0:
+        ordered_amount -= 5
+        big_baskets -= 1
     if small_baskets >= ordered_amount >= 0:
         return ordered_amount
     else:
