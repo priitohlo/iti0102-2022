@@ -1,4 +1,6 @@
 """Solution."""
+
+
 def students_study(time: int, coffee_needed: bool) -> bool:
     """
     Return True if students study in given circumstances.
