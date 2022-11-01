@@ -468,29 +468,29 @@ def read_people_data(directory: str) -> dict:
             files_dict[os.path.splitext(os.path.basename(file))[0]] = f.read().splitlines()
 
 
-    for v in files_dict.values():
-        for i, e in enumerate(v):
-            if i == 0:
-                key = e.split(",")[1]
-                continue
+    # for v in files_dict.values():
+    #     for i, e in enumerate(v):
+    #         if i == 0:
+    #             key = e.split(",")[1]
+    #             continue
+    #
+    #         person_id, value = e.split(",")
+    #
+    #         for j, w in people_data.items():
+    #             if value not in w.keys():
+    #                 if key not in people_data[j].keys():
+    #                     people_data[j][key] = None
+    #
+    #         if int(person_id) not in people_data.keys():
+    #             people_data[int(person_id)] = dict({"id": int(person_id)})
+    #         for k in people_data.keys():
+    #             if k == int(person_id) and value != "-":
+    #                 if date_regex.match(value):
+    #                     people_data[k][key] = datetime.datetime.strptime(value, '%d.%m.%Y').date()
+    #                 else:
+    #                     people_data[k][key] = value
 
-            person_id, value = e.split(",")
-
-            for j, w in people_data.items():
-                if value not in w.keys():
-                    if key not in people_data[j].keys():
-                        people_data[j][key] = None
-
-            if int(person_id) not in people_data.keys():
-                people_data[int(person_id)] = dict({"id": int(person_id)})
-            for k in people_data.keys():
-                if k == int(person_id) and value != "-":
-                    if date_regex.match(value):
-                        people_data[k][key] = datetime.datetime.strptime(value, '%d.%m.%Y').date()
-                    else:
-                        people_data[k][key] = value
-
-    return people_data
+    return files_dict
 
 
 def generate_people_report(person_data_directory: str, report_filename: str) -> None:
