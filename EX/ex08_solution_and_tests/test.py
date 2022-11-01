@@ -81,4 +81,4 @@ def test_fruit_order_various():
     assert fruit_order(6, 1, 13) == -1  # not enough with more than 5 smalls
 
     assert fruit_order(1, 300, 1499) == -1
-    assert fruit_order(500, 100, 1000) == 500
+    assert fruit_order(1, 100, 501) == 1
