@@ -486,8 +486,6 @@ def read_people_data(directory: str) -> dict:
                 for key in keys:
                     if key not in people_data[k].keys():
                         people_data[k][key] = None
-
-            for k in people_data.keys():
                 if k == int(values[0]):
                     for n, v in zip(keys, values[1:]):
                         if people_data[k][n] is None:
@@ -571,5 +569,5 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
 
 if __name__ == '__main__':
-    print(generate_people_report("data1", "out"))
-    # print(read_people_data("data1"))
+    #print(generate_people_report("data1", "out"))
+    print(read_people_data("data1"))
