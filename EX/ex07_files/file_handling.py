@@ -461,7 +461,7 @@ def read_people_data(directory: str) -> dict:
     """
     files_dict = dict()
     people_data = dict()
-    date_regex = re.compile(r"(\d{2}\.\d{2}\.\d{4})|(-)")
+    date_regex = re.compile(r"(\d{2}\.\d{2}\.\d{4})")
 
     for file in os.listdir(directory):
         with open(os.path.join(directory, file), "r") as f:
@@ -484,13 +484,15 @@ def read_people_data(directory: str) -> dict:
                         people_data[k][key] = None
 
             for k in people_data.keys():
-                for n, v in zip(keys, values[1:]):
-                    if people_data[k][n] is None:
-                        if date_regex.match(v):
-                            if date_regex.match(v)[0] != "-":
+                if k == int(values[0]):
+                    for n, v in zip(keys, values[1:]):
+                        if people_data[k][n] is None:
+                            if date_regex.match(v):
                                 people_data[k][n] = datetime.datetime.strptime(v, '%d.%m.%Y').date()
-                        else:
-                            people_data[k][n] = v
+                            elif v == "-":
+                                pass
+                            else:
+                                people_data[k][n] = v
 
     return people_data
 
