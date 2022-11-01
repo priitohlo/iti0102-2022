@@ -557,7 +557,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
     report_dict = sorted(people_dict.items(), key=lambda x: (x[1]["age"], x[1]["birth"], x[1]["name"], x[1]["id"]))
 
-    #print(report_dict)
+    print(report_dict)
 
     with open(report_filename, 'w') as f:
         f.writelines(",".join(list(report_dict[0][1].keys())) + '\n')
@@ -569,5 +569,5 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
 
 if __name__ == '__main__':
-    print(generate_people_report("data", "out"))
+    print(generate_people_report("data1", "out"))
     # print(read_people_data("data1"))
