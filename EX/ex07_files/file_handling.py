@@ -468,29 +468,31 @@ def read_people_data(directory: str) -> dict:
             files_dict[os.path.splitext(os.path.basename(file))[0]] = f.read().splitlines()
 
 
-    # for v in files_dict.values():
-    #     for i, e in enumerate(v):
-    #         if i == 0:
-    #             key = e.split(",")[1]
-    #             continue
-    #
-    #         person_id, value = e.split(",")
-    #
-    #         for j, w in people_data.items():
-    #             if value not in w.keys():
-    #                 if key not in people_data[j].keys():
-    #                     people_data[j][key] = None
-    #
-    #         if int(person_id) not in people_data.keys():
-    #             people_data[int(person_id)] = dict({"id": int(person_id)})
-    #         for k in people_data.keys():
-    #             if k == int(person_id) and value != "-":
-    #                 if date_regex.match(value):
-    #                     people_data[k][key] = datetime.datetime.strptime(value, '%d.%m.%Y').date()
-    #                 else:
-    #                     people_data[k][key] = value
+    for f in files_dict.values():
+        for i, e in enumerate(f):
+            values = e.split(",")
+            if i == 0:
+                keys = values[1:]
+                continue
 
-    return files_dict
+            if int(values[0]) not in people_data.keys():
+                people_data[int(values[0])] = dict({"id": int(values[0])})
+
+            for k in people_data.keys():
+                for key in keys:
+                    if key not in people_data[k].keys():
+                        people_data[k][key] = None
+
+            for k in people_data.keys():
+                for n, v in zip(keys, values[1:]):
+                    if people_data[k][n] is None:
+                        if date_regex.match(v):
+                            if date_regex.match(v)[0] != "-":
+                                people_data[k][n] = datetime.datetime.strptime(v, '%d.%m.%Y').date()
+                        else:
+                            people_data[k][n] = v
+
+    return people_data
 
 
 def generate_people_report(person_data_directory: str, report_filename: str) -> None:
@@ -535,9 +537,9 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     people_dict = read_people_data(person_data_directory)
     print(people_dict)
 
-    return people_dict
+    return None
 
 
 if __name__ == '__main__':
     #print(generate_people_report("data", "out"))
-    print(read_people_data("data"))
+    print(read_people_data("data1"))
