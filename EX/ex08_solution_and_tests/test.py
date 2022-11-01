@@ -1,13 +1,16 @@
+"""Tests."""
 from solution import students_study
 from solution import lottery
 from solution import fruit_order
 
 
 def test_none():
+    """Test none."""
     assert None is None
 
 
 def test_student_study():
+    """Test study."""
     assert students_study(2, True) is False
     assert students_study(2, False) is False
 
@@ -34,6 +37,7 @@ def test_student_study():
 
 
 def test_lottery():
+    """Test lottery."""
     assert lottery(5, 5, 5) == 10
     assert lottery(6, 6, 6) == 5
     assert lottery(-6, -6, -6) == 5
@@ -47,6 +51,7 @@ def test_lottery():
 
 
 def test_fruit_order_zeroes():
+    """Test zeroes."""
     assert fruit_order(0, 0, 0) == 0
     assert fruit_order(0, 1, 0) == 0
     assert fruit_order(1, 0, 0) == 0
@@ -54,6 +59,7 @@ def test_fruit_order_zeroes():
 
 
 def test_fruit_order_only_big():
+    """Test big."""
     assert fruit_order(0, 1, 5) == 0
     assert fruit_order(0, 1, 10) == -1
     assert fruit_order(0, 1, 9) == -1
@@ -62,6 +68,7 @@ def test_fruit_order_only_big():
 
 
 def test_fruit_order_only_small():
+    """Test small."""
     assert fruit_order(6, 0, 6) == 6
     assert fruit_order(6, 0, 7) == -1
     assert fruit_order(1, 0, 1) == 1
@@ -70,6 +77,7 @@ def test_fruit_order_only_small():
 
 
 def test_fruit_order_various():
+    """Test various."""
     assert fruit_order(6, 1, 11) == 6
     assert fruit_order(5, 1, 10) == 5
 
