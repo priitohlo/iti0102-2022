@@ -79,7 +79,7 @@ def pentabonacci(n: int) -> int:
             elif k != 1:
                 odd_values += 1
 
-    return n
+    return odd_values
 
 
 def swap_dict_keys_and_value_lists(d: dict) -> dict:
