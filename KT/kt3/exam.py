@@ -66,9 +66,9 @@ def pentabonacci(n: int) -> int:
     odd_values = 0
     mid_sum = 0
 
-    for i in range(1, 5 + 1):
-        for j in range(1, 5 - i):
-            mid_sum += n - j
+    for i in range(5):
+        for j in range(1, 5 + 1):
+            mid_sum += (n - i - j)
         sequence.append(mid_sum)
         mid_sum = 0
 
@@ -106,7 +106,6 @@ def swap_dict_keys_and_value_lists(d: dict) -> dict:
     return ret_dict
 
 
-
 if __name__ == '__main__':
     assert last_to_first("ab") == "ba"
     assert last_to_first("") == ""
@@ -118,9 +117,9 @@ if __name__ == '__main__':
     assert only_one_pair([1, 2, 1, 3, 1]) is False
     assert only_one_pair([1, 2, 1, 3, 1, 2]) is False
 
-    #assert pentabonacci(5) == 1
-    #assert pentabonacci(10) == 3
-    #assert pentabonacci(15) == 5
+    assert pentabonacci(5) == 1
+    assert pentabonacci(10) == 3
+    assert pentabonacci(15) == 5
 
     assert swap_dict_keys_and_value_lists({"a": ["b", "c"]}) == {"b": ["a"], "c": ["a"]}
     assert swap_dict_keys_and_value_lists({1: [2, 3], 4: [2, 5]}) == {2: [1, 4], 3: [1],
