@@ -71,12 +71,15 @@ def pentabonacci(n: int) -> int:
         mid_sum = sum(sequence[-5:])
         sequence.append(mid_sum)
 
-    if len(sequence) > n:
-        sequence = sequence[:n]
+    if len(sequence) > n + 1:
+        sequence = sequence[:n + 1]
 
     for k in sequence:
         if k % 2 != 0:
-            odd_values += 1
+            if k == 1 and one_counted is False:
+                one_counted = True
+            else:
+                odd_values += 1
 
     return odd_values
 
@@ -119,8 +122,8 @@ if __name__ == '__main__':
     assert only_one_pair([1, 2, 1, 3, 1]) is False
     assert only_one_pair([1, 2, 1, 3, 1, 2]) is False
 
-    #assert pentabonacci(1) == 0
-    #assert pentabonacci(10) == 3
+    assert pentabonacci(1) == 0
+    assert pentabonacci(10) == 3
     assert pentabonacci(1538) == 513
 
     assert swap_dict_keys_and_value_lists({"a": ["b", "c"]}) == {"b": ["a"], "c": ["a"]}
