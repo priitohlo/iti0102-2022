@@ -79,7 +79,7 @@ def pentabonacci(n: int) -> int:
             elif k != 1:
                 odd_values += 1
 
-    return 245
+    return odd_values
 
 
 def swap_dict_keys_and_value_lists(d: dict) -> dict:
@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
     assert pentabonacci(5) == 1
     assert pentabonacci(10) == 3
-    assert pentabonacci(15) == 5
+    assert pentabonacci(1538) == 513
 
     assert swap_dict_keys_and_value_lists({"a": ["b", "c"]}) == {"b": ["a"], "c": ["a"]}
     assert swap_dict_keys_and_value_lists({1: [2, 3], 4: [2, 5]}) == {2: [1, 4], 3: [1],
