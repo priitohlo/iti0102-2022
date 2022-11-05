@@ -72,7 +72,7 @@ def pentabonacci(n: int) -> int:
         sequence.append(mid_sum)
 
     if len(sequence) > n + 1:
-        sequence = sequence[:n + 1]
+        sequence = sequence[:n]
 
     for k in sequence:
         if k % 2 != 0:
@@ -122,7 +122,7 @@ if __name__ == '__main__':
     assert only_one_pair([1, 2, 1, 3, 1]) is False
     assert only_one_pair([1, 2, 1, 3, 1, 2]) is False
 
-    assert pentabonacci(1) == 0
+    assert pentabonacci(2) == 0
     assert pentabonacci(10) == 3
     assert pentabonacci(1538) == 513
 
