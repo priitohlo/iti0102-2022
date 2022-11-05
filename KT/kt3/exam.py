@@ -123,16 +123,7 @@ if __name__ == '__main__':
     assert only_one_pair([1, 2, 1, 3, 1]) is False
     assert only_one_pair([1, 2, 1, 3, 1, 2]) is False
 
-    # print(pentabonacci(0))
-    # print(pentabonacci(1))
-    # print(pentabonacci(2))
-    # print(pentabonacci(3))
-    # print(pentabonacci(4))
-    # print(pentabonacci(5))
-    # print(pentabonacci(6))
-    # print(pentabonacci(7))
-
-    #assert pentabonacci(2) == 0
+    assert pentabonacci(2) == 0
     assert pentabonacci(10) == 3
     assert pentabonacci(1538) == 513
 
