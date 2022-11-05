@@ -62,19 +62,22 @@ def pentabonacci(n: int) -> int:
     :param n: The last term to take into account.
     :return: Total number of odd values.
     """
-    sequence = []
+    sequence = [0, 1, 1, 2, 4]
     odd_values = 0
     mid_sum = 0
+    one_counted = False
 
-    for i in range(5):
-        for j in range(1, 5 + 1):
-            mid_sum += (n - i - j)
+    for i in range(5, n + 1):
+        mid_sum = sum(sequence[-5:])
         sequence.append(mid_sum)
-        mid_sum = 0
 
     for k in sequence:
         if k % 2 != 0:
-            odd_values += 1
+            if k == 1 and one_counted is False:
+                odd_values += 1
+                one_counted = True
+            elif k != 1:
+                odd_values += 1
 
     return odd_values
 
