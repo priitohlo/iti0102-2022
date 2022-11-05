@@ -76,11 +76,7 @@ def pentabonacci(n: int) -> int:
 
     for k in sequence:
         if k % 2 != 0:
-            if k == 1 and one_counted is False:
-                odd_values += 1
-                one_counted = True
-            elif k != 1:
-                odd_values += 1
+            odd_values += 1
 
     return odd_values
 
