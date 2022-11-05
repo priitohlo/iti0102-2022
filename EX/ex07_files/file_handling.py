@@ -469,8 +469,9 @@ def read_people_data(directory: str) -> dict:
     date_regex = re.compile(r"(\d{2}\.\d{2}\.\d{4})")
 
     for file in os.listdir(directory):
-        with open(os.path.join(directory, file), "r") as f:
-            files_dict[os.path.splitext(os.path.basename(file))[0]] = f.read().splitlines()
+        files_dict[file] = read_csv_file_into_list_of_dicts_using_datatypes(os.path.join(directory, file))
+
+    print(files_dict)
 
     for f in files_dict.values():
         for i, e in enumerate(f):
