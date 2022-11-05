@@ -67,7 +67,7 @@ def pentabonacci(n: int) -> int:
     mid_sum = 0
     one_counted = False
 
-    for i in range(5, n + 1):
+    for i in range(5, n):
         mid_sum = sum(sequence[-5:])
         sequence.append(mid_sum)
 
