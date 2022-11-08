@@ -541,7 +541,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
                                         datetime.strptime(v["birth"], '%d.%m.%Y').day))
         else:
             people_dict[k]["birth"] = datetime.strftime(datetime(1, 1, 1), '%d.%m.%Y')
-            people_dict[k]["death"] = datetime.strftime(people_dict[k]["death"], '%d.%m.%Y')
+            people_dict[k]["death"] = datetime.strftime(datetime(1, 1, 1), '%d.%m.%Y')
             people_dict[k]["status"] = "alive"
             people_dict[k]["age"] = -1
 
