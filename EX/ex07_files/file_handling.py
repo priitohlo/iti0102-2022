@@ -547,8 +547,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
     # report_dict = sorted(people_dict.items(), key=lambda x: (x[1]["age"], x[1]["birth"], x[1]["name"], x[1]["id"]))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["id"]))
-    people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["name"]))
-    people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["name"] == "", x[1]["name"])))
+    people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["name"] is None, x[1]["name"] == "", x[1]["name"])))
     people_dict = dict(
         sorted(people_dict.items(), key=lambda x: datetime.strptime(x[1]["birth"], '%d.%m.%Y'), reverse=True))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] is None, x[1]["age"])))
