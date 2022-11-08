@@ -1,6 +1,8 @@
 """TODO: documentation."""
 
+
 class Factory:
+    """TODO: documentation."""
     def __init__(self):
         """TODO: documentation."""
         self.cakes_baked = list()
@@ -36,7 +38,7 @@ class Factory:
 
 
 class Cake:
-
+    """TODO: documentation."""
     def __init__(self, base_amount, toppings_amount):
         """TODO: documentation."""
         match (base_amount, toppings_amount):
@@ -79,4 +81,5 @@ class Cake:
 
 
 class WrongIngredientsAmountException(Exception):
+    """TODO: documentation."""
     pass
