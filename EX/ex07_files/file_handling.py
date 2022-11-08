@@ -520,7 +520,6 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     :return: None
     """
     people_dict = read_people_data(person_data_directory)
-    report_dict = dict()
 
     for k, v in people_dict.items():
         if people_dict[k]["birth"] is not None and people_dict[k]["death"] is not None:
@@ -536,12 +535,17 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             people_dict[k]["age"] = -1
             people_dict[k]["status"] = "alive"
 
-    report_dict = sorted(people_dict.items(), key=lambda x: (x[1]["age"], x[1]["birth"], x[1]["name"], x[1]["id"]))
+    # report_dict = sorted(people_dict.items(), key=lambda x: (x[1]["age"], x[1]["birth"], x[1]["name"], x[1]["id"]))
+    people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["name"]))
+    people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["name"] is "", x[1]["name"])))
+    people_dict = dict(sorted(people_dict.items(), key=lambda x: datetime.strptime(x[1]["birth"], '%d.%m.%Y'), reverse=True))
+    people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] is None, x[1]["age"])))
 
     with open(report_filename, 'w') as f:
-        f.writelines(",".join(list(report_dict[0][1].keys())) + '\n')
-        for v in report_dict:
-            f.writelines(",".join(str(x) for x in list(v[1].values())) + '\n')
+        f.writelines(",".join(list(next(iter(people_dict.values())).keys())) + '\n')
+        for v in people_dict.values():
+            print(v)
+            f.writelines(",".join(str(x) for x in list(v.values())) + '\n')
 
     return None
 
