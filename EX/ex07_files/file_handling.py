@@ -5,6 +5,7 @@ import itertools
 import os
 import re
 
+
 def read_file_contents(filename: str) -> str:
     """
     Read file contents into string.
