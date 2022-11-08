@@ -556,7 +556,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     with open(report_filename, 'w') as f:
         f.writelines(",".join(list(next(iter(people_dict.values())).keys())) + '\n')
         for v in people_dict.values():
-            f.writelines(",".join([str(x) if (x is not None) or (x != '01.01.0001') else '-' for x in list(v.values())]) + '\n')
+            f.writelines(",".join([str(x) if x not in (None, '01.01.0001') else '-' for x in list(v.values())]) + '\n')
 
     return None
 
