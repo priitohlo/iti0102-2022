@@ -5,7 +5,9 @@ from solution import Factory, Cake, WrongIngredientsAmountException
 
 @pytest.fixture
 def factory() -> Factory:
-    """documentation."""
+    """documentation.
+
+    documentation"""
     return Factory()
 
 
