@@ -463,7 +463,6 @@ def read_people_data(directory: str) -> dict:
     :param directory: Directory where the csv files are.
     :return: Dictionary with id as keys and data dictionaries as values.
     """
-    global keys
     files_dict = dict()
     people_data = dict()
     date_regex = re.compile(r"(\d{2}\.\d{2}\.\d{4})")
@@ -471,31 +470,12 @@ def read_people_data(directory: str) -> dict:
     for file in os.listdir(directory):
         files_dict[file] = read_csv_file_into_list_of_dicts_using_datatypes(os.path.join(directory, file))
 
-    print(files_dict)
-
     for f in files_dict.values():
-        for i, e in enumerate(f):
-            values = e.split(",")
-            if i == 0:
-                keys = values[1:]
-                continue
-
-            if int(values[0]) not in people_data.keys():
-                people_data[int(values[0])] = dict({"id": int(values[0])})
-
-            for k in people_data.keys():
-                for key in keys:
-                    if key not in people_data[k].keys():
-                        people_data[k][key] = None
-                if k == int(values[0]):
-                    for n, v in zip(keys, values[1:]):
-                        if people_data[k][n] is None:
-                            if date_regex.match(v):
-                                people_data[k][n] = datetime.datetime.strptime(v, '%d.%m.%Y').date()
-                            elif v == "-":
-                                pass
-                            else:
-                                people_data[k][n] = v
+        for d in f:
+            if d["id"] in people_data.keys():
+                people_data[d["id"]] = people_data[d["id"]] | d
+            else:
+                people_data[d["id"]] = d
 
     return people_data
 
@@ -570,5 +550,5 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
 
 if __name__ == '__main__':
-    #print(generate_people_report("data1", "out"))
+    # print(generate_people_report("data1", "out"))
     print(read_people_data("data1"))
