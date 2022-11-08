@@ -553,8 +553,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     with open(report_filename, 'w') as f:
         f.writelines(",".join(list(next(iter(people_dict.values())).keys())) + '\n')
         for v in people_dict.values():
-            print(v)
-            f.writelines(",".join(str(x) for x in list(v.values())) + '\n')
+            f.writelines(",".join([str(x) if x is not None else '-' for x in list(v.values())]) + '\n')
 
     return None
 
