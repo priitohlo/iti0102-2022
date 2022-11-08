@@ -526,11 +526,15 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             people_dict[k]["birth"] = datetime.strftime(people_dict[k]["birth"], '%d.%m.%Y')
             people_dict[k]["death"] = datetime.strftime(people_dict[k]["death"], '%d.%m.%Y')
             people_dict[k]["status"] = "dead"
-            people_dict[k]["age"] = date.today().year - datetime.strptime(v["birth"], '%d.%m.%Y').year
+            people_dict[k]["age"] = datetime.strptime(v["death"], '%d.%m.%Y').year \
+                                    - datetime.strptime(v["birth"], '%d.%m.%Y').year
         elif people_dict[k]["birth"] is not None:
             people_dict[k]["birth"] = datetime.strftime(people_dict[k]["birth"], '%d.%m.%Y')
             people_dict[k]["status"] = "alive"
-            people_dict[k]["age"] = date.today().year - datetime.strptime(v["birth"], '%d.%m.%Y').year
+            people_dict[k]["age"] = date.today().year - datetime.strptime(v["birth"], '%d.%m.%Y').year - \
+                ((date.today().month, date.today().day) < (
+                    datetime.strptime(v["birth"], '%d.%m.%Y').month,
+                    datetime.strptime(v["birth"], '%d.%m.%Y').day))
         else:
             people_dict[k]["status"] = "alive"
             people_dict[k]["age"] = -1
@@ -538,7 +542,8 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     # report_dict = sorted(people_dict.items(), key=lambda x: (x[1]["age"], x[1]["birth"], x[1]["name"], x[1]["id"]))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["name"]))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["name"] == "", x[1]["name"])))
-    people_dict = dict(sorted(people_dict.items(), key=lambda x: datetime.strptime(x[1]["birth"], '%d.%m.%Y'), reverse=True))
+    people_dict = dict(
+        sorted(people_dict.items(), key=lambda x: datetime.strptime(x[1]["birth"], '%d.%m.%Y'), reverse=True))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] is None, x[1]["age"])))
 
     with open(report_filename, 'w') as f:
