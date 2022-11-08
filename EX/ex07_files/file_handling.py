@@ -532,7 +532,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
                   datetime.strptime(v["death"], '%d.%m.%Y').day) < (
                      datetime.strptime(v["birth"], '%d.%m.%Y').month,
                      datetime.strptime(v["birth"], '%d.%m.%Y').day))
-        elif people_dict[k]["birth"] is not None:
+        elif people_dict[k]["birth"] is not None and people_dict[k]["death"] is None:
             people_dict[k]["birth"] = datetime.strftime(people_dict[k]["birth"], '%d.%m.%Y')
             people_dict[k]["status"] = "alive"
             people_dict[k]["age"] = date.today().year - datetime.strptime(v["birth"], '%d.%m.%Y').year - \
