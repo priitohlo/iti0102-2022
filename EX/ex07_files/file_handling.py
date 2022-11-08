@@ -545,7 +545,6 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             people_dict[k]["status"] = "alive"
             people_dict[k]["age"] = -1
 
-    # report_dict = sorted(people_dict.items(), key=lambda x: (x[1]["age"], x[1]["birth"], x[1]["name"], x[1]["id"]))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["id"]))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1].get("name", "-"))))
     people_dict = dict(
