@@ -1,10 +1,15 @@
-"""Docstring siia."""
+"""Docstring siia"""
 import csv
 from datetime import datetime, date
 import itertools
 import os
 import re
 
+def strptime(date_string, format, default=None):
+    try:
+        return datetime.strptime(date_string, format)
+    except (ValueError, TypeError):
+        return datetime(1, 1, 1)
 
 def read_file_contents(filename: str) -> str:
     """
@@ -537,21 +542,19 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
                     datetime.strptime(v["birth"], '%d.%m.%Y').month,
                     datetime.strptime(v["birth"], '%d.%m.%Y').day))
         else:
-            people_dict[k]["birth"] = datetime.strftime(datetime(1, 1, 1), '%d.%m.%Y')
-            people_dict[k]["death"] = datetime.strftime(datetime(1, 1, 1), '%d.%m.%Y')
             people_dict[k]["status"] = "alive"
             people_dict[k]["age"] = -1
 
     people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["id"]))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1].get("name", "-"))))
     people_dict = dict(
-        sorted(people_dict.items(), key=lambda x: datetime.strptime(x[1]["birth"], '%d.%m.%Y'), reverse=True))
+        sorted(people_dict.items(), key=lambda x: strptime(x[1]["birth"], '%d.%m.%Y'), reverse=True))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] is None, x[1]["age"])))
 
     with open(report_filename, 'w') as f:
         f.writelines(",".join(list(next(iter(people_dict.values())).keys())) + '\n')
         for v in people_dict.values():
-            f.writelines(",".join([str(x) if x not in (None, '01.01.0001') else '-' for x in list(v.values())]) + '\n')
+            f.writelines(",".join([str(x) if x is not None else '-' for x in list(v.values())]) + '\n')
 
     return None
 
