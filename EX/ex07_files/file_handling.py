@@ -1,15 +1,18 @@
 """Docstring siia"""
 import csv
+import functools
 from datetime import datetime, date
 import itertools
 import os
 import re
 
-def strptime(date_string, format, default=None):
-    try:
-        return datetime.strptime(date_string, format)
-    except (ValueError, TypeError):
-        return datetime(1, 1, 1)
+def cmpnone(item1, item2):
+    if (item1 < item2) or item1 is None and item2:
+        return -1
+    elif (item1 > item2) or item2 is None and item1:
+        return 1
+    else:
+        return 0
 
 def read_file_contents(filename: str) -> str:
     """
@@ -546,9 +549,9 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             people_dict[k]["age"] = -1
 
     people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["id"]))
-    people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1].get("name", "-"))))
+    people_dict = dict(sorted(people_dict.items(), key=functools.cmp_to_key(cmpnone)))
     people_dict = dict(
-        sorted(people_dict.items(), key=lambda x: strptime(x[1]["birth"], '%d.%m.%Y'), reverse=True))
+        sorted(people_dict.items(), key=functools.cmp_to_key(cmpnone), reverse=True))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] is None, x[1]["age"])))
 
     with open(report_filename, 'w') as f:
