@@ -8,6 +8,9 @@ import re
 def cmpnonedate(item):
     return "01.01.0001" if item is None else item
 
+def cmpnonestring(item):
+    return "" if item is None else item
+
 def read_file_contents(filename: str) -> str:
     """
     Read file contents into string.
@@ -543,7 +546,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             people_dict[k]["age"] = -1
 
     people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["id"]))
-    people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1].get("name", "-"))))
+    people_dict = dict(sorted(people_dict.items(), key=lambda x: cmpnonestring(x[1]["name"])))
     people_dict = dict(
         sorted(people_dict.items(), key=lambda x: datetime.strptime(cmpnonedate(x[1]["birth"]), '%d.%m.%Y'), reverse=True))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] == -1, x[1]["age"])))
