@@ -487,6 +487,29 @@ def read_people_data(directory: str) -> dict:
     return people_data
 
 
+def sort_dict(people_dict: dict) -> dict:
+    """dokkkkkkstring."""
+    people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["id"]))
+
+    try:
+        people_dict = dict(sorted(people_dict.items(), key=lambda x: (cmpnonedate(x[1]["name"]))))
+    except KeyError:
+        pass
+
+    try:
+        people_dict = dict(
+            sorted(people_dict.items(), key=lambda x: datetime.strptime(cmpnonedate(x[1]["birth"]), '%d.%m.%Y'),
+                   reverse=True))
+    except KeyError:
+        pass
+
+    try:
+        people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] == -1, x[1]["age"])))
+    except KeyError:
+        pass
+
+    return people_dict
+
 def generate_people_report(person_data_directory: str, report_filename: str) -> None:
     """
     Generate report about people data.
@@ -550,28 +573,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             people_dict[k]["status"] = "alive"
             people_dict[k]["age"] = -1
 
-    people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["id"]))
-
-    try:
-        people_dict = dict(sorted(people_dict.items(), key=lambda x: (cmpnonedate(x[1]["name"]))))
-        people_dict = dict(
-            sorted(people_dict.items(), key=lambda x: datetime.strptime(cmpnonedate(x[1]["birth"]), '%d.%m.%Y'),
-                   reverse=True))
-        people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] == -1, x[1]["age"])))
-    except KeyError:
-        pass
-
-    try:
-        people_dict = dict(
-            sorted(people_dict.items(), key=lambda x: datetime.strptime(cmpnonedate(x[1]["birth"]), '%d.%m.%Y'),
-                   reverse=True))
-    except KeyError:
-        pass
-
-    try:
-        people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] == -1, x[1]["age"])))
-    except KeyError:
-        pass
+    people_dict = sort_dict(people_dict)
 
     with open(report_filename, 'w') as f:
         f.writelines(",".join(list(next(iter(people_dict.values())).keys())) + '\n')
