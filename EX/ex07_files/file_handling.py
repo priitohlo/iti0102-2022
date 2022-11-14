@@ -546,7 +546,8 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             people_dict[k]["age"] = -1
 
     people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["id"]))
-    people_dict = dict(sorted(people_dict.items(), key=lambda x: cmpnonestring(x[1]["name"])))
+    #people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1].get("name", "-"))))
+    people_dict = dict(sorted(people_dict.items(), key=lambda x: (cmpnonedate(x[1]["name"]), x[1]["name"] is None)))
     people_dict = dict(
         sorted(people_dict.items(), key=lambda x: datetime.strptime(cmpnonedate(x[1]["birth"]), '%d.%m.%Y'), reverse=True))
     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] == -1, x[1]["age"])))
