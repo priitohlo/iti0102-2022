@@ -528,8 +528,11 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
     for k, v in people_dict.items():
         if people_dict[k]["birth"] is not None and people_dict[k]["death"] is not None:
-            people_dict[k]["birth"] = datetime.strftime(people_dict[k]["birth"], '%d.%m.%Y')
-            people_dict[k]["death"] = datetime.strftime(people_dict[k]["death"], '%d.%m.%Y')
+            #people_dict[k]["birth"] = datetime.strftime(people_dict[k]["birth"], '%d.%m.%Y')
+            #people_dict[k]["death"] = datetime.strftime(people_dict[k]["death"], '%d.%m.%Y')
+            for m in people_dict[k].keys():
+                if isinstance(people_dict[k][m], date):
+                    people_dict[k][m] = datetime.strftime(people_dict[k][m], '%d.%m.%Y')
             people_dict[k]["status"] = "dead"
             people_dict[k]["age"] = datetime.strptime(v["death"], '%d.%m.%Y').year - \
                                     datetime.strptime(v["birth"], '%d.%m.%Y').year - \
@@ -538,26 +541,39 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
                                          datetime.strptime(v["birth"], '%d.%m.%Y').month,
                                          datetime.strptime(v["birth"], '%d.%m.%Y').day))
         elif people_dict[k]["birth"] is not None and people_dict[k]["death"] is None:
-            people_dict[k]["birth"] = datetime.strftime(people_dict[k]["birth"], '%d.%m.%Y')
+            for m in people_dict[k].keys():
+                if isinstance(people_dict[k][m], date):
+                    people_dict[k][m] = datetime.strftime(people_dict[k][m], '%d.%m.%Y')
             people_dict[k]["status"] = "alive"
             people_dict[k]["age"] = date.today().year - datetime.strptime(v["birth"], '%d.%m.%Y').year - \
                                     ((date.today().month, date.today().day) < (
                                         datetime.strptime(v["birth"], '%d.%m.%Y').month,
                                         datetime.strptime(v["birth"], '%d.%m.%Y').day))
         else:
+            for m in people_dict[k].keys():
+                if isinstance(people_dict[k][m], date):
+                    people_dict[k][m] = datetime.strftime(people_dict[k][m], '%d.%m.%Y')
             people_dict[k]["status"] = "alive"
             people_dict[k]["age"] = -1
 
     people_dict = dict(sorted(people_dict.items(), key=lambda x: x[1]["id"]))
-    # people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1].get("name", "-"))))
+
     try:
         people_dict = dict(sorted(people_dict.items(), key=lambda x: (cmpnonedate(x[1]["name"]))))
     except KeyError:
         pass
-    people_dict = dict(
-        sorted(people_dict.items(), key=lambda x: datetime.strptime(cmpnonedate(x[1]["birth"]), '%d.%m.%Y'),
-               reverse=True))
-    people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] == -1, x[1]["age"])))
+
+    try:
+        people_dict = dict(
+            sorted(people_dict.items(), key=lambda x: datetime.strptime(cmpnonedate(x[1]["birth"]), '%d.%m.%Y'),
+                   reverse=True))
+    except KeyError:
+        pass
+
+    try:
+        people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] == -1, x[1]["age"])))
+    except KeyError:
+        pass
 
     with open(report_filename, 'w') as f:
         f.writelines(",".join(list(next(iter(people_dict.values())).keys())) + '\n')
