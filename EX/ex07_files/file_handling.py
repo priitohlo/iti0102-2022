@@ -7,10 +7,12 @@ import re
 
 
 def cmpnonedate(item):
+    """Dokkstrgin."""
     return "01.01.0001" if item is None else item
 
 
 def cmpnonestring(item):
+    """Dokksrtäng."""
     return "" if item is None else item
 
 
@@ -544,9 +546,9 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
                     people_dict[k][m] = datetime.strftime(people_dict[k][m], '%d.%m.%Y')
             people_dict[k]["status"] = "alive"
             people_dict[k]["age"] = date.today().year - datetime.strptime(v["birth"], '%d.%m.%Y').year - \
-                                    ((date.today().month, date.today().day) < (
-                                        datetime.strptime(v["birth"], '%d.%m.%Y').month,
-                                        datetime.strptime(v["birth"], '%d.%m.%Y').day))
+                ((date.today().month, date.today().day) < (
+                    datetime.strptime(v["birth"], '%d.%m.%Y').month,
+                    datetime.strptime(v["birth"], '%d.%m.%Y').day))
         else:
             for m in people_dict[k].keys():
                 if isinstance(people_dict[k][m], date):
