@@ -561,17 +561,17 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     except KeyError:
         pass
 
-    # try:
-    #     people_dict = dict(
-    #         sorted(people_dict.items(), key=lambda x: datetime.strptime(cmpnonedate(x[1]["birth"]), '%d.%m.%Y'),
-    #                reverse=True))
-    # except KeyError:
-    #     pass
-    #
-    # try:
-    #     people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] == -1, x[1]["age"])))
-    # except KeyError:
-    #     pass
+    try:
+        people_dict = dict(
+            sorted(people_dict.items(), key=lambda x: datetime.strptime(cmpnonedate(x[1]["birth"]), '%d.%m.%Y'),
+                   reverse=True))
+    except KeyError:
+        pass
+
+    try:
+        people_dict = dict(sorted(people_dict.items(), key=lambda x: (x[1]["age"] == -1, x[1]["age"])))
+    except KeyError:
+        pass
 
     with open(report_filename, 'w') as f:
         f.writelines(",".join(list(next(iter(people_dict.values())).keys())) + '\n')
