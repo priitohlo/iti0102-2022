@@ -560,4 +560,4 @@ if __name__ == '__main__':
     print(generate_people_report("data1", "out"))
     # print(read_people_data("data1"))
 
-    print("tere")
+    print("teretere")
