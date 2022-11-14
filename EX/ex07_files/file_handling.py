@@ -510,6 +510,7 @@ def sort_dict(people_dict: dict) -> dict:
 
     return people_dict
 
+
 def generate_people_report(person_data_directory: str, report_filename: str) -> None:
     """
     Generate report about people data.
