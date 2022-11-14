@@ -1,4 +1,4 @@
-"""Docstring siia"""
+"""Docstring siia."""
 import csv
 from datetime import datetime, date
 import itertools
@@ -528,18 +528,16 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
     for k, v in people_dict.items():
         if people_dict[k]["birth"] is not None and people_dict[k]["death"] is not None:
-            #people_dict[k]["birth"] = datetime.strftime(people_dict[k]["birth"], '%d.%m.%Y')
-            #people_dict[k]["death"] = datetime.strftime(people_dict[k]["death"], '%d.%m.%Y')
             for m in people_dict[k].keys():
                 if isinstance(people_dict[k][m], date):
                     people_dict[k][m] = datetime.strftime(people_dict[k][m], '%d.%m.%Y')
             people_dict[k]["status"] = "dead"
             people_dict[k]["age"] = datetime.strptime(v["death"], '%d.%m.%Y').year - \
-                                    datetime.strptime(v["birth"], '%d.%m.%Y').year - \
-                                    ((datetime.strptime(v["death"], '%d.%m.%Y').month,
-                                      datetime.strptime(v["death"], '%d.%m.%Y').day) < (
-                                         datetime.strptime(v["birth"], '%d.%m.%Y').month,
-                                         datetime.strptime(v["birth"], '%d.%m.%Y').day))
+                datetime.strptime(v["birth"], '%d.%m.%Y').year - \
+                ((datetime.strptime(v["death"], '%d.%m.%Y').month,
+                  datetime.strptime(v["death"], '%d.%m.%Y').day) < (
+                     datetime.strptime(v["birth"], '%d.%m.%Y').month,
+                     datetime.strptime(v["birth"], '%d.%m.%Y').day))
         elif people_dict[k]["birth"] is not None and people_dict[k]["death"] is None:
             for m in people_dict[k].keys():
                 if isinstance(people_dict[k][m], date):
