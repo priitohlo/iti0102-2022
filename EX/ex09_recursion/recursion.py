@@ -1,5 +1,6 @@
 """If you're going to perform recursion, you need to use recursion."""
 
+
 def loop_reverse(s: str) -> str:
     """
     Reverse a string using a loop.
@@ -48,7 +49,7 @@ def loop_sum(n: int) -> int:
     """
     return_sum = 0
 
-    for i in range(n+1):
+    for i in range(n + 1):
         return_sum += i
 
     return return_sum
@@ -79,7 +80,7 @@ def countdown(n: int):
     :param n: start
     :return: countdown sequence
     """
-    return [n] + countdown(n-1) if n >= 0 else []
+    return [n] + countdown(n - 1) if n >= 0 else []
 
 
 def add_commas(n: int):
