@@ -199,42 +199,42 @@ def quic_mafs(a: int, b: int) -> list:
 
 
 if __name__ == "__main__":
-    # print(loop_reverse("hello"))  # -> "olleh"
-    # print(loop_reverse(""))  # -> ""
-    # print(loop_reverse("123"))  # -> "321"
-    #
-    # print(recursive_reverse("hello"))  # -> "olleh"
-    # print(recursive_reverse(""))  # -> ""
-    # print(recursive_reverse("123"))  # -> "321"
-    #
-    # print(loop_sum(0))  # -> 0
-    # print(loop_sum(3))  # -> 6
-    # print(loop_sum(10))  # -> 55
-    #
-    # print(recursive_sum(0))  # -> 0
-    # print(recursive_sum(3))  # -> 6
-    # print(recursive_sum(10))  # -> 55
+    print(loop_reverse("hello"))  # -> "olleh"
+    print(loop_reverse(""))  # -> ""
+    print(loop_reverse("123"))  # -> "321"
 
-    # print(countdown(5))  # -> [5, 4, 3, 2, 1, 0]
-    # print(countdown(8))  # -> [8, 7, 6, 5, 4, 3, 2, 1, 0]
-    # print(countdown(-1))  # -> []
-    #
-    # print(add_commas(1245))  # -> '1,245'
-    # print(add_commas(123456789))  # -> '123,456,789'
-    # print(add_commas(1011))  # -> '1,011'
-    #
-    # print(sum_digits_recursive(123))  # -> 6
-    # print(sum_digits_recursive(0))  # -> 0
-    # print(sum_digits_recursive(1000000000000000))  # -> 1
-    #
-    # print(pair_star_recursive("abc"))  # -> "abc"
-    # print(pair_star_recursive("aaa"))  # -> a*a*a
-    # print(pair_star_recursive(""))  # -> ""
-    #
-    # print(stonks(1000, 10, 10))  # -> 2593
-    # print(stonks(100000, 12, 3))  # -> 140492
-    #
-    # print(quic_mafs(6, 19))  # -> [6, 7]
-    # print(quic_mafs(2, 1))  # -> [0, 1]
-    # print(quic_mafs(22, 5))  # -> [0, 1]
-    # print(quic_mafs(8796203, 7556))  # -> [1019,1442]
+    print(recursive_reverse("hello"))  # -> "olleh"
+    print(recursive_reverse(""))  # -> ""
+    print(recursive_reverse("123"))  # -> "321"
+
+    print(loop_sum(0))  # -> 0
+    print(loop_sum(3))  # -> 6
+    print(loop_sum(10))  # -> 55
+
+    print(recursive_sum(0))  # -> 0
+    print(recursive_sum(3))  # -> 6
+    print(recursive_sum(10))  # -> 55
+
+    print(countdown(5))  # -> [5, 4, 3, 2, 1, 0]
+    print(countdown(8))  # -> [8, 7, 6, 5, 4, 3, 2, 1, 0]
+    print(countdown(-1))  # -> []
+
+    print(add_commas(1245))  # -> '1,245'
+    print(add_commas(123456789))  # -> '123,456,789'
+    print(add_commas(1011))  # -> '1,011'
+
+    print(sum_digits_recursive(123))  # -> 6
+    print(sum_digits_recursive(0))  # -> 0
+    print(sum_digits_recursive(1000000000000000))  # -> 1
+
+    print(pair_star_recursive("abc"))  # -> "abc"
+    print(pair_star_recursive("aaa"))  # -> a*a*a
+    print(pair_star_recursive(""))  # -> ""
+
+    print(stonks(1000, 10, 10))  # -> 2593
+    print(stonks(100000, 12, 3))  # -> 140492
+
+    print(quic_mafs(6, 19))  # -> [6, 7]
+    print(quic_mafs(2, 1))  # -> [0, 1]
+    print(quic_mafs(22, 5))  # -> [0, 1]
+    print(quic_mafs(8796203, 7556))  # -> [1019,1442]
