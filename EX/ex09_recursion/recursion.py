@@ -190,10 +190,10 @@ def quic_mafs(a: int, b: int) -> list:
     """
     if 0 in (a, b):
         return [a, b]
-    elif a >= 2*b:
-        return quic_mafs(a - 2*b, b)
-    elif b >= 2*a:
-        return quic_mafs(a, b - 2*a)
+    elif a >= 2 * b:
+        return quic_mafs(a - 2 * b, b)
+    elif b >= 2 * a:
+        return quic_mafs(a, b - 2 * a)
     else:
         return [a, b]
 
