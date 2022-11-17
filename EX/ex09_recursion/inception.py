@@ -80,7 +80,7 @@ def sum_squares(nested_list):
         return 0
     else:
         # print(nested_list)
-        print([x for x in nested_list if isinstance(x, list)])
+        # print([x for x in nested_list if isinstance(x, list)])
         # print([x for x in nested_list if type(x) == list])
         # return_sum = sum([x ** 2 for x in nested_list if type(x) == int])
         # for x in [x for x in nested_list if type(x) == list]:
