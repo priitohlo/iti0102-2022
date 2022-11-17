@@ -76,8 +76,9 @@ def sum_squares(nested_list):
     if not nested_list:
         return 0
     else:
+        print(nested_list)
         return sum([x ** 2 for x in nested_list if type(x) == int]) + \
-            sum([sum_squares(x) for x in nested_list if type(x) == list])
+            sum_squares([x for x in nested_list if type(x) == list])
 
 
 def count_strings(data: list, pos=None, result: dict = None) -> dict:
