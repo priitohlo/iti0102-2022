@@ -56,7 +56,7 @@ def x_sum_recursion(nums: list, x: int) -> int:
     :param x: number indicating every which num to add to sum
     :return: sum of every x'th number in the list
     """
-    if not nums or len(nums) < abs(x):
+    if not nums or len(nums) < abs(x) or not x:
         return 0
     else:
         return nums[x - 1 if x > 0 else x] + x_sum_recursion(nums[x if x > 0 else 0:len(nums) if x > 0 else x], x)
@@ -108,4 +108,4 @@ def count_strings(data: list, pos=None, result: dict = None) -> dict:
     pass
 
 if __name__ == '__main__':
-    print(x_sum_loop([6, 5, 3, 2, 9, 8, 6, 5, 4], 0))  # 15
+    print(x_sum_recursion([6, 5, 3, 2, 9, 8, 6, 5, 4], 0))  # 15
