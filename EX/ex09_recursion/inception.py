@@ -78,9 +78,12 @@ def sum_squares(nested_list):
     """
     if not nested_list:
         return 0
-    else:
-        return sum([x ** 2 for x in nested_list if isinstance(x, int)]) + \
-            sum_squares([x for x in nested_list if isinstance(x, list)])
+    elif type(nested_list[0]) == int:
+        print(nested_list)
+        return nested_list[0] ** 2 + sum_squares(nested_list[1:])
+    elif type(nested_list[0]) == list:
+        print(nested_list)
+        return sum_squares(nested_list[0]) + sum_squares(nested_list[1:])
 
 
 def count_strings(data: list, pos=None, result: dict = None) -> dict:
@@ -109,6 +112,6 @@ def count_strings(data: list, pos=None, result: dict = None) -> dict:
 
 if __name__ == '__main__':
     #print(x_sum_recursion([6, 5, 3, 2, 9, 8, 6, 5, 4], 0))  # 15
-    print(sum_squares([1, 2, 3])) #-> 14
+    #print(sum_squares([1, 2, 3])) #-> 14
     print(sum_squares([[1, 2], 3])) #-> sum_squares([1, 2]) + 9 -> 1 + 4 + 9 -> 14
-    print(sum_squares([[[[[[[[[2]]]]]]]]])) #-> 4
+    #print(sum_squares([[[[[[[[[2]]]]]]]]])) #-> 4
