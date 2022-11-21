@@ -1,6 +1,5 @@
 """If you're going to perform inception, you need imagination."""
-# import sys
-# sys.setrecursionlimit(1500)
+from collections import defaultdict
 
 
 def x_sum_loop(nums: list, x: int) -> int:
@@ -79,14 +78,12 @@ def sum_squares(nested_list):
     if not nested_list:
         return 0
     elif type(nested_list[0]) == int:
-        print(nested_list)
         return nested_list[0] ** 2 + sum_squares(nested_list[1:])
     elif type(nested_list[0]) == list:
-        print(nested_list)
         return sum_squares(nested_list[0]) + sum_squares(nested_list[1:])
 
 
-def count_strings(data: list, pos=None, result: dict = None) -> dict:
+def count_strings(data: list, pos=None, result: dict = None) -> dict | list:
     """
     Count strings in list.
 
@@ -105,13 +102,18 @@ def count_strings(data: list, pos=None, result: dict = None) -> dict:
     :param result: figure out how to use it
     :return: dict of given symbols and their count
     """
-    # if not data:
-    #     return {}
-    # else:
-    #     for x in [x for x in data]
+    if not data:
+        return result
+    elif type(data[0]) == str:
+        if data[0] not in result.keys():
+            return {data}
+        return [data[0]] + count_strings(data[1:])
+    elif type(data[0]) == list:
+        return count_strings(data[0]) + count_strings(data[1:])
 
 if __name__ == '__main__':
-    #print(x_sum_recursion([6, 5, 3, 2, 9, 8, 6, 5, 4], 0))  # 15
-    #print(sum_squares([1, 2, 3])) #-> 14
-    print(sum_squares([[1, 2], 3])) #-> sum_squares([1, 2]) + 9 -> 1 + 4 + 9 -> 14
-    #print(sum_squares([[[[[[[[[2]]]]]]]]])) #-> 4
+    print(count_strings([[], ["J", "*", "W", "f"], ["j", "g", "*"], ["j", "8", "5", "6", "*"], ["*", "*", "A", "8"]]))
+    # {'J': 1, '*': 5, 'W': 1, 'f': 1, 'j': 2, 'g': 1, '8': 2, '5': 1, '6': 1, 'A': 1}
+    # print(count_strings([[], [], [], [], ["h", "h", "m"], [], ["m", "m", "M", "m"]]))  # {'h': 2, 'm': 4, 'M': 1}
+    # print(count_strings([]))  # {}
+    # print(count_strings([['a'], 'b', ['a', ['b']]]))  # {'a': 2, 'b': 2}
