@@ -112,9 +112,11 @@ def draw_dragon(string, length):
         return ""
     elif string[0] == 'L':
         t.left(90)
+        t.forward(length)
         draw_dragon(string[1:], length)
     elif string[0] == 'R':
         t.right(90)
+        t.forward(length)
         draw_dragon(string[1:], length)
     elif string[0] == 'F':
         t.forward(length)
