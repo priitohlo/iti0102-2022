@@ -2,6 +2,7 @@
 
 from turtle import Turtle
 from sys import setrecursionlimit
+
 setrecursionlimit(10000)
 
 
@@ -107,7 +108,17 @@ def draw_dragon(string, length):
     :param string: instructions left to process
     :param length: how many pixels to move forward, left or right
     """
-    pass
+    if not string:
+        return ""
+    elif string[0] == 'L':
+        t.left(length)
+        draw_dragon(string[1:], length)
+    elif string[0] == 'R':
+        t.right(length)
+        draw_dragon(string[1:], length)
+    elif string[0] == 'F':
+        t.forward(length)
+        draw_dragon(string[1:], length)
 
 
 def get_line_length(dragon_width, depth):
@@ -122,20 +133,18 @@ def save(t: Turtle):
 
 
 if __name__ == '__main__':
-    # t = Turtle()
-    # t.getscreen().bgcolor("#1c262b")
-    # t.color("#96004f")
-    # t.speed(0)
-    # t.pensize(2)
-    # t.left(90)
-    #tree(200)
+    t = Turtle()
+    t.getscreen().bgcolor("#1c262b")
+    t.color("#96004f")
+    t.speed(0)
+    t.pensize(2)
+    t.left(90)
+    tree(200)
 
-    print(format_curve("FaRbFR"))
+    s = curve("Fa", 8)
+    s = format_curve(s)
+    l = get_line_length(100, 8)
+    draw_dragon(s, l)
 
-    # s = curve("Fa", 8)
-    # s = format_curve(s)
-    # l = get_line_length(100, 8)
-    # draw_dragon(s, l)
-    #
-    # save(t)
-    # t.getscreen().exitonclick()
+    save(t)
+    t.getscreen().exitonclick()
