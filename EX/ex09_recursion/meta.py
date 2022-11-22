@@ -73,9 +73,9 @@ def curve(string, depth):
     :return: instructionset for drawing the dragon at iteration 'depth'
     """
     if depth <= 0:
-        return ""
+        return string
     else:
-        return apply_dragon_rules(string) + curve(string, depth - 1)
+        return curve(apply_dragon_rules(string), depth - 1)
 
 
 def format_curve(string):
@@ -125,7 +125,7 @@ if __name__ == '__main__':
     # t.left(90)
     #tree(200)
 
-    print(curve("FFLFaRbFRLFaLbaRbFRLFaLbRaRbFRaRbFRFFRRLFaLbRLFaLbFLFaLbaRbFRLFaLbaRbFRLFaLbaRbFRLFFRLFaLbaRbFRRaRbFRLaRbFRRFaRbFRaRbFRLFaLbRaRbFRRaRbFRLFLFaLbRFF", 2))
+    print(curve("Fa", 2))
 
     # s = curve("Fa", 8)
     # s = format_curve(s)
