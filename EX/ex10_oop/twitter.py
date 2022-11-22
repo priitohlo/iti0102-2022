@@ -49,7 +49,7 @@ def sort_by_popularity(tweets: list) -> list:
     :param tweets: Input list of tweets.
     :return: List of tweets by popularity
     """
-    return sorted(tweets, key=lambda x: (x.retweets, x.time), reverse=True)
+    return sorted(tweets, key=lambda x: (x.retweets, x.time))
 
 
 def filter_by_hashtag(tweets: list, hashtag: str) -> list:
@@ -109,5 +109,5 @@ if __name__ == '__main__':
     print(filtered_by_hashtag[0].user)  # -> "@realDonaldTrump"
     print(filtered_by_hashtag[1].user)  # -> "@elonMusk"
 
-    sorted_hashtags = sort_hashtags_by_popularity(tweets)
-    print(sorted_hashtags[0])  # -> "#heart"
+    #sorted_hashtags = sort_hashtags_by_popularity(tweets)
+    #print(sorted_hashtags[0])  # -> "#heart"
