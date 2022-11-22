@@ -30,7 +30,6 @@ def tree(length):
     t.back(length)
 
 
-
 def apply_dragon_rules(string):
     """
     Write a recursive function that replaces characters in string.
@@ -45,7 +44,21 @@ def apply_dragon_rules(string):
     :param string: sentence with "a" and "b" characters that need to be replaced
     :return: new sentence with "a" and "b" characters replaced
     """
-    pass
+    if not string:
+        return ""
+    elif string[0] == 'a':
+        return "aRbFR" + apply_dragon_rules(string[1:])
+    elif string[0] == 'b':
+        return "LFaLb" + apply_dragon_rules(string[1:])
+    else:
+        return string[0] + apply_dragon_rules(string[1:])
+
+    # if not nested_list:
+    #     return 0
+    # elif type(nested_list[0]) == int:
+    #     return nested_list[0] ** 2 + sum_squares(nested_list[1:])
+    # elif type(nested_list[0]) == list:
+    #     return sum_squares(nested_list[0]) + sum_squares(nested_list[1:])
 
 
 def curve(string, depth):
@@ -101,19 +114,20 @@ def save(t: Turtle):
 
 
 if __name__ == '__main__':
-    t = Turtle()
-    t.getscreen().bgcolor("#1c262b")
-    t.color("#96004f")
-    t.speed(0)
-    t.pensize(2)
-    t.left(90)
-    tree(200)
+    # t = Turtle()
+    # t.getscreen().bgcolor("#1c262b")
+    # t.color("#96004f")
+    # t.speed(0)
+    # t.pensize(2)
+    # t.left(90)
+    #tree(200)
 
-    '''
-    s = curve("Fa", 8)
-    s = format_curve(s)
-    l = get_line_length(100, 8)
-    draw_dragon(s, l)
-    '''
-    save(t)
-    t.getscreen().exitonclick()
+    print(apply_dragon_rules("FRaFRb"))
+
+    # s = curve("Fa", 8)
+    # s = format_curve(s)
+    # l = get_line_length(100, 8)
+    # draw_dragon(s, l)
+    #
+    # save(t)
+    # t.getscreen().exitonclick()
