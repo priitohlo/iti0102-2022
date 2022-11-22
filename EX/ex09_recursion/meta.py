@@ -111,10 +111,10 @@ def draw_dragon(string, length):
     if not string:
         return ""
     elif string[0] == 'L':
-        t.left(length)
+        t.left(90)
         draw_dragon(string[1:], length)
     elif string[0] == 'R':
-        t.right(length)
+        t.right(90)
         draw_dragon(string[1:], length)
     elif string[0] == 'F':
         t.forward(length)
@@ -139,7 +139,7 @@ if __name__ == '__main__':
     t.speed(0)
     t.pensize(2)
     t.left(90)
-    tree(200)
+    # tree(200)
 
     s = curve("Fa", 8)
     s = format_curve(s)
