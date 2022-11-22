@@ -1,5 +1,4 @@
 """If you're going to perform inception, you need imagination."""
-from collections import defaultdict
 
 
 def x_sum_loop(nums: list, x: int) -> int:
@@ -102,21 +101,21 @@ def count_strings(data: list, pos=0, result: dict = None) -> dict | list:
     :param result: figure out how to use it
     :return: dict of given symbols and their count
     """
-    if len(data) <= pos:
-        return result
+    if pos >= len(data):
+        return result if result else dict()
     elif type(data[pos]) == list:
-        for e in data:
-            result = count_strings(data[pos], 0, result)
-            pos += 1
+        result = dict() if not result else result
+        result = count_strings(data[pos], result=result)
+        return count_strings(data, pos + 1, result=result)
     elif type(data[pos]) == str:
-        if data[pos] not in result.keys():
-            result[data[pos]] = 1
-        else:
-            result[data[pos]] += 1
-        return result
+        result = dict() if not result else result
+        string = data[pos]
+        result[string] = result.get(string, 0) + 1
+        return count_strings(data, pos + 1, result=result)
 
-# if __name__ == '__main__':
-    # print(count_strings([[], ["J", "*", "W", "f"], ["j", "g", "*"], ["j", "8", "5", "6", "*"], ["*", "*", "A", "8"]]))
+
+if __name__ == '__main__':
+    print(count_strings([[], ["J", "*", "W", "f"], ["j", "g", "*"], ["j", "8", "5", "6", "*"], ["*", "*", "A", "8"]]))
     # {'J': 1, '*': 5, 'W': 1, 'f': 1, 'j': 2, 'g': 1, '8': 2, '5': 1, '6': 1, 'A': 1}
     # print(count_strings([[], [], [], [], ["h", "h", "m"], [], ["m", "m", "M", "m"]]))  # {'h': 2, 'm': 4, 'M': 1}
     # print(count_strings([]))  # {}
