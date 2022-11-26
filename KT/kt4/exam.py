@@ -1,5 +1,6 @@
 """KT4."""
 
+
 def two_digits_into_list(nr: int) -> list:
     """
     Return list of digits of 2-digit number.
@@ -66,13 +67,11 @@ def max_block(s: str) -> int:
     for c in s:
         if not last_char:
             last_char = c
-            longest_char = c
             found_chars += 1
             longest_found_chars += 1
         elif c == last_char and found_chars < longest_found_chars:
             found_chars += 1
         elif c == last_char and found_chars == longest_found_chars:
-            longest_char = c
             found_chars += 1
             longest_found_chars += 1
         else:
@@ -141,12 +140,3 @@ def create_dictionary_from_directed_string_pairs(pairs: list) -> dict:
 # print(sum_elements_around_last_three([3, 2, 1])) # -> 0
 # print(sum_elements_around_last_three([3, 2, 1, 3, 2])) # -> 3
 # print(sum_elements_around_last_three([4, 5, 3, 2, 3, 6])) # -> 8
-
-# print(max_block("hoopla")) # => 2
-# print(max_block("abbCCCddBBBxx")) # => 3
-# print(max_block("")) # => 0
-
-print(create_dictionary_from_directed_string_pairs([]))
-print(create_dictionary_from_directed_string_pairs(["a>b", "a>c"]))
-print(create_dictionary_from_directed_string_pairs(["a>b", "a<b"]))
-print(create_dictionary_from_directed_string_pairs(["1>1", "1>2", "1>1"]))
