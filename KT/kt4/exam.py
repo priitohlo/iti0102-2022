@@ -33,17 +33,16 @@ def sum_elements_around_last_three(nums: list) -> int:
     :param nums: given list of ints
     :return: sum of elements before and after last 3
     """
-    #try:
-    while nums[-1] == 3:
-        nums = nums[0:-1]
-    #except IndexError:
-    #    pass
+    try:
+        while nums[-1] == 3 and len(nums) > 3:
+            nums = nums[0:-1]
+    except IndexError:
+        pass
 
     if 3 in nums and len(nums) >= 3:
         search_nums = list(reversed(nums))
         try:
             return search_nums[search_nums.index(3) - 1] + search_nums[search_nums.index(3) + 1]
-            #return nums
         except IndexError:
             return 0
     else:
@@ -139,5 +138,5 @@ print(sum_elements_around_last_three([1, 2, 3])) # -> 0
 
 print(sum_elements_around_last_three([1, 3, 4])) # -> 5
 print(sum_elements_around_last_three([3, 2, 1])) # -> 0
-print(sum_elements_around_last_three([3, 2, 1, 3, 2])) # -> 3
+print(sum_elements_around_last_three([3, 3, 3, 3, 3])) # -> 3
 print(sum_elements_around_last_three([4, 5, 3, 2, 3, 6])) # -> 8
