@@ -58,7 +58,28 @@ def max_block(s: str) -> int:
     max_block("abbCCCddBBBxx") => 3
     max_block("") => 0
     """
-    pass
+    found_chars = 0
+    longest_found_chars = 0
+    longest_char = ""
+    last_char = ""
+
+    for c in s:
+        if not last_char:
+            last_char = c
+            longest_char = c
+            found_chars += 1
+            longest_found_chars += 1
+        elif c == last_char and found_chars < longest_found_chars:
+            found_chars += 1
+        elif c == last_char and found_chars == longest_found_chars:
+            longest_char = c
+            found_chars += 1
+            longest_found_chars += 1
+        else:
+            found_chars = 1
+            last_char = c
+
+    return longest_found_chars
 
 
 def create_dictionary_from_directed_string_pairs(pairs: list) -> dict:
@@ -93,12 +114,16 @@ def create_dictionary_from_directed_string_pairs(pairs: list) -> dict:
     pass
 
 
-#print(sum_elements_around_last_three([1, 3, 7])) # -> 8
-#print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 4, 5, 6])) # -> 9
-#print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 3, 2, 3])) # -> 5
-#print(sum_elements_around_last_three([1, 2, 3])) # -> 0
+# print(sum_elements_around_last_three([1, 3, 7])) # -> 8
+# print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 4, 5, 6])) # -> 9
+# print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 3, 2, 3])) # -> 5
+# print(sum_elements_around_last_three([1, 2, 3])) # -> 0
+#
+# print(sum_elements_around_last_three([1, 3, 4])) # -> 5
+# print(sum_elements_around_last_three([3, 2, 1])) # -> 0
+# print(sum_elements_around_last_three([3, 2, 1, 3, 2])) # -> 3
+# print(sum_elements_around_last_three([4, 5, 3, 2, 3, 6])) # -> 8
 
-print(sum_elements_around_last_three([1, 3, 4])) # -> 5
-print(sum_elements_around_last_three([3, 2, 1])) # -> 0
-print(sum_elements_around_last_three([3, 2, 1, 3, 2])) # -> 3
-print(sum_elements_around_last_three([4, 5, 3, 2, 3, 6])) # -> 8
+print(max_block("hoopla")) # => 2
+print(max_block("abbCCCddBBBxx")) # => 3
+print(max_block("")) # => 0
