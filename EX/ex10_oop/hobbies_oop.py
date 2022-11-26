@@ -50,7 +50,7 @@ def filter_by_hobby(people_list: list, hobby: str) -> list:
         if hobby in p.hobbies:
             return_list.append(p)
 
-    return p
+    return return_list
 
 
 def sort_by_most_hobbies(people_list: list) -> list:
