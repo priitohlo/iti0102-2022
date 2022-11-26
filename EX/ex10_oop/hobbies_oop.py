@@ -63,7 +63,9 @@ def sort_by_most_hobbies(people_list: list) -> list:
     :param people_list: list of people to sort.
     :return: sorted list of people.
     """
-    return list(sorted(sorted(people_list, key=lambda x: len(x.full_name)),
+    #return list(sorted(sorted(people_list, key=lambda x: len(x.full_name)),
+    #                   key=lambda x: len(x.hobbies), reverse=True))
+    return list(sorted(sorted(people_list, key=lambda x: x.full_name),
                        key=lambda x: len(x.hobbies), reverse=True))
 
 
@@ -77,7 +79,9 @@ def sort_by_least_hobbies(people_list: list) -> list:
     :param people_list: list of people to sort.
     :return: sorted list of people.
     """
-    return list(sorted(sorted(people_list, key=lambda x: len(x.full_name)),
+    #return list(sorted(sorted(people_list, key=lambda x: len(x.full_name)),
+    #                   key=lambda x: len(x.hobbies)))
+    return list(sorted(sorted(people_list, key=lambda x: x.full_name),
                        key=lambda x: len(x.hobbies)))
 
 
@@ -93,9 +97,13 @@ def sort_people_and_hobbies(people_list: list) -> list:
 
 
 if __name__ == '__main__':
-    person1 = Person("Mari", "Kukk", ["dancing", "biking", "programming"])
+    #person1 = Person("Mari", "Kukk", ["dancing", "biking", "programming"])
+    #person2 = Person("Jeff", "Bezos", ["money", "hair", "late_capitalism", "space", "unions"])
+    #person3 = Person("Elon", "Musk", ["late_capitalism", "space", "cars"])
+    person1 = Person("Mari", "Kukk", ["money", "hair", "late_capitalism", "space", "unions"])
     person2 = Person("Jeff", "Bezos", ["money", "hair", "late_capitalism", "space", "unions"])
     person3 = Person("Elon", "Musk", ["late_capitalism", "space", "cars"])
+
     people = [person1, person2, person3]
 
     #print(filter_by_hobby(people, "space"))  # -> [JeffBezos, ElonMusk]
