@@ -111,7 +111,25 @@ def create_dictionary_from_directed_string_pairs(pairs: list) -> dict:
     create_dictionary_from_directed_string_pairs(["1>1", "1>2", "1>1"]) =>
     {"1": ["1", "2"]}
     """
-    pass
+    pairs_dict = dict()
+
+    for e in pairs:
+        if "<" in e:
+            data = e.split("<")
+            key = data[1]
+            value = data[0]
+        elif ">" in e:
+            data = e.split(">")
+            key = data[0]
+            value = data[1]
+
+        if key in pairs_dict:
+            if value not in pairs_dict[key]:
+                pairs_dict[key].append(value)
+        else:
+            pairs_dict[key] = [value]
+
+    return pairs_dict
 
 
 # print(sum_elements_around_last_three([1, 3, 7])) # -> 8
@@ -124,6 +142,11 @@ def create_dictionary_from_directed_string_pairs(pairs: list) -> dict:
 # print(sum_elements_around_last_three([3, 2, 1, 3, 2])) # -> 3
 # print(sum_elements_around_last_three([4, 5, 3, 2, 3, 6])) # -> 8
 
-print(max_block("hoopla")) # => 2
-print(max_block("abbCCCddBBBxx")) # => 3
-print(max_block("")) # => 0
+# print(max_block("hoopla")) # => 2
+# print(max_block("abbCCCddBBBxx")) # => 3
+# print(max_block("")) # => 0
+
+print(create_dictionary_from_directed_string_pairs([]))
+print(create_dictionary_from_directed_string_pairs(["a>b", "a>c"]))
+print(create_dictionary_from_directed_string_pairs(["a>b", "a<b"]))
+print(create_dictionary_from_directed_string_pairs(["1>1", "1>2", "1>1"]))
