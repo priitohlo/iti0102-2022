@@ -87,9 +87,9 @@ def sort_hashtags_by_popularity(tweets: list) -> list:
         for m in match:
             popularities[m] = popularities.get(m, 0) + t.retweets
 
-    popular_hashtags = list(dict(sorted(popularities.items(), key=lambda x: x[1])))
+    popularities_sorted = dict(sorted(popularities.items(), key=lambda x: x[1], reverse=True))
 
-    return sorted(tweets, key=lambda x: (hashtag in x.content if hashtag[0] == "#" else False, popular_hashtags))
+    return list(popularities_sorted.keys())
 
 
 if __name__ == '__main__':
@@ -100,14 +100,14 @@ if __name__ == '__main__':
 
     #print(find_fastest_growing(tweets).user)  # -> "@elonmusk"
 
-    filtered_by_popularity = sort_by_popularity(tweets)
-    print(filtered_by_popularity[0].user)  # -> "@CIA"
-    print(filtered_by_popularity[1].user)  # -> "@elonmusk"
-    print(filtered_by_popularity[2].user)  # -> "@realDonaldTrump"
+    #filtered_by_popularity = sort_by_popularity(tweets)
+    #print(filtered_by_popularity[0].user)  # -> "@CIA"
+    #print(filtered_by_popularity[1].user)  # -> "@elonmusk"
+    #print(filtered_by_popularity[2].user)  # -> "@realDonaldTrump"
 
     #filtered_by_hashtag = filter_by_hashtag(tweets, "#bigsmart")
     #print(filtered_by_hashtag[0].user)  # -> "@realDonaldTrump"
     #print(filtered_by_hashtag[1].user)  # -> "@elonMusk"
 
-    #sorted_hashtags = sort_hashtags_by_popularity(tweets)
-    #print(sorted_hashtags[0])  # -> "#heart"
+    sorted_hashtags = sort_hashtags_by_popularity(tweets)
+    print(sorted_hashtags[0])  # -> "#heart"
