@@ -32,7 +32,7 @@ def sum_elements_around_last_three(nums: list) -> int:
     :param nums: given list of ints
     :return: sum of elements before and after last 3
     """
-    if nums[-1] == 3:
+    while nums[-1] == 3:
         nums = nums[0:-1]
 
     if 3 in nums and len(nums) >= 3:
