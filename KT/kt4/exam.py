@@ -43,8 +43,8 @@ def sum_elements_around_last_three(nums: list) -> int:
         search_nums = list(reversed(nums))
         if 3 in [search_nums[0], search_nums[-1]] and search_nums[1] != 3 and len(search_nums) == 3:
             return 0
-        if (search_nums.index(3) - 1) < 0:
-            return 0
+        # if (search_nums.index(3) - 1) < 0:
+        #     return 0
         try:
             return search_nums[search_nums.index(3) - 1] + search_nums[search_nums.index(3) + 1]
         except IndexError:
