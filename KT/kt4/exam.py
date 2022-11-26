@@ -131,4 +131,5 @@ def create_dictionary_from_directed_string_pairs(pairs: list) -> dict:
 
     return pairs_dict
 
-print(sum_elements_around_last_three([3, 3, 3, 1, 3, 3, 3])) # -> 5
+
+print(sum_elements_around_last_three([3, 3, 3, 1, 3, 3, 3]))
