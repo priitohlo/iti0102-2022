@@ -42,6 +42,8 @@ def sum_elements_around_last_three(nums: list) -> int:
     if 3 in nums and len(nums) >= 3:
         search_nums = list(reversed(nums))
         try:
+            if search_nums.index(3) - 1 < 0:
+                return 0
             return search_nums[search_nums.index(3) - 1] + search_nums[search_nums.index(3) + 1]
         except IndexError:
             return 0
@@ -131,12 +133,9 @@ def create_dictionary_from_directed_string_pairs(pairs: list) -> dict:
     return pairs_dict
 
 
-print(sum_elements_around_last_three([1, 3, 7])) # -> 8
-print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 4, 5, 6])) # -> 9
-print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 3, 2, 3])) # -> 5
-print(sum_elements_around_last_three([1, 2, 3])) # -> 0
+#print(sum_elements_around_last_three([1, 3, 7])) # -> 8
+#print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 4, 5, 6])) # -> 9
+#print(sum_elements_around_last_three([1, 2, 3, 4, 6, 4, 3, 4, 5, 3, 3, 2, 3])) # -> 5
+#print(sum_elements_around_last_three([1, 2, 3])) # -> 0
 
-print(sum_elements_around_last_three([1, 3, 4])) # -> 5
-print(sum_elements_around_last_three([3, 2, 1])) # -> 0
-print(sum_elements_around_last_three([3, 3, 3, 3, 3])) # -> 3
-print(sum_elements_around_last_three([4, 5, 3, 2, 3, 6])) # -> 8
+print(sum_elements_around_last_three([3, 1, 3])) # -> 5
