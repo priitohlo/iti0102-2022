@@ -39,7 +39,7 @@ def sum_elements_around_last_three(nums: list) -> int:
         search_nums = list(reversed(nums))
         try:
             return search_nums[search_nums.index(3) - 1] + search_nums[search_nums.index(3) + 1]
-        except IndexError:
+        except:
             return 0
     else:
         return 0
