@@ -1,6 +1,7 @@
 """Client."""
 from typing import Optional
 
+
 class Client:
     """
     Class for clients.
@@ -32,6 +33,7 @@ class Client:
     def __repr__(self):
         """
         Client representation.
+
         :return: clients name
         """
         return self.name
