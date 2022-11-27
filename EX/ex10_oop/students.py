@@ -43,7 +43,7 @@ def is_failing(student: Student) -> bool:
     :param student: a Student object
     :return: if student is failing
     """
-    return True if student.average_grade < 1.0 else True
+    return True if student.average_grade < 1.0 else False
 
 
 def succeeding_students(student_list: list) -> list:
@@ -77,7 +77,7 @@ def sort_by_best_grade(student_list: list) -> list:
     :param student_list: a list of students
     :return: sorted list of succeeding students by average grade in descending order
     """
-    pass
+    return list(sorted(student_list, key=lambda x: x.average_grade, reverse=True))
 
 
 def sort_by_worst_grade(student_list: list) -> list:
@@ -91,7 +91,7 @@ def sort_by_worst_grade(student_list: list) -> list:
     :param student_list: a list of students
     :return: sorted list of succeeding students by average grade in ascending order
     """
-    pass
+    return list(sorted(student_list, key=lambda x: x.average_grade))
 
 
 if __name__ == '__main__':
