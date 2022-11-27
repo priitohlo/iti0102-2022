@@ -25,7 +25,7 @@ class Client:
         """
         self.name = name
         self.bank = bank
-        self.account_age = int(account_age) or 0
+        self.account_age = int(account_age)
         self.starting_amount = int(starting_amount)
         self.current_amount = int(current_amount)
 
@@ -100,7 +100,7 @@ def largest_earnings_per_day(filename: str) -> Optional[Client]:
         if c.earnings_per_day() > largest_earnings:
             largest_earnings = c.earnings_per_day()
             largest_earnings_client = c
-        elif c.earnings_per_day() == largest_earnings:
+        elif c.earnings_per_day() == largest_earnings and largest_earnings_client:
             if c.account_age < largest_earnings_client.account_age:
                 largest_earnings_client = c
 
@@ -128,7 +128,7 @@ def largest_loss_per_day(filename: str) -> Optional[Client]:
         if c.earnings_per_day() < largest_loss:
             largest_loss = c.earnings_per_day()
             largest_loss_client = c
-        elif c.earnings_per_day() == largest_loss:
+        elif c.earnings_per_day() == largest_loss and largest_loss_client:
             if c.account_age < largest_loss_client.account_age:
                 largest_loss_client = c
 
