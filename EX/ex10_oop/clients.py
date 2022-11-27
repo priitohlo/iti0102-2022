@@ -25,7 +25,7 @@ class Client:
         """
         self.name = name
         self.bank = bank
-        self.account_age = int(account_age)
+        self.account_age = int(account_age) or 0
         self.starting_amount = int(starting_amount)
         self.current_amount = int(current_amount)
 
