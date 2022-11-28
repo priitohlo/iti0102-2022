@@ -98,7 +98,7 @@ class AlchemicalStorage:
         return_string = "Content:\n"
 
         if len(self.storage) == 0:
-            return return_string + " Empty"
+            return return_string + " Empty."
 
         for e in self.storage:
             if e.name not in content_dict:
@@ -109,7 +109,7 @@ class AlchemicalStorage:
         for k, v in sorted(content_dict.items()):
             return_string += f" * {k}: x {v}\n"
 
-        return return_string
+        return return_string[:-1]
 
 
 if __name__ == '__main__':
