@@ -95,7 +95,10 @@ class AlchemicalStorage:
         :return: Content as a string.
         """
         content_dict = dict()
-        return_string = ""
+        return_string = "Content:\n"
+
+        if len(self.storage) == 0:
+            return return_string + "Empty"
 
         for e in self.storage:
             if e.name not in content_dict:
