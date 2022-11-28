@@ -94,7 +94,19 @@ class AlchemicalStorage:
 
         :return: Content as a string.
         """
-        return ''
+        content_dict = dict()
+        return_string = ""
+
+        for e in self.storage:
+            if e.name not in content_dict:
+                content_dict[e.name] = 1
+            else:
+                content_dict[e.e.name] += 1
+
+        for k, v in sorted(content_dict.items()):
+            return_string += f"* {k}: x {v}\n"
+
+        return return_string
 
 
 if __name__ == '__main__':
