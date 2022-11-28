@@ -101,7 +101,7 @@ class AlchemicalStorage:
             if e.name not in content_dict:
                 content_dict[e.name] = 1
             else:
-                content_dict[e.e.name] += 1
+                content_dict[e.name] += 1
 
         for k, v in sorted(content_dict.items()):
             return_string += f"* {k}: x {v}\n"
