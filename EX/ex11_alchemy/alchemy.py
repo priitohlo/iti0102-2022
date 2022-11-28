@@ -169,7 +169,10 @@ class AlchemicalRecipes:
         :return: The name of the product element or None.
         """
         components = frozenset([first_component_name, second_component_name])
-        return self.recipes[components]
+        try:
+            return self.recipes[components]
+        except KeyError:
+            return None
 
 
 class DuplicateRecipeNamesException(Exception):
