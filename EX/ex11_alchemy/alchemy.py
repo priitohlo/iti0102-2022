@@ -51,7 +51,7 @@ class AlchemicalStorage:
         for i, e in enumerate(reversed(self.storage)):
             if e.name == element_name:
                 return self.storage.pop(-i - 1)
-        return False
+        return None
 
     def extract(self) -> list[AlchemicalElement]:
         """
