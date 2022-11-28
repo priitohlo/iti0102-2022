@@ -11,7 +11,7 @@ class AlchemicalElement:
         self.name = name
 
     def __repr__(self):
-        return f"AE: {self.name}"
+        return f"<AE: {self.name}>"
 
 
 class AlchemicalStorage:
