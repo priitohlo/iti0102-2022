@@ -107,7 +107,7 @@ class AlchemicalStorage:
                 content_dict[e.name] += 1
 
         for k, v in sorted(content_dict.items()):
-            return_string += f" * {k}: x {v}\n"
+            return_string += f" * {k} x {v}\n"
 
         return return_string[:-1]
 
