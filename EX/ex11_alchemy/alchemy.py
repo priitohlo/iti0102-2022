@@ -7,10 +7,13 @@ class AlchemicalElement:
 
     Every element must have a name.
     """
+
     def __init__(self, name: str):
+        """Init."""
         self.name = name
 
     def __repr__(self):
+        """Repr."""
         return f"<AE: {self.name}>"
 
 
