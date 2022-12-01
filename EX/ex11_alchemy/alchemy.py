@@ -174,6 +174,12 @@ class AlchemicalRecipes:
         except KeyError:
             return None
 
+    def get_component_names(self, product_name: str) -> tuple[str, str] or None:
+        for k, v in self.recipes.items():
+            if v == product_name:
+                return tuple(k)
+        return None
+
 
 class DuplicateRecipeNamesException(Exception):
     """Raised when attempting to add a recipe that has same names for components and product."""
@@ -224,41 +230,91 @@ class Cauldron(AlchemicalStorage):
                 self.storage.append(AlchemicalElement(AlchemicalRecipes.get_product_name(self, e1_name, e2_name)))
 
 
+class Catalyst(AlchemicalElement):
+    """Catalyst class."""
+
+    def __init__(self, name: str, uses: int):
+        """
+        Initialize the Catalyst class.
+
+        :param name: The name of the Catalyst.
+        :param uses: The number of uses the Catalyst has.
+        """
+        self.name = name
+        self.uses = uses
+
+    def __repr__(self) -> str:
+        """
+        Representation of the Catalyst class.
+
+        Example:
+            catalyst = Catalyst("Philosophers' stone", 3)
+            print(catalyst) # -> <C: Philosophers' stone (3)>
+
+        :return: String representation of the Catalyst.
+        """
+        return f"<C: {self.name} ({self.uses})>"
+
+
+class Purifier(AlchemicalStorage):
+    """
+    Purifier class.
+
+    Extends the 'AlchemicalStorage' class.
+    """
+
+    def __init__(self, recipes: AlchemicalRecipes):
+        """Initialize the Purifier class."""
+        self.recipes = recipes
+
+    def add(self, element: AlchemicalElement):
+        """
+        Add element to storage and check if it can be split into anything.
+
+        Use the 'recipes' object that was given in the constructor to determine the combinations.
+
+        Example:
+            recipes = AlchemicalRecipes()
+            recipes.add_recipe('Water', 'Wind', 'Ice')
+            purifier = Purifier(recipes)
+            purifier.add(AlchemicalElement('Ice'))
+            purifier.extract() # -> [<AE: Water>, <AE: Wind>]   or  [<AE: Wind>, <AE: Water>]
+
+        :param element: Input object to add to storage.
+        """
+        if isinstance(element, AlchemicalElement):
+            self.storage.append(element)
+        else:
+            raise TypeError
+
+        for k, v in self.recipes.items():
+            if k.issubset(set([x.name for x in self.storage])):
+                e1, e2 = list(k)
+                e1_name = self.pop(e1).name
+                e2_name = self.pop(e2).name
+                self.storage.append(AlchemicalElement(AlchemicalRecipes.get_product_name(self, e1_name, e2_name)))
+
 
 if __name__ == '__main__':
+    philosophers_stone = Catalyst("Philosophers' stone", 2)
+
     recipes = AlchemicalRecipes()
-    recipes.add_recipe('Fire', 'Water', 'Steam')
-    recipes.add_recipe('Fire', 'Earth', 'Iron')
-    recipes.add_recipe('Water', 'Iron', 'Rust')
-
-    print(recipes.get_product_name('Water', 'Fire'))  # -> 'Steam'
-
-    try:
-        recipes.add_recipe('Fire', 'Something else', 'Fire')
-        print('Did not raise, not working as intended.')
-
-    except DuplicateRecipeNamesException:
-        print('Raised DuplicateRecipeNamesException, working as intended!')
-
-    try:
-        recipes.add_recipe('Fire', 'Earth', 'Gold')
-        print('Did not raise, not working as intended.')
-
-    except RecipeOverlapException:
-        print('Raised RecipeOverlapException, working as intended!')
+    recipes.add_recipe("Philosophers' stone", 'Mercury', 'Gold')
+    recipes.add_recipe("Fire", 'Earth', 'Iron')
 
     cauldron = Cauldron(recipes)
-    cauldron.add(AlchemicalElement('Earth'))
-    cauldron.add(AlchemicalElement('Water'))
-    cauldron.add(AlchemicalElement('Fire'))
+    cauldron.add(philosophers_stone)
+    cauldron.add(AlchemicalElement('Mercury'))
+    print(cauldron.extract())  # -> [<C: Philosophers' stone (1)>, <AE: Gold>]
 
-    print(cauldron.extract())  # -> [<AE: Earth>, <AE: Steam>]
+    cauldron.add(philosophers_stone)
+    cauldron.add(AlchemicalElement('Mercury'))
+    print(cauldron.extract())  # -> [<C: Philosophers' stone (0)>, <AE: Gold>]
 
-    cauldron.add(AlchemicalElement('Earth'))
-    cauldron.add(AlchemicalElement('Earth'))
-    cauldron.add(AlchemicalElement('Earth'))
-    cauldron.add(AlchemicalElement('Fire'))
-    cauldron.add(AlchemicalElement('Fire'))
-    cauldron.add(AlchemicalElement('Water'))
+    cauldron.add(philosophers_stone)
+    cauldron.add(AlchemicalElement('Mercury'))
+    print(cauldron.extract())  # -> [<C: Philosophers' stone (0)>, <AE: Mercury>]
 
-    print(cauldron.extract())  # -> [<AE: Earth>, <AE: Iron>, <AE: Rust>]
+    purifier = Purifier(recipes)
+    purifier.add(AlchemicalElement('Iron'))
+    print(purifier.extract())  # -> [<AE: Fire>, <AE: Earth>]    or      [<AE: Earth>, <AE: Fire>]
