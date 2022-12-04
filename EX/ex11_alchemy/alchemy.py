@@ -265,7 +265,8 @@ class Purifier(AlchemicalStorage):
 
     def __init__(self, recipes: AlchemicalRecipes):
         """Initialize the Purifier class."""
-        self.recipes = recipes
+        self.storage = list()
+        self.recipes = recipes.recipes
 
     def add(self, element: AlchemicalElement):
         """
