@@ -199,6 +199,7 @@ class Cauldron(AlchemicalStorage):
     def __init__(self, recipes: AlchemicalRecipes):
         """Initialize the Cauldron class."""
         super().__init__()
+        self.recipes = recipes
 
     def add(self, element: AlchemicalElement):
         """
@@ -221,12 +222,12 @@ class Cauldron(AlchemicalStorage):
         else:
             raise TypeError
 
-        for k, v in recipes.recipes.items():
+        for k, v in self.recipes.recipes.items():
             if k.issubset(set([x.name for x in self.storage])):
                 e1, e2 = list(k)
                 e1_name = self.pop(e1).name
                 e2_name = self.pop(e2).name
-                self.storage.append(AlchemicalElement(recipes.get_product_name(e1_name, e2_name)))
+                self.storage.append(AlchemicalElement(self.recipes.get_product_name(e1_name, e2_name)))
 
 
 class Catalyst(AlchemicalElement):
@@ -265,6 +266,7 @@ class Purifier(AlchemicalStorage):
     def __init__(self, recipes: AlchemicalRecipes):
         """Initialize the Purifier class."""
         self.storage = list()
+        self.recipes = recipes.recipes
 
     def add(self, element: AlchemicalElement):
         """
@@ -286,12 +288,12 @@ class Purifier(AlchemicalStorage):
         else:
             raise TypeError
 
-        for k, v in recipes.recipes.items():
+        for k, v in self.recipes.items():
             if k.issubset(set([x.name for x in self.storage])):
                 e1, e2 = list(k)
                 e1_name = self.pop(e1).name
                 e2_name = self.pop(e2).name
-                self.storage.append(AlchemicalElement(recipes.get_product_name(e1_name, e2_name)))
+                self.storage.append(AlchemicalElement(AlchemicalRecipes.get_product_name(self, e1_name, e2_name)))
 
 
 if __name__ == '__main__':
