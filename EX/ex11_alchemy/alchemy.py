@@ -306,7 +306,7 @@ class Purifier(AlchemicalStorage):
         else:
             raise TypeError
 
-        while any([[x.name for x in self.storage] in self.recipes.recipes.values()]):
+        while any([x in [y.name for y in self.storage] for x in self.recipes.recipes.values()]):
             for k, v in self.recipes.recipes.items():
                 if v in [x.name for x in self.storage]:
                     for i, e in reversed(list(enumerate(self.storage))):
