@@ -200,6 +200,7 @@ class Cauldron(AlchemicalStorage):
         """Initialize the Cauldron class."""
         super().__init__()
         self.recipes = recipes
+        self.result = []
 
     def add(self, element: AlchemicalElement):
         """
@@ -223,11 +224,27 @@ class Cauldron(AlchemicalStorage):
             raise TypeError
 
         for k, v in self.recipes.recipes.items():
-            if k.issubset(set([x.name for x in self.storage])):
-                e1, e2 = list(k)
-                e1_name = self.pop(e1).name
-                e2_name = self.pop(e2).name
-                self.storage.append(AlchemicalElement(self.recipes.get_product_name(e1_name, e2_name)))
+            if k.issubset(set([x.name for x in reversed(self.storage)])):
+                self.result = []
+                for i, e in reversed(list(enumerate(self.storage))):
+                    if len(self.result) == 2:
+                        break
+                    if e.name in k and e.name not in self.result:
+                        if type(e) == Catalyst:
+                            if e.uses > 0:
+                                e.uses -= 1
+                                self.result.append(e)
+                            else:
+                                continue
+                        else:
+                            self.result.append(self.storage.pop(i))
+
+                if len(self.result) == 2:
+                    self.storage.append(AlchemicalElement(recipes.get_product_name(*[x.name for x in self.result])))
+                else:
+                    self.storage += self.result
+                break
+
 
 
 class Catalyst(AlchemicalElement):
@@ -316,6 +333,6 @@ if __name__ == '__main__':
     cauldron.add(AlchemicalElement('Mercury'))
     print(cauldron.extract())  # -> [<C: Philosophers' stone (0)>, <AE: Mercury>]
 
-    purifier = Purifier(recipes)
-    purifier.add(AlchemicalElement('Iron'))
-    print(purifier.extract())  # -> [<AE: Fire>, <AE: Earth>]    or      [<AE: Earth>, <AE: Fire>]
+    # purifier = Purifier(recipes)
+    # purifier.add(AlchemicalElement('Iron'))
+    # print(purifier.extract())  # -> [<AE: Fire>, <AE: Earth>]    or      [<AE: Earth>, <AE: Fire>]
