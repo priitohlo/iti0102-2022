@@ -240,7 +240,7 @@ class Cauldron(AlchemicalStorage):
                             self.result.append(self.storage.pop(i))
 
                 if len(self.result) == 2:
-                    self.storage.append(AlchemicalElement(recipes.get_product_name(*[x.name for x in self.result])))
+                    self.storage.append(AlchemicalElement(self.recipes.get_product_name(*[x.name for x in self.result])))
                 else:
                     self.storage += self.result
                 break
