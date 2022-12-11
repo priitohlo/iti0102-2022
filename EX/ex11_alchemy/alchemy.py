@@ -306,11 +306,11 @@ class Purifier(AlchemicalStorage):
             raise TypeError
 
         for k, v in self.recipes.recipes.items():
-            if k.issubset(set([x.name for x in self.storage])):
-                e1, e2 = list(k)
-                e1_name = self.pop(e1).name
-                e2_name = self.pop(e2).name
-                self.storage.append(AlchemicalElement(self.recipes.get_product_name(e1_name, e2_name)))
+            if v in [x.name for x in self.storage]:
+                for i, e in reversed(list(enumerate(self.storage))):
+                    if e.name == v:
+                        self.storage.pop(i)
+                        self.storage += list(self.recipes.get_component_names(e.name))
 
 
 if __name__ == '__main__':
@@ -333,6 +333,6 @@ if __name__ == '__main__':
     cauldron.add(AlchemicalElement('Mercury'))
     print(cauldron.extract())  # -> [<C: Philosophers' stone (0)>, <AE: Mercury>]
 
-    # purifier = Purifier(recipes)
-    # purifier.add(AlchemicalElement('Iron'))
-    # print(purifier.extract())  # -> [<AE: Fire>, <AE: Earth>]    or      [<AE: Earth>, <AE: Fire>]
+    purifier = Purifier(recipes)
+    purifier.add(AlchemicalElement('Iron'))
+    print(purifier.extract())  # -> [<AE: Fire>, <AE: Earth>]    or      [<AE: Earth>, <AE: Fire>]
