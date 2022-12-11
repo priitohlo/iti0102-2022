@@ -310,7 +310,7 @@ class Purifier(AlchemicalStorage):
                 for i, e in reversed(list(enumerate(self.storage))):
                     if e.name == v:
                         self.storage.pop(i)
-                        self.storage += list(self.recipes.get_component_names(e.name))
+                        self.storage += [AlchemicalElement(x) for x in self.recipes.get_component_names(e.name)]
 
 
 if __name__ == '__main__':
