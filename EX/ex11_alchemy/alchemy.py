@@ -223,27 +223,28 @@ class Cauldron(AlchemicalStorage):
         else:
             raise TypeError
 
-        for k, v in self.recipes.recipes.items():
-            if k.issubset(set([x.name for x in reversed(self.storage)])):
-                self.result = []
-                for i, e in reversed(list(enumerate(self.storage))):
-                    if len(self.result) == 2:
-                        break
-                    if e.name in k and e.name not in self.result:
-                        if type(e) == Catalyst:
-                            if e.uses > 0:
-                                e.uses -= 1
-                                self.result.append(e)
+        while any([x.issubset(set([x.name for x in self.storage])) for x in self.recipes.recipes.keys()]):
+            for k, v in self.recipes.recipes.items():
+                if k.issubset(set([x.name for x in reversed(self.storage)])):
+                    self.result = []
+                    for i, e in reversed(list(enumerate(self.storage))):
+                        if len(self.result) == 2:
+                            break
+                        if e.name in k and e.name not in self.result:
+                            if type(e) == Catalyst:
+                                if e.uses > 0:
+                                    e.uses -= 1
+                                    self.result.append(e)
+                                else:
+                                    continue
                             else:
-                                continue
-                        else:
-                            self.result.append(self.storage.pop(i))
+                                self.result.append(self.storage.pop(i))
 
-                if len(self.result) == 2:
-                    self.storage.append(AlchemicalElement(self.recipes.get_product_name(*[x.name for x in self.result])))
-                else:
-                    self.storage += self.result
-                break
+                    if len(self.result) == 2:
+                        self.storage.append(AlchemicalElement(self.recipes.get_product_name(*[x.name for x in self.result])))
+                    else:
+                        self.storage += self.result
+                    break
 
 
 
@@ -305,34 +306,34 @@ class Purifier(AlchemicalStorage):
         else:
             raise TypeError
 
-        for k, v in self.recipes.recipes.items():
-            if v in [x.name for x in self.storage]:
-                for i, e in reversed(list(enumerate(self.storage))):
-                    if e.name == v:
-                        self.storage.pop(i)
-                        self.storage += [AlchemicalElement(x) for x in self.recipes.get_component_names(e.name)]
+        while any([[x.name for x in self.storage] in self.recipes.recipes.values()]):
+            for k, v in self.recipes.recipes.items():
+                if v in [x.name for x in self.storage]:
+                    for i, e in reversed(list(enumerate(self.storage))):
+                        if e.name == v:
+                            self.storage.pop(i)
+                            self.storage += [AlchemicalElement(x) for x in self.recipes.get_component_names(e.name)]
 
 
 if __name__ == '__main__':
-    philosophers_stone = Catalyst("Philosophers' stone", 2)
-
     recipes = AlchemicalRecipes()
-    recipes.add_recipe("Philosophers' stone", 'Mercury', 'Gold')
-    recipes.add_recipe("Fire", 'Earth', 'Iron')
+    recipes.add_recipe('Earth', 'Fire', 'Iron')
+    recipes.add_recipe("Philosophers' stone", 'Iron', 'Silver')
+    recipes.add_recipe("Philosophers' stone", 'Silver', 'Gold')
+    recipes.add_recipe('Iron', 'Crystal', 'Talisman')
+    # ((Earth + Fire) + Philosophers' stone) + Philosophers' stone) = Gold
 
     cauldron = Cauldron(recipes)
-    cauldron.add(philosophers_stone)
-    cauldron.add(AlchemicalElement('Mercury'))
-    print(cauldron.extract())  # -> [<C: Philosophers' stone (1)>, <AE: Gold>]
+    cauldron.add(Catalyst("Philosophers' stone", 2))
+    cauldron.add(AlchemicalElement('Fire'))
+    print(cauldron.get_content())
+    # Content:
+    #  * Fire x 1
+    #  * Philosophers' stone x 1
 
-    cauldron.add(philosophers_stone)
-    cauldron.add(AlchemicalElement('Mercury'))
+    cauldron.add(AlchemicalElement('Earth'))
     print(cauldron.extract())  # -> [<C: Philosophers' stone (0)>, <AE: Gold>]
 
-    cauldron.add(philosophers_stone)
-    cauldron.add(AlchemicalElement('Mercury'))
-    print(cauldron.extract())  # -> [<C: Philosophers' stone (0)>, <AE: Mercury>]
-
     purifier = Purifier(recipes)
-    purifier.add(AlchemicalElement('Iron'))
-    print(purifier.extract())  # -> [<AE: Fire>, <AE: Earth>]    or      [<AE: Earth>, <AE: Fire>]
+    purifier.add(AlchemicalElement('Talisman'))
+    print(purifier.extract())  # -> [<AE: Earth>, <AE: Fire>, <AE: Crystal>]  (in any order)
