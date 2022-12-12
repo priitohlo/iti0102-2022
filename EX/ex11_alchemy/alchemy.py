@@ -223,9 +223,9 @@ class Cauldron(AlchemicalStorage):
         else:
             raise TypeError
 
-        while True in [x.issubset(frozenset([x.name for x in self.storage])) for x in self.recipes.recipes.keys()]:
+        while any([x.issubset(frozenset([x.name for x in self.storage])) for x in self.recipes.recipes.keys()]):
             for k, v in self.recipes.recipes.items():
-                if k.issubset(set([x.name for x in reversed(self.storage)])):
+                if k.issubset(frozenset([x.name for x in reversed(self.storage)])):
                     self.result = []
                     for i, e in reversed(list(enumerate(self.storage))):
                         if len(self.result) == 2:
