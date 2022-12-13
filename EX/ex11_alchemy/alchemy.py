@@ -246,8 +246,6 @@ class Cauldron(AlchemicalStorage):
                     self.storage += self.result
 
 
-
-
 class Catalyst(AlchemicalElement):
     """Catalyst class."""
 
@@ -313,24 +311,3 @@ class Purifier(AlchemicalStorage):
                         if e.name == v:
                             self.storage.pop(i)
                             self.storage += [AlchemicalElement(x) for x in self.recipes.get_component_names(e.name)]
-
-
-if __name__ == '__main__':
-    recipes = AlchemicalRecipes()
-    recipes.add_recipe('Earth', 'Fire', 'Iron')
-    recipes.add_recipe('Iron', 'Water', 'Rust')
-
-    cauldron = Cauldron(recipes)
-
-    cauldron.add(AlchemicalElement('Fire'))
-    cauldron.add(AlchemicalElement('Water'))
-    cauldron.add(AlchemicalElement('Earth'))
-    print(cauldron.extract())  # -> [<AE: Rust>]
-
-    recipes = AlchemicalRecipes()
-    recipes.add_recipe('Earth', 'Fire', 'Iron')
-    recipes.add_recipe('Iron', 'Water', 'Rust')
-
-    purifier = Purifier(recipes)
-    purifier.add(AlchemicalElement('Rust'))
-    print(purifier.extract())  # -> [<AE: Earth>, <AE: Fire>, <AE: Water>] (in any order)
