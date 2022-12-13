@@ -225,7 +225,7 @@ class Cauldron(AlchemicalStorage):
             raise TypeError
 
         while any([x.issubset(frozenset([x.name for x in self.storage])) for x in self.recipes.recipes.keys()])\
-                and any([x.uses > 0 for x in [y for y in self.storage if type(y) == Catalyst]]):
+                and all([x.uses > 0 for x in [y for y in self.storage if type(y) == Catalyst]]):
             for k, v in self.recipes.recipes.items():
                 if k.issubset(frozenset([x.name for x in reversed(self.storage)])):
                     self.result = []
@@ -323,6 +323,7 @@ if __name__ == '__main__':
     recipes.add_recipe("Philosophers' stone", 'Iron', 'Silver')
     recipes.add_recipe("Philosophers' stone", 'Silver', 'Gold')
     recipes.add_recipe('Iron', 'Crystal', 'Talisman')
+    recipes.add_recipe('Water', 'Fire', 'Steam')
     # ((Earth + Fire) + Philosophers' stone) + Philosophers' stone) = Gold
 
     cauldron = Cauldron(recipes)
@@ -339,3 +340,7 @@ if __name__ == '__main__':
     purifier = Purifier(recipes)
     purifier.add(AlchemicalElement('Talisman'))
     print(purifier.extract())  # -> [<AE: Earth>, <AE: Fire>, <AE: Crystal>]  (in any order)
+
+    cauldron.add(AlchemicalElement('Water'))
+    cauldron.add(AlchemicalElement('Fire'))
+    print(cauldron.extract())
