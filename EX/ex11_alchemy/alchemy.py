@@ -175,6 +175,7 @@ class AlchemicalRecipes:
             return None
 
     def get_component_names(self, product_name: str) -> tuple[str, str] or None:
+        """docstring."""
         for k, v in self.recipes.items():
             if v == product_name:
                 return tuple(k)
