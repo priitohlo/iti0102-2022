@@ -223,7 +223,8 @@ class Cauldron(AlchemicalStorage):
         else:
             raise TypeError
 
-        while any([x.issubset(frozenset([x.name for x in self.storage])) for x in self.recipes.recipes.keys()]):
+        while not any([x.isdisjoint(frozenset([x.name for x in self.storage])) for x in self.recipes.recipes.keys()])\
+                and not any(e.uses == 0 for e in [g for g in self.storage if type(g) == Catalyst]):
             for k, v in self.recipes.recipes.items():
                 if k.issubset(frozenset([x.name for x in reversed(self.storage)])):
                     self.result = []
