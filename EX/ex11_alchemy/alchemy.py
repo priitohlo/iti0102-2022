@@ -244,7 +244,6 @@ class Cauldron(AlchemicalStorage):
                     self.storage.append(AlchemicalElement(self.recipes.get_product_name(*[x.name for x in self.result])))
                 else:
                     self.storage += self.result
-                break
 
 
 
@@ -319,30 +318,19 @@ class Purifier(AlchemicalStorage):
 if __name__ == '__main__':
     recipes = AlchemicalRecipes()
     recipes.add_recipe('Earth', 'Fire', 'Iron')
-    recipes.add_recipe("Philosophers' stone", 'Iron', 'Silver')
-    recipes.add_recipe("Philosophers' stone", 'Silver', 'Gold')
-    recipes.add_recipe('Iron', 'Crystal', 'Talisman')
-    recipes.add_recipe('Water', 'Fire', 'Steam')
-    # ((Earth + Fire) + Philosophers' stone) + Philosophers' stone) = Gold
+    recipes.add_recipe('Iron', 'Water', 'Rust')
 
     cauldron = Cauldron(recipes)
-    cauldron.add(Catalyst("Philosophers' stone", 1))
-    cauldron.add(Catalyst("Philosophers' stone", 1))
-    cauldron.add(Catalyst("Philosophers' stone", 1))
-    cauldron.add(Catalyst("Philosophers' stone", 1))
-    cauldron.add(AlchemicalElement('Fire'))
-    print(cauldron.get_content())
-    # Content:
-    #  * Fire x 1
-    #  * Philosophers' stone x 1
 
+    cauldron.add(AlchemicalElement('Fire'))
+    cauldron.add(AlchemicalElement('Water'))
     cauldron.add(AlchemicalElement('Earth'))
-    print(cauldron.extract())  # -> [<C: Philosophers' stone (0)>, <AE: Gold>]
+    print(cauldron.extract())  # -> [<AE: Rust>]
+
+    recipes = AlchemicalRecipes()
+    recipes.add_recipe('Earth', 'Fire', 'Iron')
+    recipes.add_recipe('Iron', 'Water', 'Rust')
 
     purifier = Purifier(recipes)
-    purifier.add(AlchemicalElement('Talisman'))
-    print(purifier.extract())  # -> [<AE: Earth>, <AE: Fire>, <AE: Crystal>]  (in any order)
-
-    cauldron.add(AlchemicalElement('Water'))
-    cauldron.add(AlchemicalElement('Fire'))
-    print(cauldron.extract())
+    purifier.add(AlchemicalElement('Rust'))
+    print(purifier.extract())  # -> [<AE: Earth>, <AE: Fire>, <AE: Water>] (in any order)
