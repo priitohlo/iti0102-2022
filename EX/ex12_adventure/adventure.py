@@ -86,7 +86,8 @@ class Adventurer(Character):
     def __init__(self, name: str, character_class: str, power: int):
         """docstring."""
         super().__init__(name, power)
-        self.character_class = character_class
+        allowed_classes = ['Fighter', 'Druid', 'Wizard', 'Paladin']
+        self.character_class = character_class if type in allowed_classes else 'Fighter'
 
     def __str__(self):
         """docstring."""
