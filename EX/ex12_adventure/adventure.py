@@ -1,3 +1,4 @@
+"""docstring"""
 from abc import ABC
 
 
@@ -8,41 +9,53 @@ class World:
         self.adventurers = list()
 
     def get_python_master(self):
+        """docstring"""
         pass
 
     def get_graveyard(self):
+        """docstring"""
         pass
 
     def add_adventurer(self, adventurer):
+        """docstring"""
         self.adventurers.append(adventurer)
 
     def get_adventurer_list(self):
+        """docstring"""
         names = [a.name for a in self.adventurers]
         return ", ".join(names[0:-1]) + f' ja {names[-1]}'
         # return names[-1]
 
     def add_monster(self, annoying_friend):
+        """docstring"""
         pass
 
     def add_strongest_adventurer(self, param):
+        """docstring"""
         pass
 
     def add_strongest_monster(self):
+        """docstring"""
         pass
 
     def get_active_adventurers(self):
+        """docstring"""
         pass
 
     def get_active_monsters(self):
+        """docstring"""
         pass
 
     def go_adventure(self, param):
+        """docstring"""
         pass
 
     def get_monster_list(self):
+        """docstring"""
         pass
 
     def remove_character(self, param):
+        """docstring"""
         pass
 
 
@@ -65,7 +78,7 @@ class Adventurer(Character):
         self.character_class = character_class
 
     def __str__(self):
-        return f'{self.name}, the {self.character_class}, Power: {self.power}, Experience: {self.xp}'
+        return f'{self.name}, the {self.character_class}, Power: {self.power}, Experience: {self.xp}.'
 
 
 class Monster(Character):
@@ -74,7 +87,7 @@ class Monster(Character):
         self.monster_type = monster_type
 
     def __str__(self):
-        return f'{self.name}, of {self.monster_type}, Power: {self.power}, Experience: {self.xp}'
+        return f'{self.name}, of {self.monster_type}, Power: {self.power}, Experience: {self.xp}.'
 
 
 if __name__ == "__main__":
