@@ -1,4 +1,4 @@
-"""docstring"""
+"""docstring."""
 from abc import ABC
 
 
@@ -9,53 +9,53 @@ class World:
         self.adventurers = list()
 
     def get_python_master(self):
-        """docstring"""
+        """docstring."""
         pass
 
     def get_graveyard(self):
-        """docstring"""
+        """docstring."""
         pass
 
     def add_adventurer(self, adventurer):
-        """docstring"""
+        """docstring."""
         self.adventurers.append(adventurer)
 
     def get_adventurer_list(self):
-        """docstring"""
+        """docstring."""
         names = [a.name for a in self.adventurers]
         return ", ".join(names[0:-1]) + f' ja {names[-1]}'
         # return names[-1]
 
     def add_monster(self, annoying_friend):
-        """docstring"""
+        """docstring."""
         pass
 
     def add_strongest_adventurer(self, param):
-        """docstring"""
+        """docstring."""
         pass
 
     def add_strongest_monster(self):
-        """docstring"""
+        """docstring."""
         pass
 
     def get_active_adventurers(self):
-        """docstring"""
+        """docstring."""
         pass
 
     def get_active_monsters(self):
-        """docstring"""
+        """docstring."""
         pass
 
     def go_adventure(self, param):
-        """docstring"""
+        """docstring."""
         pass
 
     def get_monster_list(self):
-        """docstring"""
+        """docstring."""
         pass
 
     def remove_character(self, param):
-        """docstring"""
+        """docstring."""
         pass
 
 
