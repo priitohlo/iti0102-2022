@@ -1,6 +1,4 @@
 """docstring."""
-from abc import ABC
-
 
 class World:
     """docstring."""
@@ -63,49 +61,42 @@ class World:
         pass
 
 
-class Character(ABC):
+class Adventurer():
     """docstring."""
 
-    def __init__(self, name: str, power: int):
+    def __init__(self, name: str, class_type: str, power: int):
         """docstring."""
         self.name = name
         self.power = power
-        self.xp = 0
+        allowed_classes = ['Fighter', 'Druid', 'Wizard', 'Paladin']
+        self.character_class = class_type if class_type in allowed_classes else 'Fighter'
+        self.experience = 0
 
     def __repr__(self):
         """docstring."""
-        return f'{self.__class__.__name__}(name="{self.name}",character_class="{self.character_type},power={self.power}'
+        return f'{self.name}, the {self.character_class}, Power: {self.power}, Experience: {self.experience}.'
 
     def add_power(self, power):
         """docstring."""
         self.power += power
 
-
-class Adventurer(Character):
-    """docstring."""
-
-    def __init__(self, name: str, class_type: str, power: int):
+    def add_experience(self, experience):
         """docstring."""
-        super().__init__(name, power)
-        allowed_classes = ['Fighter', 'Druid', 'Wizard', 'Paladin']
-        self.character_class = class_type if class_type in allowed_classes else 'Fighter'
-
-    def __str__(self):
-        """docstring."""
-        return f'{self.name}, the {self.character_class}, Power: {self.power}, Experience: {self.xp}.'
+        self.experience += experience
 
 
-class Monster(Character):
+class Monster():
     """docstring."""
 
     def __init__(self, name: str, type: str, power: int):
         """docstring."""
-        super().__init__(name, power)
+        self.name = name
+        self.power = power
         self.monster_type = type
 
-    def __str__(self):
+    def __repr__(self):
         """docstring."""
-        return f'{self.name}, of {self.monster_type}, Power: {self.power}, Experience: {self.xp}.'
+        return f'{self.name}, of {self.monster_type}, Power: {self.power}.'
 
 
 if __name__ == "__main__":
