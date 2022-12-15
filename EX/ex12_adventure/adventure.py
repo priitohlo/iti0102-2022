@@ -85,7 +85,7 @@ class Adventurer():
 
     def add_experience(self, experience: int):
         """docstring."""
-        self.experience = experience if experience >= 0 else 0
+        self.experience += experience if experience >= 0 else 0
         if self.experience > 99:
             self.add_power(math.floor(self.experience / 10))
             self.experience = 0
@@ -108,6 +108,7 @@ class Monster():
 if __name__ == "__main__":
     adventurer = Adventurer('Toots', 'Fighter', 0)
     adventurer.add_experience(3100)
+    adventurer.add_experience(20)
     print(adventurer)
 
     # print("Kord oli maailm.")
