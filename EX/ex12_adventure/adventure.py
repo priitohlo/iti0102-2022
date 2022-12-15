@@ -4,6 +4,7 @@ from abc import ABC
 
 class World:
     """docstring."""
+
     def __init__(self, python_master: str):
         """docstring."""
         self.python_master = python_master
@@ -63,6 +64,7 @@ class World:
 
 class Character(ABC):
     """docstring."""
+
     def __init__(self, name: str, power: int):
         """docstring."""
         self.name = name
@@ -80,6 +82,7 @@ class Character(ABC):
 
 class Adventurer(Character):
     """docstring."""
+
     def __init__(self, name: str, character_class: str, power: int):
         """docstring."""
         super().__init__(name, power)
@@ -92,6 +95,7 @@ class Adventurer(Character):
 
 class Monster(Character):
     """docstring."""
+
     def __init__(self, name: str, monster_type: str, power: int):
         """docstring."""
         super().__init__(name, power)
