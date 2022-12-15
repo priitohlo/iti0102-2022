@@ -67,14 +67,14 @@ class Adventurer():
     def __init__(self, name: str, class_type: str, power: int):
         """docstring."""
         self.name = name
-        self.power = power
+        self.power = power if power < 99 else 10
         allowed_classes = ['Fighter', 'Druid', 'Wizard', 'Paladin']
-        self.character_class = class_type if class_type in allowed_classes else 'Fighter'
+        self.class_type = class_type if class_type in allowed_classes else 'Fighter'
         self.experience = 0
 
     def __repr__(self):
         """docstring."""
-        return f'{self.name}, the {self.character_class}, Power: {self.power}, Experience: {self.experience}.'
+        return f'{self.name}, the {self.class_type}, Power: {self.power}, Experience: {self.experience}.'
 
     def add_power(self, power):
         """docstring."""
@@ -92,11 +92,11 @@ class Monster():
         """docstring."""
         self.name = name
         self.power = power
-        self.monster_type = type
+        self.type = type
 
     def __repr__(self):
         """docstring."""
-        return f'{self.name}, of {self.monster_type}, Power: {self.power}.'
+        return f'{self.name}, of {self.type}, Power: {self.power}.'
 
 
 if __name__ == "__main__":
