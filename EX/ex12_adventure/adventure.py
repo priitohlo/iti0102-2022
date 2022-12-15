@@ -10,6 +10,7 @@ class World:
         self.python_master = python_master
         self.graveyard = list()
         self.adventurers = list()
+        self.monsters = list()
 
     def get_python_master(self):
         """docstring."""
@@ -19,9 +20,9 @@ class World:
         """docstring."""
         pass
 
-    def add_adventurer(self, adventurer):
+    def add_adventurer(self, character):
         """docstring."""
-        self.adventurers.append(adventurer)
+        self.adventurers.append(character) if type(character) == Adventurer else None
 
     def get_adventurer_list(self):
         """docstring."""
@@ -29,9 +30,9 @@ class World:
         return ", ".join(names[0:-1]) + f' ja {names[-1]}'
         # return names[-1]
 
-    def add_monster(self, annoying_friend):
+    def add_monster(self, character):
         """docstring."""
-        pass
+        self.adventurers.append(character) if type(character) == Monster else None
 
     def add_strongest_adventurer(self, param):
         """docstring."""
