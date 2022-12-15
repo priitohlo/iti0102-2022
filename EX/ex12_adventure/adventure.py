@@ -84,11 +84,11 @@ class Character(ABC):
 class Adventurer(Character):
     """docstring."""
 
-    def __init__(self, name: str, character_class: str, power: int):
+    def __init__(self, name: str, class_type: str, power: int):
         """docstring."""
         super().__init__(name, power)
         allowed_classes = ['Fighter', 'Druid', 'Wizard', 'Paladin']
-        self.character_class = character_class if character_class in allowed_classes else 'Fighter'
+        self.character_class = class_type if class_type in allowed_classes else 'Fighter'
 
     def __str__(self):
         """docstring."""
@@ -98,10 +98,10 @@ class Adventurer(Character):
 class Monster(Character):
     """docstring."""
 
-    def __init__(self, name: str, monster_type: str, power: int):
+    def __init__(self, name: str, type: str, power: int):
         """docstring."""
         super().__init__(name, power)
-        self.monster_type = monster_type
+        self.monster_type = type
 
     def __str__(self):
         """docstring."""
