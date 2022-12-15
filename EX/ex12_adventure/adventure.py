@@ -23,8 +23,7 @@ class World:
     def get_adventurer_list(self):
         """docstring."""
         names = [a.name for a in self.adventurers]
-        # return ", ".join(names[0:-1]) + f' ja {names[-1]}'
-        return len(names)
+        return ", ".join(names[0:-1]) + f' ja {names[-1]}' if len(names) > 0 else []
 
     def get_active_adventurers(self):
         """docstring."""
