@@ -14,21 +14,33 @@ class World:
 
     def get_python_master(self):
         """docstring."""
-        pass
+        return self.python_master
 
     def get_graveyard(self):
         """docstring."""
-        pass
-
-    def add_adventurer(self, character):
-        """docstring."""
-        self.adventurers.append(character) if type(character) == Adventurer else None
+        return self.graveyard
 
     def get_adventurer_list(self):
         """docstring."""
         names = [a.name for a in self.adventurers]
         return ", ".join(names[0:-1]) + f' ja {names[-1]}'
         # return names[-1]
+
+    def get_active_adventurers(self):
+        """docstring."""
+        return self.adventurers
+
+    def get_monster_list(self):
+        """docstring."""
+        return self.monsters
+
+    def get_active_monsters(self):
+        """docstring."""
+        return self.monsters
+
+    def add_adventurer(self, character):
+        """docstring."""
+        self.adventurers.append(character) if type(character) == Adventurer else None
 
     def add_monster(self, character):
         """docstring."""
@@ -42,19 +54,7 @@ class World:
         """docstring."""
         pass
 
-    def get_active_adventurers(self):
-        """docstring."""
-        pass
-
-    def get_active_monsters(self):
-        """docstring."""
-        pass
-
     def go_adventure(self, param):
-        """docstring."""
-        pass
-
-    def get_monster_list(self):
         """docstring."""
         pass
 
