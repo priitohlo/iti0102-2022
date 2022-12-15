@@ -1,3 +1,6 @@
+from abc import ABC
+
+
 class World:
     def __init__(self, python_master: str):
         self.python_master = python_master
@@ -16,7 +19,7 @@ class World:
     def get_adventurer_list(self):
         names = [a.name for a in self.adventurers]
         return ", ".join(names[0:-1]) + f' ja {names[-1]}'
-        #return names[-1]
+        # return names[-1]
 
     def add_monster(self, annoying_friend):
         pass
@@ -42,29 +45,36 @@ class World:
     def remove_character(self, param):
         pass
 
-class Character(abc):
 
-
-
-class Adventurer:
-    def __init__(self, name: str, character_class: str, power: int):
+class Character(ABC):
+    def __init__(self, name: str, power: int):
         self.name = name
-        self.character_class = character_class
         self.power = power
         self.xp = 0
 
     def __repr__(self):
-        return f'Adventurer(name="{self.name}",character_class="{self.character_class},power={self.power}'
-
-    def __str__(self):
-        return f'{self.name}, the {self.character_class}, Power: {self.power}, Experience: {self.xp}'
+        return f'{self.__class__.__name__}(name="{self.name}",character_class="{self.character_type},power={self.power}'
 
     def add_power(self, power):
         self.power += power
 
 
-class Monster:
-    pass
+class Adventurer(Character):
+    def __init__(self, name: str, character_class: str, power: int):
+        super().__init__(name, power)
+        self.character_class = character_class
+
+    def __str__(self):
+        return f'{self.name}, the {self.character_class}, Power: {self.power}, Experience: {self.xp}'
+
+
+class Monster(Character):
+    def __init__(self, name: str, monster_type: str, power: int):
+        super().__init__(name, power)
+        self.monster_type = monster_type
+
+    def __str__(self):
+        return f'{self.name}, of {self.monster_type}, Power: {self.power}, Experience: {self.xp}'
 
 
 if __name__ == "__main__":
