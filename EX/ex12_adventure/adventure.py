@@ -106,21 +106,16 @@ class Monster():
 
     @property
     def name(self):
-        return self._name
+        return f'Undead {self._name}' if self.type == 'Zombie' else self._name
 
     @name.setter
-    def name(self, name):
-        if type == 'Zombie':
-            self._name = f'Undead {name}'
-        else:
-            self._name = name
+    def name(self, value):
+        self._name = value
 
 
 if __name__ == "__main__":
-    adventurer = Adventurer('Toots', 'Fighter', 0)
-    adventurer.add_experience(3100)
-    adventurer.add_experience(20)
-    print(adventurer)
+    monster = Monster('lol', 'Zombie', 20)
+    print(monster)
 
     # print("Kord oli maailm.")
     # world = World("Sõber")
