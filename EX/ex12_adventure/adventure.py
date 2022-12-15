@@ -104,6 +104,17 @@ class Monster():
         """docstring."""
         return f'{self.name}, of {self.type}, Power: {self.power}.'
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if type == 'Zombie':
+            self._name = f'Undead {name}'
+        else:
+            self._name = name
+
 
 if __name__ == "__main__":
     adventurer = Adventurer('Toots', 'Fighter', 0)
