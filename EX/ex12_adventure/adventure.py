@@ -102,7 +102,7 @@ class Monster():
 
     def __repr__(self):
         """docstring."""
-        return f'{self.name}, of {self.type}, Power: {self.power}.'
+        return f'{self.name} of type {self.type}, Power: {self.power}.'
 
     @property
     def name(self):
