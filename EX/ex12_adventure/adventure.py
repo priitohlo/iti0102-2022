@@ -3,7 +3,9 @@ from abc import ABC
 
 
 class World:
+    """docstring."""
     def __init__(self, python_master: str):
+        """docstring."""
         self.python_master = python_master
         self.graveyard = list()
         self.adventurers = list()
@@ -60,33 +62,43 @@ class World:
 
 
 class Character(ABC):
+    """docstring."""
     def __init__(self, name: str, power: int):
+        """docstring."""
         self.name = name
         self.power = power
         self.xp = 0
 
     def __repr__(self):
+        """docstring."""
         return f'{self.__class__.__name__}(name="{self.name}",character_class="{self.character_type},power={self.power}'
 
     def add_power(self, power):
+        """docstring."""
         self.power += power
 
 
 class Adventurer(Character):
+    """docstring."""
     def __init__(self, name: str, character_class: str, power: int):
+        """docstring."""
         super().__init__(name, power)
         self.character_class = character_class
 
     def __str__(self):
+        """docstring."""
         return f'{self.name}, the {self.character_class}, Power: {self.power}, Experience: {self.xp}.'
 
 
 class Monster(Character):
+    """docstring."""
     def __init__(self, name: str, monster_type: str, power: int):
+        """docstring."""
         super().__init__(name, power)
         self.monster_type = monster_type
 
     def __str__(self):
+        """docstring."""
         return f'{self.name}, of {self.monster_type}, Power: {self.power}, Experience: {self.xp}.'
 
 
