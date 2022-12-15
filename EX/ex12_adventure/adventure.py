@@ -64,13 +64,13 @@ class World:
 class Adventurer():
     """docstring."""
 
-    def __init__(self, name: str, class_type: str, power: int):
+    def __init__(self, name: str, class_type: str, power: int, experience: int = 0):
         """docstring."""
         self.name = name
         self.power = power if power < 99 else 10
         allowed_classes = ['Fighter', 'Druid', 'Wizard', 'Paladin']
         self.class_type = class_type if class_type in allowed_classes else 'Fighter'
-        self.experience = 0
+        self.experience = experience if experience >= 0 else 0
 
     def __repr__(self):
         """docstring."""
@@ -82,7 +82,11 @@ class Adventurer():
 
     def add_experience(self, experience):
         """docstring."""
-        self.experience += experience
+        self.experience += experience if self.experience < 99 else (
+                    self.add_power(experience / 10) and self.reset_experience())
+
+    def reset_experience(self):
+        self.experience = 0
 
 
 class Monster():
