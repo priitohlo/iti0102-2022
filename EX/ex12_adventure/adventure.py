@@ -24,7 +24,7 @@ class World:
         """docstring."""
         names = [a.name for a in self.adventurer_list]
         if len(names) == 1:
-            return str(names[0])
+            return str(self.adventurer_list[0])
         elif len(names) == 2:
             return " ja ".join(names)
         elif len(names) >= 3:
@@ -122,10 +122,10 @@ class Monster():
 if __name__ == "__main__":
     # monster = Monster('asd', 'asdasdasd', 1)
     adventurer = Adventurer('loll', 'kala', 1)
-    adventurer1 = Adventurer('lollakas', 'kala', 1)
+    # adventurer1 = Adventurer('lollakas', 'kala', 1)
     world = World('asdasd')
     world.add_adventurer(adventurer)
-    world.add_adventurer(adventurer1)
+    #world.add_adventurer(adventurer1)
     print(world.get_adventurer_list())
 
     # print("Kord oli maailm.")
