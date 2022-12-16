@@ -29,6 +29,8 @@ class World:
             return " ja ".join(names)
         elif len(names) >= 3:
             return ", ".join(names[0:-1]) + f' ja {names[-1]}' if len(names) > 0 else []
+        else:
+            return []
 
     def get_active_adventurers(self):
         """docstring."""
