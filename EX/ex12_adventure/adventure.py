@@ -24,7 +24,7 @@ class World:
         """docstring."""
         names = [a.name for a in self.adventurer_list]
         if len(names) == 1:
-            return str(self.adventurer_list[0])
+            return [str(self.adventurer_list[0])]
         elif len(names) == 2:
             return " ja ".join(names)
         elif len(names) >= 3:
