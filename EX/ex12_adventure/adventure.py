@@ -22,15 +22,15 @@ class World:
 
     def get_adventurer_list(self):
         """docstring."""
-        names = [a.name for a in self.adventurer_list]
-        if len(names) == 1:
-            return [str(self.adventurer_list[0])]
-        elif len(names) == 2:
-            return " ja ".join(names)
-        elif len(names) >= 3:
-            return ", ".join(names[0:-1]) + f' ja {names[-1]}' if len(names) > 0 else []
-        else:
-            return []
+        return self.adventurer_list
+        # if len(self.adventurer_list) == 1:
+        #     return [str(self.adventurer_list[0])]
+        # elif len(names) == 2:
+        #     return " ja ".join(names)
+        # elif len(names) >= 3:
+        #     return ", ".join(names[0:-1]) + f' ja {names[-1]}' if len(names) > 0 else []
+        # else:
+        #     return []
 
     def get_active_adventurers(self):
         """docstring."""
