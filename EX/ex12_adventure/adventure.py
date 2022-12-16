@@ -9,8 +9,8 @@ class World:
         """docstring."""
         self.python_master = python_master
         self.graveyard = list()
-        self.adventurers = list()
-        self.monsters = list()
+        self.adventurer_list = list()
+        self.monster_list = list()
 
     def get_python_master(self):
         """docstring."""
@@ -22,7 +22,7 @@ class World:
 
     def get_adventurer_list(self):
         """docstring."""
-        names = [a.name for a in self.adventurers]
+        names = [a.name for a in self.adventurer_list]
         if len(names) == 1:
             return names[0]
         elif len(names) == 2:
@@ -34,23 +34,23 @@ class World:
 
     def get_active_adventurers(self):
         """docstring."""
-        return self.adventurers
+        return self.adventurer_list
 
     def get_monster_list(self):
         """docstring."""
-        return self.monsters
+        return self.monster_list
 
     def get_active_monsters(self):
         """docstring."""
-        return self.monsters
+        return self.monster_list
 
     def add_adventurer(self, character):
         """docstring."""
-        self.adventurers.append(character) if type(character) == Adventurer else None
+        self.adventurer_list.append(character) if type(character) == Adventurer else None
 
     def add_monster(self, character):
         """docstring."""
-        self.monsters.append(character) if type(character) == Monster else None
+        self.monster_list.append(character) if type(character) == Monster else None
 
     def add_strongest_adventurer(self, param):
         """docstring."""
