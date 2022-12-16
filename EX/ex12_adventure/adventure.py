@@ -46,13 +46,11 @@ class World:
 
     def add_adventurer(self, character):
         """docstring."""
-        allowed_classes = ['Fighter', 'Druid', 'Wizard', 'Paladin']
-        self.adventurers.append(character) if type(
-            character) == Adventurer and character.class_type in allowed_classes else None
+        self.adventurers.append(character) if type(character) == Adventurer else None
 
     def add_monster(self, character):
         """docstring."""
-        self.adventurers.append(character) if type(character) == Monster else None
+        self.monsters.append(character) if type(character) == Monster else None
 
     def add_strongest_adventurer(self, param):
         """docstring."""
