@@ -65,9 +65,9 @@ class World:
                         self.graveyard.append(character_list.pop(i))
 
         if name in [c.name for c in self.graveyard]:
-            for i, c in enumerate(character_list):
+            for i, c in enumerate(self.graveyard):
                 if c.name == name:
-                    self.graveyard.remove(i)
+                    self.graveyard.pop(i)
 
 
 class Adventurer():
@@ -121,10 +121,21 @@ class Monster():
 
 
 if __name__ == "__main__":
-    adventurer = Adventurer('loll', 'kala', 1)
+    adventurer1 = Adventurer('Tõnn', 'Druid', 50)
+    monster1 = Monster('Poksikott', 'Construct', 1)
+    adventurer2 = Adventurer('Tõnn', 'Wizard', 50)
+    monster2 = Monster('Poksikott', 'Construct', 1)
+    monster3 = Monster('Jänguru', 'Animal', 1)
     world = World('asdasd')
-    world.add_adventurer(adventurer)
-    world.remove_character('loll')
+    world.add_adventurer(adventurer1)
+    world.add_adventurer(adventurer2)
+    world.add_monster(monster1)
+    world.add_monster(monster2)
+    world.add_monster(monster3)
+    world.remove_character('Tõnn')
+    world.remove_character('Poksikott')
+    world.remove_character('Jänguru')
+    print(world.get_graveyard())
 
     # print("Kord oli maailm.")
     # world = World("Sõber")
