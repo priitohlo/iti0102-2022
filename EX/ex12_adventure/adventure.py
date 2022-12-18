@@ -58,11 +58,18 @@ class World:
 
     def remove_character(self, name):
         """docstring."""
-        character_lists = [self.adventurer_list, self.monster_list, self.graveyard]
-        for i, character_list in enumerate(character_lists):
-            if name in [c.name for c in character_list]:
-                if i < 2:
-                    character_lists[i + 1].append(character_lists[i].pop())
+        if name in [a.name for a in self.adventurer_list]:
+            for i, a in enumerate(self.adventurer_list):
+                if a.name == name:
+                    self.graveyard.append(self.adventurer_list.pop(i))
+        elif name in [m.name for m in self.monster_list]:
+            for i, m in enumerate(self.monster_list):
+                if m.name == name:
+                    self.graveyard.append(self.monster_list.pop(i))
+        elif name in self.graveyard:
+            for i, c in enumerate(self.graveyard):
+                if c.name == name:
+                    self.graveyard.remove(i)
 
 
 class Adventurer():
