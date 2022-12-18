@@ -36,6 +36,7 @@ class World:
             elif type(c) == Monster:
                 c.type = 'Zombie'
                 self.monster_list.append(c)
+        self.graveyard.clear()
 
     def get_adventurer_list(self):
         """docstring."""
