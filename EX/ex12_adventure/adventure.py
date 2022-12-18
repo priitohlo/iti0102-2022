@@ -30,12 +30,14 @@ class World:
         return self.graveyard
 
     def revive_graveyard(self):
-        for c in self.graveyard:
-            if type(c) == Adventurer:
-                self.monster_list.append(Monster(f'Undead {c.name}', f'Zombie {c.class_type}', c.power))
-            elif type(c) == Monster:
-                c.type = 'Zombie'
-                self.monster_list.append(c)
+        if self.necromancers_active:
+            for c in self.graveyard:
+                if type(c) == Adventurer:
+                    self.monster_list.append(Monster(f'Undead {c.name}', f'Zombie {c.class_type}', c.power))
+                elif type(c) == Monster:
+                    c.type = 'Zombie'
+                    self.monster_list.append(c)
+        self.necromancers_active = False
         self.graveyard.clear()
 
     def get_adventurer_list(self):
