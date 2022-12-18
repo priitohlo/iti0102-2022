@@ -63,6 +63,7 @@ class World:
                 for i, c in enumerate(character_list):
                     if c.name == name:
                         self.graveyard.append(character_list.pop(i))
+                        return
 
         if name in [c.name for c in self.graveyard]:
             for i, c in enumerate(self.graveyard):
