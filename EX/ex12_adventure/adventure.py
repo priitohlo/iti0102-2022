@@ -89,6 +89,7 @@ class World:
             for i, c in enumerate(self.graveyard):
                 if c.name == name:
                     self.graveyard.pop(i)
+                    return
 
 
 class Adventurer():
@@ -156,6 +157,8 @@ if __name__ == "__main__":
     world.remove_character('Tõnn')
     world.remove_character('Poksikott')
     world.remove_character('Jänguru')
+    world.remove_character('Tõnn')
+    world.remove_character('Poksikott')
     print(world.get_graveyard())
 
     # print("Kord oli maailm.")
