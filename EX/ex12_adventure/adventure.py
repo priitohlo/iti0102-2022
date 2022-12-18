@@ -23,14 +23,6 @@ class World:
     def get_adventurer_list(self):
         """docstring."""
         return self.adventurer_list
-        # if len(self.adventurer_list) == 1:
-        #     return [str(self.adventurer_list[0])]
-        # elif len(names) == 2:
-        #     return " ja ".join(names)
-        # elif len(names) >= 3:
-        #     return ", ".join(names[0:-1]) + f' ja {names[-1]}' if len(names) > 0 else []
-        # else:
-        #     return []
 
     def get_active_adventurers(self):
         """docstring."""
@@ -64,9 +56,13 @@ class World:
         """docstring."""
         pass
 
-    def remove_character(self, param):
+    def remove_character(self, name):
         """docstring."""
-        pass
+        character_lists = [self.adventurer_list, self.monster_list, self.graveyard]
+        for i, character_list in enumerate(character_lists):
+            if name in [c.name for c in character_list]:
+                if i < 2:
+                    character_lists[i + 1].append(character_lists[i].pop())
 
 
 class Adventurer():
