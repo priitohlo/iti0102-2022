@@ -62,14 +62,17 @@ class World:
             for i, a in enumerate(self.adventurer_list):
                 if a.name == name:
                     self.graveyard.append(self.adventurer_list.pop(i))
+                return
         elif name in [m.name for m in self.monster_list]:
             for i, m in enumerate(self.monster_list):
                 if m.name == name:
                     self.graveyard.append(self.monster_list.pop(i))
+                return
         elif name in self.graveyard:
             for i, c in enumerate(self.graveyard):
                 if c.name == name:
                     self.graveyard.remove(i)
+                return
 
 
 class Adventurer():
