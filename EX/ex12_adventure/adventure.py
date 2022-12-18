@@ -60,13 +60,13 @@ class World:
         """docstring."""
         for character_list in [self.adventurer_list, self.monster_list]:
             if name in [c.name for c in character_list]:
-                for i, c in character_list:
+                for i, c in enumerate(character_list):
                     if c.name == name:
                         self.graveyard.append(character_list.pop(i))
                         return
 
         if name in [c.name for c in self.graveyard]:
-            for i, c in character_list:
+            for i, c in enumerate(character_list):
                 if c.name == name:
                     self.graveyard.remove(i)
                     return
@@ -123,13 +123,10 @@ class Monster():
 
 
 if __name__ == "__main__":
-    # monster = Monster('asd', 'asdasdasd', 1)
     adventurer = Adventurer('loll', 'kala', 1)
-    # adventurer1 = Adventurer('lollakas', 'kala', 1)
     world = World('asdasd')
     world.add_adventurer(adventurer)
-    #world.add_adventurer(adventurer1)
-    print(world.get_adventurer_list())
+    world.remove_character('loll')
 
     # print("Kord oli maailm.")
     # world = World("Sõber")
