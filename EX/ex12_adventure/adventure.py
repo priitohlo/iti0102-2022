@@ -189,7 +189,11 @@ class World:
             self.active_monster_list += self.active_monster_list
             self.active_monster_list.clear()
 
-        self.adventurers_upgraded = False
+        if self.adventurers_upgraded:
+            for a in self.active_adventurer_list[:]:
+                if a.class_type == "Paladin":
+                    a.power /= 2
+            self.adventurers_upgraded = False
 
     def calculate_powers(self) -> dict:
         return {'adventurers': sum([a.power for a in self.active_adventurer_list]),
