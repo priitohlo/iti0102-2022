@@ -8,6 +8,7 @@ class World:
 
     def __init__(self, python_master: str):
         """docstring."""
+        self.adventurers_upgraded = False
         self.python_master = python_master
         self.graveyard = list()
         self.adventurer_list = list()
@@ -169,12 +170,30 @@ class World:
 
     def go_adventure(self, deadly: bool = False):
         """docstring."""
-        powers = self.calculate_powers()
         self.remove_active_monsters_by_character_effect()
+        self.enhance_adventurers_by_monster_effect()
+        powers = self.calculate_powers()
 
-    def calculate_powers(self) -> tuple:
-        return (sum([a.power for a in self.active_adventurer_list]),
-                sum([m.power for m in self.active_monster_list]))
+        if deadly:
+            if powers['adventurers'] > powers['monsters']:
+                for m in self.active_monster_list:
+                    self.graveyard.append(m)
+                    self.active_monster_list.clear()
+            elif powers['adventurers'] < powers['monsters']:
+                for a in self.active_adventurer_list:
+                    self.graveyard.append(a)
+                    self.active_adventurer_list.clear()
+        elif not deadly and powers['adventurers'] != powers['monsters']:
+            self.adventurer_list += self.active_adventurer_list
+            self.active_adventurer_list.clear()
+            self.active_monster_list += self.active_monster_list
+            self.active_monster_list.clear()
+
+        self.adventurers_upgraded = False
+
+    def calculate_powers(self) -> dict:
+        return {'adventurers': sum([a.power for a in self.active_adventurer_list]),
+                'monsters': sum([m.power for m in self.active_monster_list])}
 
     def remove_active_monsters_by_character_effect(self):
         if "Druid" in [a.name for a in self.active_adventurer_list]:
@@ -182,6 +201,14 @@ class World:
                 if m.type in ["Animal", "Ent"]:
                     self.monster_list.append(m)
                     self.active_monster_list.remove(m)
+
+    def enhance_adventurers_by_monster_effect(self):
+        check_monsters = ["Zombie", "Zombie Fighter", "Zombie Druid", "Zombie Paladin", "Zombie Wizard"]
+        if (m for m in check_monsters if m in [m.type for m in self.active_monster_list]):
+            for a in self.active_adventurer_list[:]:
+                if a.class_type == "Paladin":
+                    a.power *= 2
+                    self.adventurers_upgraded = True
 
 
 class Adventurer():
