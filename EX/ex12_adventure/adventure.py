@@ -194,7 +194,7 @@ class World:
             self.active_monster_list.clear()
 
         if self.adventurers_upgraded:
-            for a in self.active_adventurer_list[:]:
+            for a in self.adventurer_list[:]:
                 if a.class_type == "Paladin":
                     a.power /= 2
             self.adventurers_upgraded = False
