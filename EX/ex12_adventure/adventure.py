@@ -142,6 +142,16 @@ class World:
         except IndexError:
             pass
 
+    def add_all_monsters_of_type(self, type: str):
+        for m in self.monster_list[:]:
+            if m.type == type:
+                self.active_monster_list.append(m)
+                self.monster_list.remove(m)
+
+    def add_all_monsters(self):
+        self.active_monster_list += self.monster_list
+        self.monster_list.clear()
+
     def go_adventure(self, param):
         """docstring."""
         pass
