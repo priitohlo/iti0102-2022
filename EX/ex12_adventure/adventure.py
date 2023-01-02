@@ -103,6 +103,16 @@ class World:
                 self.active_adventurer_list.append(a)
                 self.adventurer_list.remove(a)
 
+    def add_all_adventurers_of_class_type(self, class_type: str):
+        for a in self.adventurer_list:
+            if a.class_type == class_type:
+                self.active_adventurer_list.append(a)
+                self.adventurer_list.remove(a)
+
+    def add_all_adventurers(self):
+        self.active_adventurer_list += self.adventurer_list
+        self.adventurer_list.clear()
+
     def add_monster(self, character):
         """docstring."""
         self.monster_list.append(character) if type(character) == Monster else None
