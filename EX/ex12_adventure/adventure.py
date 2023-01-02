@@ -97,6 +97,12 @@ class World:
         except IndexError:
             pass
 
+    def add_adventurer_by_name(self, name: str):
+        for a in self.adventurer_list:
+            if a.name == name:
+                self.active_adventurer_list.append(a)
+                self.adventurer_list.remove(a)
+
     def add_monster(self, character):
         """docstring."""
         self.monster_list.append(character) if type(character) == Monster else None
