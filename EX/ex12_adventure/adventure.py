@@ -98,13 +98,13 @@ class World:
             pass
 
     def add_adventurer_by_name(self, name: str):
-        for a in self.adventurer_list:
+        for a in self.adventurer_list[:]:
             if a.name == name:
                 self.active_adventurer_list.append(a)
                 self.adventurer_list.remove(a)
 
     def add_all_adventurers_of_class_type(self, class_type: str):
-        for a in self.adventurer_list:
+        for a in self.adventurer_list[:]:
             if a.class_type == class_type:
                 self.active_adventurer_list.append(a)
                 self.adventurer_list.remove(a)
@@ -192,79 +192,99 @@ class Monster():
 
 
 if __name__ == "__main__":
-    print("Kord oli maailm.")
-    world = World("Sõber")
-    print(world.get_python_master())  # -> "Sõber"
-    print(world.get_graveyard())  # -> []
-    print()
-    print("Tutvustame tegelasi.")
-    hero = Adventurer("Sander", "Paladin", 50)
-    friend = Adventurer("Peep", "Druid", 25)
-    another_friend = Adventurer("Toots", "Wizard", 40)
-    annoying_friend = Adventurer("XxX_Eepiline_Sõdalane_XxX", "Tulevikurändaja ja ninja", 999999)
-    print(hero)  # -> "Sander, the Paladin, Power: 50, Experience: 0."
-    # Ei, tüütu sõber, sa ei saa olla tulevikurändaja ja ninja, nüüd sa pead fighter olema.
-    # Ei maksa liiga tugevaks ka ennast alguses teha!
-    print(annoying_friend)  # -> "XxX_Eepiline_Sõdalane_XxX, the Fighter, Power: 10, Experience: 0."
-    print(friend)  # -> "Peep, the Druid, Power: 25, Experience: 0."
-    print(another_friend)  # -> "Toots, the Wizard, Power: 40, Experience: 0."
-    print()
+    adv1 = Adventurer("asd1", "Paladin", 10)
+    adv2 = Adventurer("asd2", "Paladin", 10)
+    adv3 = Adventurer("asd3", "Paladin", 10)
+    adv4 = Adventurer("asd4", "Paladin", 10)
+    adv5 = Adventurer("asd5", "Paladin", 10)
+    adv6 = Adventurer("asd6", "Paladin", 10)
 
-    print("Peep, sa tundud kuidagi nõrk, ma lisasin sulle natukene tugevust.")
-    friend.add_power(20)
-    print(friend)  # -> "Peep, the Druid, Power: 45, Experience: 0."
-    print()
+    world = World("asd")
 
-    world.add_adventurer(hero)
-    world.add_adventurer(friend)
-    world.add_adventurer(another_friend)
-    print(world.get_adventurer_list())  # -> Sander, Peep ja Toots
+    world.add_adventurer(adv1)
+    world.add_adventurer(adv2)
+    world.add_adventurer(adv3)
+    world.add_adventurer(adv4)
+    world.add_adventurer(adv5)
+    world.add_adventurer(adv6)
 
-    world.add_monster(annoying_friend)
-    # Ei, tüütu sõber, sa ei saa olla vaenlane.
-    print(world.get_monster_list())  # -> []
-    world.add_adventurer(annoying_friend)
-    print()
+    world.add_all_adventurers_of_class_type("Paladin")
 
-    print("Oodake veidikene, ma tekitan natukene kolle.")
-    zombie = Monster("Rat", "Zombie", 10)
-    goblin_spear = Monster("Goblin Spearman", "Goblin", 10)
-    goblin_archer = Monster("Goblin Archer", "Goblin", 5)
-    big_ogre = Monster("Big Ogre", "Ogre", 120)
-    gargantuan_badger = Monster("Massive Badger", "Animal", 1590)
+    print(world.get_active_adventurers())
 
-    print(big_ogre)  # -> "Big Ogre of type Ogre, Power: 120."
-    print(zombie)  # -> "Undead Rat of type Zombie, Power: 10."
-
-    world.add_monster(goblin_spear)
-
-    print()
-    print("Mängime esimese seikluse läbi!")
-    world.add_strongest_adventurer("Druid")
-    world.add_strongest_monster()
-    print(world.get_active_adventurers())  # -> Peep
-    print(world.get_active_monsters())  # -> [Goblin Spearman of type Goblin, Power: 10.]
-    print()
-
-    world.go_adventure(True)
-
-    world.add_strongest_adventurer("Druid")
-    print(world.get_active_adventurers())  # -> [Peep, the Druid, Power: 45, Experience: 20.]
-    print("Surnuaias peaks üks goblin olema.")
-    print(world.get_graveyard())  # ->[Goblin Spearman of type Goblin, Power: 10.]
-    print()
-
-    world.add_monster(gargantuan_badger)
-    world.add_strongest_monster()
-
-    world.go_adventure(True)
-    # Druid on loomade sõber ja ajab massiivse mägra ära.
-    print(world.get_adventurer_list())  # -> Kõik 4 mängijat.
-    print(world.get_monster_list())  # -> [Massive Badger of type Animal, Power: 1590.]
-
-    world.remove_character("Massive Badger")
-    print(world.get_monster_list())  # -> []
-    print()
-
-    print("Su sõber ütleb: \"Kui kõik need testid andsid sinu koodiga sama tulemuse "
-          "mille ma siin ette kirjutasin, peaks kõik okei olema, proovi testerisse pushida! \" ")
+    # print("Kord oli maailm.")
+    # world = World("Sõber")
+    # print(world.get_python_master())  # -> "Sõber"
+    # print(world.get_graveyard())  # -> []
+    # print()
+    # print("Tutvustame tegelasi.")
+    # hero = Adventurer("Sander", "Paladin", 50)
+    # friend = Adventurer("Peep", "Druid", 25)
+    # another_friend = Adventurer("Toots", "Wizard", 40)
+    # annoying_friend = Adventurer("XxX_Eepiline_Sõdalane_XxX", "Tulevikurändaja ja ninja", 999999)
+    # print(hero)  # -> "Sander, the Paladin, Power: 50, Experience: 0."
+    # # Ei, tüütu sõber, sa ei saa olla tulevikurändaja ja ninja, nüüd sa pead fighter olema.
+    # # Ei maksa liiga tugevaks ka ennast alguses teha!
+    # print(annoying_friend)  # -> "XxX_Eepiline_Sõdalane_XxX, the Fighter, Power: 10, Experience: 0."
+    # print(friend)  # -> "Peep, the Druid, Power: 25, Experience: 0."
+    # print(another_friend)  # -> "Toots, the Wizard, Power: 40, Experience: 0."
+    # print()
+    #
+    # print("Peep, sa tundud kuidagi nõrk, ma lisasin sulle natukene tugevust.")
+    # friend.add_power(20)
+    # print(friend)  # -> "Peep, the Druid, Power: 45, Experience: 0."
+    # print()
+    #
+    # world.add_adventurer(hero)
+    # world.add_adventurer(friend)
+    # world.add_adventurer(another_friend)
+    # print(world.get_adventurer_list())  # -> Sander, Peep ja Toots
+    #
+    # world.add_monster(annoying_friend)
+    # # Ei, tüütu sõber, sa ei saa olla vaenlane.
+    # print(world.get_monster_list())  # -> []
+    # world.add_adventurer(annoying_friend)
+    # print()
+    #
+    # print("Oodake veidikene, ma tekitan natukene kolle.")
+    # zombie = Monster("Rat", "Zombie", 10)
+    # goblin_spear = Monster("Goblin Spearman", "Goblin", 10)
+    # goblin_archer = Monster("Goblin Archer", "Goblin", 5)
+    # big_ogre = Monster("Big Ogre", "Ogre", 120)
+    # gargantuan_badger = Monster("Massive Badger", "Animal", 1590)
+    #
+    # print(big_ogre)  # -> "Big Ogre of type Ogre, Power: 120."
+    # print(zombie)  # -> "Undead Rat of type Zombie, Power: 10."
+    #
+    # world.add_monster(goblin_spear)
+    #
+    # print()
+    # print("Mängime esimese seikluse läbi!")
+    # world.add_strongest_adventurer("Druid")
+    # world.add_strongest_monster()
+    # print(world.get_active_adventurers())  # -> Peep
+    # print(world.get_active_monsters())  # -> [Goblin Spearman of type Goblin, Power: 10.]
+    # print()
+    #
+    # world.go_adventure(True)
+    #
+    # world.add_strongest_adventurer("Druid")
+    # print(world.get_active_adventurers())  # -> [Peep, the Druid, Power: 45, Experience: 20.]
+    # print("Surnuaias peaks üks goblin olema.")
+    # print(world.get_graveyard())  # ->[Goblin Spearman of type Goblin, Power: 10.]
+    # print()
+    #
+    # world.add_monster(gargantuan_badger)
+    # world.add_strongest_monster()
+    #
+    # world.go_adventure(True)
+    # # Druid on loomade sõber ja ajab massiivse mägra ära.
+    # print(world.get_adventurer_list())  # -> Kõik 4 mängijat.
+    # print(world.get_monster_list())  # -> [Massive Badger of type Animal, Power: 1590.]
+    #
+    # world.remove_character("Massive Badger")
+    # print(world.get_monster_list())  # -> []
+    # print()
+    #
+    # print("Su sõber ütleb: \"Kui kõik need testid andsid sinu koodiga sama tulemuse "
+    #       "mille ma siin ette kirjutasin, peaks kõik okei olema, proovi testerisse pushida! \" ")
