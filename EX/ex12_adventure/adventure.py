@@ -71,7 +71,7 @@ class World:
         try:
             weakest_adventurer = list(
                 sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
-                       reverse=True))[0]
+                       reverse=False))[0]
             self.active_adventurer_list.append(weakest_adventurer)
             self.adventurer_list.remove(weakest_adventurer)
         except IndexError:
