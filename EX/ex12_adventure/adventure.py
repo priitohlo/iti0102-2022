@@ -125,8 +125,22 @@ class World:
                 self.monster_list.remove(a)
 
     def add_strongest_monster(self):
-        """docstring."""
-        pass
+        try:
+            strongest_monster = list(
+                sorted(self.monster_list, key=lambda x: x.power, reverse=True))[0]
+            self.active_monster_list.append(strongest_monster)
+            self.monster_list.remove(strongest_monster)
+        except IndexError:
+            pass
+
+    def add_weakest_monster(self):
+        try:
+            weakest_monster = list(
+                sorted(self.monster_list, key=lambda x: x.power, reverse=False))[0]
+            self.active_monster_list.append(weakest_monster)
+            self.monster_list.remove(weakest_monster)
+        except IndexError:
+            pass
 
     def go_adventure(self, param):
         """docstring."""
