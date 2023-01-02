@@ -15,13 +15,13 @@ class World:
         self.monster_list = list()
         self.necromancers_active = False
 
-    @property
-    def necromancers_active(self):
-        return self._necromancers_active
-
-    @necromancers_active.setter
-    def necromancers_active(self, value: bool):
-        self._necromancers_active = value
+    # @property
+    # def necromancers_active(self):
+    #     return self._necromancers_active
+    #
+    # @necromancers_active.setter
+    # def necromancers_active(self, value: bool):
+    #     self._necromancers_active = value
 
     def get_python_master(self):
         """docstring."""
