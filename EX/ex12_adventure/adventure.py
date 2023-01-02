@@ -77,10 +77,29 @@ class World:
         except IndexError:
             pass
 
+    def add_most_experienced_adventurer(self, class_type: str):
+        try:
+            strongest_adventurer = list(
+                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.experience,
+                       reverse=True))[0]
+            self.active_adventurer_list.append(strongest_adventurer)
+            self.adventurer_list.remove(strongest_adventurer)
+        except IndexError:
+            pass
+
+    def add_least_experienced_adventurer(self, class_type: str):
+        try:
+            weakest_adventurer = list(
+                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.experience,
+                       reverse=False))[0]
+            self.active_adventurer_list.append(weakest_adventurer)
+            self.adventurer_list.remove(weakest_adventurer)
+        except IndexError:
+            pass
+
     def add_monster(self, character):
         """docstring."""
         self.monster_list.append(character) if type(character) == Monster else None
-
 
     def add_strongest_monster(self):
         """docstring."""
