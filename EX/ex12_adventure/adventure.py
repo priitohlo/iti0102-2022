@@ -59,13 +59,15 @@ class World:
 
     def add_strongest_adventurer(self, class_type: str):
         self.active_adventurer_list.append(
-            list(sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
-                        reverse=True)))
+            list(
+                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
+                       reverse=True))[0])
 
     def add_weakest_adventurer(self, class_type: str):
         self.active_adventurer_list.append(
-            list(sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
-                        reverse=False)))
+            list(
+                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
+                       reverse=False))[0])
 
     def add_monster(self, character):
         """docstring."""
