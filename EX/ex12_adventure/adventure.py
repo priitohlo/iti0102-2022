@@ -13,15 +13,10 @@ class World:
         self.adventurer_list = list()
         self.active_adventurer_list = list()
         self.monster_list = list()
-        self.necromancers_active = False
+        self.necromancers_active_status = False
 
-    # @property
-    # def necromancers_active(self):
-    #     return self._necromancers_active
-    #
-    # @necromancers_active.setter
-    # def necromancers_active(self, value: bool):
-    #     self._necromancers_active = value
+    def necromancers_active(self, active: bool):
+        self.necromancers_active_status = active
 
     def get_python_master(self):
         """docstring."""
@@ -32,14 +27,14 @@ class World:
         return self.graveyard
 
     def revive_graveyard(self):
-        if self.necromancers_active:
+        if self.necromancers_active_status:
             for c in self.graveyard:
                 if type(c) == Adventurer:
                     self.monster_list.append(Monster(f'Undead {c.name}', f'Zombie {c.class_type}', c.power))
                 elif type(c) == Monster:
                     c.type = 'Zombie'
                     self.monster_list.append(c)
-            self.necromancers_active = True
+            self.necromancers_active(False)
             self.graveyard.clear()
 
     def get_adventurer_list(self):
@@ -172,7 +167,7 @@ if __name__ == "__main__":
     # world.remove_character("Rott1")
     # world.remove_character("Rott2")
 
-    world.necromancers_active = True
+    world.necromancers_active(True)
 
     world.revive_graveyard()
 
