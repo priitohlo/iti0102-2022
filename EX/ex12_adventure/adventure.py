@@ -13,6 +13,7 @@ class World:
         self.adventurer_list = list()
         self.active_adventurer_list = list()
         self.monster_list = list()
+        self.active_monster_list = list()
         self.necromancers_active_status = False
 
     def necromancers_active(self, active: bool):
@@ -51,7 +52,7 @@ class World:
 
     def get_active_monsters(self):
         """docstring."""
-        return self.monster_list
+        return sorted(self.active_monster_list, key=lambda x: x.power, reverse=True)
 
     def add_adventurer(self, character):
         """docstring."""
@@ -116,6 +117,12 @@ class World:
     def add_monster(self, character):
         """docstring."""
         self.monster_list.append(character) if type(character) == Monster else None
+
+    def add_monster_by_name(self, name: str):
+        for a in self.monster_list[:]:
+            if a.name == name:
+                self.active_monster_list.append(a)
+                self.monster_list.remove(a)
 
     def add_strongest_monster(self):
         """docstring."""
