@@ -179,10 +179,14 @@ class World:
                 for m in self.active_monster_list:
                     self.graveyard.append(m)
                     self.active_monster_list.clear()
+                self.adventurer_list += self.active_adventurer_list
+                self.active_adventurer_list.clear()
             elif powers['adventurers'] < powers['monsters']:
                 for a in self.active_adventurer_list:
                     self.graveyard.append(a)
                     self.active_adventurer_list.clear()
+                self.monster_list += self.active_monster_list
+                self.active_monster_list.clear()
         elif not deadly and powers['adventurers'] != powers['monsters']:
             self.adventurer_list += self.active_adventurer_list
             self.active_adventurer_list.clear()
@@ -276,6 +280,7 @@ if __name__ == "__main__":
     friend = Adventurer("Peep", "Druid", 25)
     another_friend = Adventurer("Toots", "Wizard", 40)
     annoying_friend = Adventurer("XxX_Eepiline_Sõdalane_XxX", "Tulevikurändaja ja ninja", 999999)
+
     print(hero)  # -> "Sander, the Paladin, Power: 50, Experience: 0."
     # Ei, tüütu sõber, sa ei saa olla tulevikurändaja ja ninja, nüüd sa pead fighter olema.
     # Ei maksa liiga tugevaks ka ennast alguses teha!
