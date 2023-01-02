@@ -13,7 +13,7 @@ class World:
         self.adventurer_list = list()
         self.active_adventurer_list = list()
         self.monster_list = list()
-        self.necromancers_active = bool()
+        self.necromancers_active = False
 
     @property
     def necromancers_active(self):
@@ -39,7 +39,7 @@ class World:
                 elif type(c) == Monster:
                     c.type = 'Zombie'
                     self.monster_list.append(c)
-            self.necromancers_active = False
+            self.necromancers_active = True
             self.graveyard.clear()
 
     def get_adventurer_list(self):
@@ -172,7 +172,7 @@ if __name__ == "__main__":
     # world.remove_character("Rott1")
     # world.remove_character("Rott2")
 
-    world.necromancers_active = False
+    world.necromancers_active = True
 
     world.revive_graveyard()
 
