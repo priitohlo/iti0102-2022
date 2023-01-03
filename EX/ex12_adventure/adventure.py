@@ -174,15 +174,11 @@ class World:
 
         if deadly:
             if self.powers['adventurers'] > self.powers['monsters']:
-                for m in self.active_monster_list:
-                    self.graveyard.append(m)
-                self.active_monster_list.clear()
                 self.calculate_experience(deadly=True)
+                self.kill_characters('monster')
                 self.deactivate_characters('adventurer')
             elif self.powers['adventurers'] < self.powers['monsters']:
-                for a in self.active_adventurer_list:
-                    self.graveyard.append(a)
-                self.active_adventurer_list.clear()
+                self.kill_characters('adventurer')
                 self.deactivate_characters('monster')
             elif self.powers['adventurers'] == self.powers['monsters']:
                 self.calculate_experience(tie=True)
@@ -195,6 +191,16 @@ class World:
             self.deactivate_characters('monster')
 
         self.powers = None
+
+    def kill_characters(self, character_type: str):
+        if character_type == 'adventurer':
+            for a in self.active_adventurer_list:
+                self.graveyard.append(a)
+            self.active_adventurer_list.clear()
+        elif character_type == 'monster':
+            for m in self.active_monster_list:
+                self.graveyard.append(m)
+            self.active_monster_list.clear()
 
     def deactivate_characters(self, character_type: str):
         if character_type == 'adventurer':
