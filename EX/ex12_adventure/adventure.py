@@ -46,7 +46,7 @@ class World:
 
     def get_active_adventurers(self):
         """docstring."""
-        return sorted(self.active_adventurer_list, key=lambda x: x.experience, reverse=True)
+        return list(sorted(self.active_adventurer_list, key=lambda x: x.experience, reverse=True))
 
     def get_monster_list(self):
         """docstring."""
@@ -101,22 +101,16 @@ class World:
             return
 
     def add_adventurer_by_name(self, name: str):
-        try:
-            for a in self.adventurer_list[:]:
-                if a.name == name:
-                    self.active_adventurer_list.append(a)
-                    self.adventurer_list.remove(a)
-        except:
-            pass
+        for a in self.adventurer_list[:]:
+            if a.name == name:
+                self.active_adventurer_list.append(a)
+                self.adventurer_list.remove(a)
 
     def add_all_adventurers_of_class_type(self, class_type: str):
-        try:
-            for a in self.adventurer_list[:]:
-                if a.class_type == class_type:
-                    self.active_adventurer_list.append(a)
-                    self.adventurer_list.remove(a)
-        except:
-            pass
+        for a in self.adventurer_list[:]:
+            if a.class_type == class_type:
+                self.active_adventurer_list.append(a)
+                self.adventurer_list.remove(a)
 
     def add_all_adventurers(self):
         self.active_adventurer_list += self.adventurer_list
@@ -127,13 +121,10 @@ class World:
         self.monster_list.append(character) if type(character) == Monster else None
 
     def add_monster_by_name(self, name: str):
-        try:
-            for a in self.monster_list[:]:
-                if a.name == name:
-                    self.active_monster_list.append(a)
-                    self.monster_list.remove(a)
-        except:
-            pass
+        for a in self.monster_list[:]:
+            if a.name == name:
+                self.active_monster_list.append(a)
+                self.monster_list.remove(a)
 
     def add_strongest_monster(self):
         try:
@@ -154,13 +145,10 @@ class World:
             pass
 
     def add_all_monsters_of_type(self, type: str):
-        try:
-            for m in self.monster_list[:]:
-                if m.type == type:
-                    self.active_monster_list.append(m)
-                    self.monster_list.remove(m)
-        except:
-            pass
+        for m in self.monster_list[:]:
+            if m.type == type:
+                self.active_monster_list.append(m)
+                self.monster_list.remove(m)
 
     def add_all_monsters(self):
         self.active_monster_list += self.monster_list
@@ -240,13 +228,10 @@ class World:
 
     def remove_active_monsters_by_character_effect(self):
         if "Druid" in [a.class_type for a in self.active_adventurer_list]:
-            try:
-                for m in self.active_monster_list[:]:
-                    if m.type in ["Animal", "Ent"]:
-                        self.monster_list.append(m)
-                        self.active_monster_list.remove(m)
-            except:
-                pass
+            for m in self.active_monster_list[:]:
+                if m.type in ["Animal", "Ent"]:
+                    self.monster_list.append(m)
+                    self.active_monster_list.remove(m)
 
     def enhance_adventurers_by_monster_effect(self):
         check_monsters = ["Zombie", "Zombie Fighter", "Zombie Druid", "Zombie Paladin", "Zombie Wizard"]
@@ -312,37 +297,6 @@ class Monster():
 
 
 if __name__ == "__main__":
-    adv1 = Adventurer('asd', 'Fighter', 400, 10)
-    # adv2 = Adventurer('asd1', 'Paladin', 400, 10)
-    # adv3 = Adventurer('asd1', 'Paladin', 400, 10)
-    # adv4 = Adventurer('asd1', 'Paladin', 400, 10)
-    # adv5 = Adventurer('asd1', 'Paladin', 400, 10)
-    # adv6 = Adventurer('asd1', 'Paladin', 400, 10)
-    # adv7 = Adventurer('asd1', 'Paladin', 400, 10)
-    # adv8 = Adventurer('asd1', 'Paladin', 400, 10)
-    mon1 = Monster('asd', 'Zombie', 40)
-    # mon2 = Monster('asd1', 'taba', 40)
-
     world = World('asd')
 
-    world.add_adventurer(adv1)
-    world.add_adventurer(adv2)
-    world.add_adventurer(adv3)
-    world.add_adventurer(adv4)
-    world.add_adventurer(adv5)
-    world.add_adventurer(adv6)
-    world.add_adventurer(adv7)
-    world.add_adventurer(adv8)
-
-    world.add_monster(mon1)
-    world.add_monster(mon2)
-
-    world.add_all_adventurers()
-    world.add_all_monsters()
-
-    world.go_adventure(True)
-
-    print(world.adventurer_list)
-    print(world.monster_list)
-
-    print(world.get_graveyard())
+    world.add_all_monsters_of_type('kala')
