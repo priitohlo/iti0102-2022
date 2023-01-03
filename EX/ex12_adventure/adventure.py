@@ -70,7 +70,7 @@ class World:
     def add_weakest_adventurer(self, class_type: str):
         if class_type in [a.class_type for a in self.adventurer_list]:
             weakest_adventurer = list(
-                sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
+                sorted([a for a in self.adventurer_list if
                         a.class_type == class_type], key=lambda x: x.power,
                        reverse=False))[0]
             self.active_adventurer_list.append(weakest_adventurer)
@@ -79,7 +79,7 @@ class World:
     def add_most_experienced_adventurer(self, class_type: str):
         if class_type in [a.class_type for a in self.adventurer_list]:
             most_experienced_adventurer = list(
-                sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
+                sorted([a for a in self.adventurer_list if
                         a.class_type == class_type], key=lambda x: x.experience,
                        reverse=True))[0]
             self.active_adventurer_list.append(most_experienced_adventurer)
@@ -88,7 +88,7 @@ class World:
     def add_least_experienced_adventurer(self, class_type: str):
         if class_type in [a.class_type for a in self.adventurer_list]:
             least_experienced_adventurer = list(
-                sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
+                sorted([a for a in self.adventurer_list if
                         a.class_type == class_type], key=lambda x: x.experience,
                        reverse=False))[0]
             self.active_adventurer_list.append(least_experienced_adventurer)
@@ -233,7 +233,7 @@ class World:
             self.adventurers_upgraded = True
 
 
-class Adventurer():
+class Adventurer:
     """docstring."""
 
     def __init__(self, name: str, class_type: str, power: int, experience: int = 0):
@@ -265,7 +265,7 @@ class Adventurer():
             self.experience = 0
 
 
-class Monster():
+class Monster:
     """docstring."""
 
     def __init__(self, name: str, type: str, power: int):
@@ -290,13 +290,15 @@ class Monster():
 if __name__ == "__main__":
     world = World('asd')
 
-    a1 = Adventurer('asd', 'asd1', 10, 10)
+    a1 = Adventurer('asd', 'asd1', 11, 10)
     # a2 = Adventurer('asd', 'asd1', 10, 10)
-    m1 = Monster('asd21', 'asd3', 10)
+    m1 = Monster('asd21', 'asd3', 5)
+    m2 = Monster('asd21', 'asd3', 7)
 
     world.add_adventurer(a1)
     # world.add_adventurer(a2)
-    # world.add_monster(m1)
+    world.add_monster(m1)
+    world.add_monster(m2)
 
     world.add_strongest_adventurer('Fighter')
     # world.add_weakest_adventurer('asd')
@@ -304,8 +306,12 @@ if __name__ == "__main__":
     # world.add_least_experienced_adventurer('asd')
     # world.add_adventurer_by_name('asd')
     # world.add_all_adventurers()
+    world.add_all_monsters()
 
     print(world.adventurer_list)
     print(world.active_adventurer_list)
 
-    world.go_adventure(True)
+    world.go_adventure(False)
+
+    print(world.adventurer_list)
+    print(world.graveyard)
