@@ -68,7 +68,7 @@ class World:
             self.active_adventurer_list.append(strongest_adventurer)
             self.adventurer_list.remove(strongest_adventurer)
         except IndexError:
-            pass
+            return
 
     def add_weakest_adventurer(self, class_type: str):
         try:
@@ -78,7 +78,7 @@ class World:
             self.active_adventurer_list.append(weakest_adventurer)
             self.adventurer_list.remove(weakest_adventurer)
         except IndexError:
-            pass
+            return
 
     def add_most_experienced_adventurer(self, class_type: str):
         try:
@@ -88,7 +88,7 @@ class World:
             self.active_adventurer_list.append(most_experienced_adventurer)
             self.adventurer_list.remove(most_experienced_adventurer)
         except IndexError:
-            pass
+            return
 
     def add_least_experienced_adventurer(self, class_type: str):
         try:
@@ -98,7 +98,7 @@ class World:
             self.active_adventurer_list.append(least_experienced_adventurer)
             self.adventurer_list.remove(least_experienced_adventurer)
         except IndexError:
-            pass
+            return
 
     def add_adventurer_by_name(self, name: str):
         for a in self.adventurer_list[:]:
