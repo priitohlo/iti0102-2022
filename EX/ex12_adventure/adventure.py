@@ -175,6 +175,12 @@ class World:
         self.enhance_adventurers_by_monster_effect()
         self.powers = self.calculate_powers()
 
+        if self.adventurers_upgraded:
+            for a in self.adventurer_list[:]:
+                if a.class_type == "Paladin":
+                    a.power //= 2
+            self.adventurers_upgraded = False
+
         if deadly:
             if self.powers['adventurers'] > self.powers['monsters']:
                 for m in self.active_monster_list:
@@ -204,12 +210,6 @@ class World:
             self.active_adventurer_list.clear()
             self.active_monster_list += self.active_monster_list
             self.active_monster_list.clear()
-
-        if self.adventurers_upgraded:
-            for a in self.adventurer_list[:]:
-                if a.class_type == "Paladin":
-                    a.power //= 2
-            self.adventurers_upgraded = False
 
         self.powers = None
 
