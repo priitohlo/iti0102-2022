@@ -301,4 +301,3 @@ class Monster:
 
 if __name__ == "__main__":
     adv1 = Adventurer('ndtaqfwbnfvgdzquqmvlctjrfduuxv', 'Paladin', 99, 0)
-    print(adv1)
