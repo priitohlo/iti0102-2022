@@ -311,33 +311,3 @@ class Monster:
     @name.setter
     def name(self, value):
         self._name = value
-
-
-if __name__ == "__main__":
-    world = World('asd')
-
-    a1 = Adventurer('asd', 'asd1', 11, 10)
-    # a2 = Adventurer('asd', 'asd1', 10, 10)
-    m1 = Monster('asd21', 'asd3', 5)
-    m2 = Monster('asd21', 'asd3', 7)
-
-    world.add_adventurer(a1)
-    # world.add_adventurer(a2)
-    world.add_monster(m1)
-    world.add_monster(m2)
-
-    world.add_strongest_adventurer('Fighter')
-    # world.add_weakest_adventurer('asd')
-    # world.add_most_experienced_adventurer('asd')
-    # world.add_least_experienced_adventurer('asd')
-    # world.add_adventurer_by_name('asd')
-    # world.add_all_adventurers()
-    world.add_all_monsters()
-
-    print(world.adventurer_list)
-    print(world.active_adventurer_list)
-
-    world.go_adventure(False)
-
-    print(world.adventurer_list)
-    print(world.graveyard)
