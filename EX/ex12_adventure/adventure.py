@@ -161,7 +161,7 @@ class World:
             for c in self.graveyard[:]:
                 if c.name == name:
                     self.graveyard.remove(c)
-            return
+            # return
 
     def go_adventure(self, deadly: bool = False):
         """docstring."""
