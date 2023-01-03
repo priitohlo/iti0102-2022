@@ -63,7 +63,7 @@ class World:
         if class_type in [a.class_type for a in self.adventurer_list]:
             strongest_adventurer = list(
                 sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
-                       reverse=True))[0]
+                       reverse=True))[1]
             self.active_adventurer_list.append(strongest_adventurer)
             self.adventurer_list.remove(strongest_adventurer)
 
@@ -188,7 +188,7 @@ class World:
                 self.active_monster_list.clear()
             elif self.powers['adventurers'] == self.powers['monsters']:
                 self.calculate_experience(tie=True)
-        elif not deadly and self.powers['adventurerss'] != self.powers['monsters']:
+        elif not deadly and self.powers['adventurers'] != self.powers['monsters']:
             if self.powers['adventurers'] > self.powers['monsters']:
                 self.calculate_experience()
             self.adventurer_list += self.active_adventurer_list
