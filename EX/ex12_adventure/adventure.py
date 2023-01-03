@@ -60,6 +60,7 @@ class World:
         self.adventurer_list.append(character) if type(character) == Adventurer else None
 
     def add_strongest_adventurer(self, class_type: str):
+        """docstring."""
         if class_type in [a.class_type for a in self.adventurer_list]:
             strongest_adventurer = list(
                 sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
@@ -68,6 +69,7 @@ class World:
             self.adventurer_list.remove(strongest_adventurer)
 
     def add_weakest_adventurer(self, class_type: str):
+        """docstring."""
         if class_type in [a.class_type for a in self.adventurer_list]:
             weakest_adventurer = list(
                 sorted([a for a in self.adventurer_list if
@@ -77,6 +79,7 @@ class World:
             self.adventurer_list.remove(weakest_adventurer)
 
     def add_most_experienced_adventurer(self, class_type: str):
+        """docstring."""
         if class_type in [a.class_type for a in self.adventurer_list]:
             most_experienced_adventurer = list(
                 sorted([a for a in self.adventurer_list if
@@ -86,6 +89,7 @@ class World:
             self.adventurer_list.remove(most_experienced_adventurer)
 
     def add_least_experienced_adventurer(self, class_type: str):
+        """docstring."""
         if class_type in [a.class_type for a in self.adventurer_list]:
             least_experienced_adventurer = list(
                 sorted([a for a in self.adventurer_list if
@@ -95,18 +99,21 @@ class World:
             self.adventurer_list.remove(least_experienced_adventurer)
 
     def add_adventurer_by_name(self, name: str):
+        """docstring."""
         for a in self.adventurer_list[:]:
             if a.name == name:
                 self.active_adventurer_list.append(a)
                 self.adventurer_list.remove(a)
 
     def add_all_adventurers_of_class_type(self, class_type: str):
+        """docstring."""
         for a in self.adventurer_list[:]:
             if a.class_type == class_type:
                 self.active_adventurer_list.append(a)
                 self.adventurer_list.remove(a)
 
     def add_all_adventurers(self):
+        """docstring."""
         self.active_adventurer_list += self.adventurer_list
         self.adventurer_list.clear()
 
@@ -115,12 +122,14 @@ class World:
         self.monster_list.append(character) if type(character) == Monster else None
 
     def add_monster_by_name(self, name: str):
+        """docstring."""
         for a in self.monster_list[:]:
             if a.name == name:
                 self.active_monster_list.append(a)
                 self.monster_list.remove(a)
 
     def add_strongest_monster(self):
+        """docstring."""
         if len(self.monster_list) > 0:
             strongest_monster = list(
                 sorted(self.monster_list, key=lambda x: x.power, reverse=True))[0]
@@ -128,6 +137,7 @@ class World:
             self.monster_list.remove(strongest_monster)
 
     def add_weakest_monster(self):
+        """docstring."""
         if len(self.monster_list) > 0:
             weakest_monster = list(
                 sorted(self.monster_list, key=lambda x: x.power, reverse=False))[0]
@@ -135,12 +145,14 @@ class World:
             self.monster_list.remove(weakest_monster)
 
     def add_all_monsters_of_type(self, type: str):
+        """docstring."""
         for m in self.monster_list[:]:
             if m.type == type:
                 self.active_monster_list.append(m)
                 self.monster_list.remove(m)
 
     def add_all_monsters(self):
+        """docstring."""
         self.active_monster_list += self.monster_list
         self.monster_list.clear()
 
@@ -193,6 +205,7 @@ class World:
         self.powers = None
 
     def kill_characters(self, character_type: str):
+        """docstring."""
         if character_type == 'adventurer':
             for a in self.active_adventurer_list:
                 self.graveyard.append(a)
@@ -203,6 +216,7 @@ class World:
             self.active_monster_list.clear()
 
     def deactivate_characters(self, character_type: str):
+        """docstring."""
         if character_type == 'adventurer':
             self.adventurer_list += self.active_adventurer_list
             self.active_adventurer_list.clear()
@@ -211,10 +225,12 @@ class World:
             self.active_monster_list.clear()
 
     def calculate_powers(self) -> dict:
+        """docstring."""
         return {'adventurers': sum([a.power if a else 0 for a in self.active_adventurer_list]),
                 'monsters': sum([m.power if m else 0 for m in self.active_monster_list])}
 
     def calculate_experience(self, tie: bool = False, deadly: bool = False):
+        """docstring."""
         for a in self.active_adventurer_list:
             if tie:
                 a.add_experience(math.floor(self.powers['monsters'] / len(self.active_adventurer_list) / 2))
@@ -224,6 +240,7 @@ class World:
                 a.add_experience(math.floor(self.powers['monsters'] / len(self.active_adventurer_list) * 2))
 
     def remove_active_monsters_by_character_effect(self):
+        """docstring."""
         if "Druid" in [a.class_type for a in self.active_adventurer_list]:
             for m in self.active_monster_list[:]:
                 if m.type in ["Animal", "Ent"]:
@@ -231,6 +248,7 @@ class World:
                     self.active_monster_list.remove(m)
 
     def enhance_adventurers_by_monster_effect(self):
+        """docstring."""
         check_monsters = ["Zombie", "Zombie Fighter", "Zombie Druid", "Zombie Paladin", "Zombie Wizard"]
         if (m for m in check_monsters if m in [m.type for m in self.active_monster_list]):
             for a in self.active_adventurer_list:
