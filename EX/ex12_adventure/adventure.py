@@ -101,16 +101,22 @@ class World:
             return
 
     def add_adventurer_by_name(self, name: str):
-        for a in self.adventurer_list[:]:
-            if a.name == name:
-                self.active_adventurer_list.append(a)
-                self.adventurer_list.remove(a)
+        try:
+            for a in self.adventurer_list[:]:
+                if a.name == name:
+                    self.active_adventurer_list.append(a)
+                    self.adventurer_list.remove(a)
+        except:
+            pass
 
     def add_all_adventurers_of_class_type(self, class_type: str):
-        for a in self.adventurer_list[:]:
-            if a.class_type == class_type:
-                self.active_adventurer_list.append(a)
-                self.adventurer_list.remove(a)
+        try:
+            for a in self.adventurer_list[:]:
+                if a.class_type == class_type:
+                    self.active_adventurer_list.append(a)
+                    self.adventurer_list.remove(a)
+        except:
+            pass
 
     def add_all_adventurers(self):
         self.active_adventurer_list += self.adventurer_list
@@ -121,10 +127,13 @@ class World:
         self.monster_list.append(character) if type(character) == Monster else None
 
     def add_monster_by_name(self, name: str):
-        for a in self.monster_list[:]:
-            if a.name == name:
-                self.active_monster_list.append(a)
-                self.monster_list.remove(a)
+        try:
+            for a in self.monster_list[:]:
+                if a.name == name:
+                    self.active_monster_list.append(a)
+                    self.monster_list.remove(a)
+        except:
+            pass
 
     def add_strongest_monster(self):
         try:
@@ -145,10 +154,13 @@ class World:
             pass
 
     def add_all_monsters_of_type(self, type: str):
-        for m in self.monster_list[:]:
-            if m.type == type:
-                self.active_monster_list.append(m)
-                self.monster_list.remove(m)
+        try:
+            for m in self.monster_list[:]:
+                if m.type == type:
+                    self.active_monster_list.append(m)
+                    self.monster_list.remove(m)
+        except:
+            pass
 
     def add_all_monsters(self):
         self.active_monster_list += self.monster_list
@@ -228,10 +240,13 @@ class World:
 
     def remove_active_monsters_by_character_effect(self):
         if "Druid" in [a.class_type for a in self.active_adventurer_list]:
-            for m in self.active_monster_list[:]:
-                if m.type in ["Animal", "Ent"]:
-                    self.monster_list.append(m)
-                    self.active_monster_list.remove(m)
+            try:
+                for m in self.active_monster_list[:]:
+                    if m.type in ["Animal", "Ent"]:
+                        self.monster_list.append(m)
+                        self.active_monster_list.remove(m)
+            except:
+                pass
 
     def enhance_adventurers_by_monster_effect(self):
         check_monsters = ["Zombie", "Zombie Fighter", "Zombie Druid", "Zombie Paladin", "Zombie Wizard"]
