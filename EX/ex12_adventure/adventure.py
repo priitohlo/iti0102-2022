@@ -176,7 +176,7 @@ class World:
         self.powers = self.calculate_powers()
 
         if self.adventurers_upgraded:
-            for a in self.adventurer_list[:]:
+            for a in self.active_adventurer_list[:]:
                 if a.class_type == "Paladin":
                     a.power //= 2
             self.adventurers_upgraded = False
@@ -239,7 +239,7 @@ class World:
             for a in self.active_adventurer_list:
                 if a.class_type == "Paladin":
                     a.power *= 2
-                    self.adventurers_upgraded = True
+            self.adventurers_upgraded = True
 
 
 class Adventurer():
@@ -298,15 +298,15 @@ class Monster():
 
 if __name__ == "__main__":
     adv1 = Adventurer('asd', 'Fighter', 400, 10)
-    adv2 = Adventurer('asd1', 'Paladin', 400, 10)
-    adv3 = Adventurer('asd1', 'Paladin', 400, 10)
-    adv4 = Adventurer('asd1', 'Paladin', 400, 10)
-    adv5 = Adventurer('asd1', 'Paladin', 400, 10)
-    adv6 = Adventurer('asd1', 'Paladin', 400, 10)
-    adv7 = Adventurer('asd1', 'Paladin', 400, 10)
-    adv8 = Adventurer('asd1', 'Paladin', 400, 10)
-    mon1 = Monster('asd', 'taba', 40)
-    mon2 = Monster('asd1', 'taba', 40)
+    # adv2 = Adventurer('asd1', 'Paladin', 400, 10)
+    # adv3 = Adventurer('asd1', 'Paladin', 400, 10)
+    # adv4 = Adventurer('asd1', 'Paladin', 400, 10)
+    # adv5 = Adventurer('asd1', 'Paladin', 400, 10)
+    # adv6 = Adventurer('asd1', 'Paladin', 400, 10)
+    # adv7 = Adventurer('asd1', 'Paladin', 400, 10)
+    # adv8 = Adventurer('asd1', 'Paladin', 400, 10)
+    mon1 = Monster('asd', 'Zombie', 40)
+    # mon2 = Monster('asd1', 'taba', 40)
 
     world = World('asd')
 
