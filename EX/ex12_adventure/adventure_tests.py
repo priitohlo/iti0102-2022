@@ -1,3 +1,4 @@
+"""docstring."""
 import pytest
 
 from adventure import World, Adventurer, Monster
