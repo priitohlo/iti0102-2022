@@ -270,7 +270,7 @@ class Adventurer():
             return
         self.experience += experience if experience >= 0 else 0
         if self.experience > 99:
-            self.add_power(math.floor(self.experience // 10))
+            self.add_power(int(self.experience / 10))
             self.experience = 0
 
 
