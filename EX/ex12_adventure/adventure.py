@@ -253,7 +253,7 @@ class Adventurer:
 
         self.name = name
         self.class_type = class_type if class_type in allowed_classes else 'Fighter'
-        self.power = power if power < 99 else 10
+        self.power = power if power <= 99 else 10
         self.experience = 0
         if experience > 0:
             self.add_experience(experience)
@@ -300,4 +300,5 @@ class Monster:
 
 
 if __name__ == "__main__":
-    adv1 = Adventurer('ndtaqfwbnfvgdzquqmvlctjrfduuxv', 'Paladin', 99, 0)
+    adv1 = Adventurer('ndtaqfwbnfvgdzquqmvlctjrfduuxv', 'Paladin', 99, 10)
+    print(adv1)
