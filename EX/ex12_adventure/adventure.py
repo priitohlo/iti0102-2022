@@ -1,6 +1,7 @@
 """docstring."""
 import math
 
+
 class World:
     """docstring."""
 
