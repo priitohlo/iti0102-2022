@@ -82,7 +82,7 @@ class World:
         if class_type in [a.class_type for a in self.adventurer_list]:
             character_to_add = list(
                 sorted([a for a in self.adventurer_list if
-                        a.class_type == class_type], key=(lambda x, stat=stat: x.stat),
+                        a.class_type == class_type], key=(lambda x, add_stat=stat: x.add_stat),
                        reverse=hi_lo))[0]
             self.active_adventurer_list.append(character_to_add)
             self.adventurer_list.remove(character_to_add)
