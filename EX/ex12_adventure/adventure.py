@@ -155,7 +155,6 @@ class World:
                     if c.name == name:
                         self.graveyard.append(c)
                         character_list.remove(c)
-                        return
 
         if name in [c.name for c in self.graveyard]:
             for c in self.graveyard[:]:
