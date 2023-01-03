@@ -101,16 +101,22 @@ class World:
             pass
 
     def add_adventurer_by_name(self, name: str):
-        for a in self.adventurer_list[:]:
-            if a.name == name:
-                self.active_adventurer_list.append(a)
-                self.adventurer_list.remove(a)
+        try:
+            for a in self.adventurer_list[:]:
+                if a.name == name:
+                    self.active_adventurer_list.append(a)
+                    self.adventurer_list.remove(a)
+        except IndexError:
+            pass
 
     def add_all_adventurers_of_class_type(self, class_type: str):
-        for a in self.adventurer_list[:]:
-            if a.class_type == class_type:
-                self.active_adventurer_list.append(a)
-                self.adventurer_list.remove(a)
+        try:
+            for a in self.adventurer_list[:]:
+                if a.class_type == class_type:
+                    self.active_adventurer_list.append(a)
+                    self.adventurer_list.remove(a)
+        except IndexError:
+            pass
 
     def add_all_adventurers(self):
         self.active_adventurer_list += self.adventurer_list
@@ -333,16 +339,19 @@ if __name__ == "__main__":
     goblin_archer = Monster("Goblin Archer", "Goblin", 5)
     big_ogre = Monster("Big Ogre", "Ogre", 120)
     gargantuan_badger = Monster("Massive Badger", "Animal", 1590)
+    ogre1 = Monster("Big Ogre1", "Ogre", 120)
 
     print(big_ogre)  # -> "Big Ogre of type Ogre, Power: 120."
     print(zombie)  # -> "Undead Rat of type Zombie, Power: 10."
 
-    world.add_monster(goblin_spear)
+    world.add_monster(big_ogre)
+    world.add_monster(ogre1)
 
     print()
     print("Mängime esimese seikluse läbi!")
     world.add_strongest_adventurer("Druid")
-    world.add_strongest_monster()
+    # world.add_strongest_monster()
+    world.add_all_monsters()
     print(world.get_active_adventurers())  # -> Peep
     print(world.get_active_monsters())  # -> [Goblin Spearman of type Goblin, Power: 10.]
     print()
