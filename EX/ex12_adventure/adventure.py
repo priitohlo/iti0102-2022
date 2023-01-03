@@ -268,7 +268,7 @@ class Adventurer():
         """docstring."""
         if experience <= 0:
             return
-        self.experience += experience if experience >= 0 else 0
+        self.experience += experience
         if self.experience > 99:
             self.add_power(int(self.experience / 10))
             self.experience = 0
