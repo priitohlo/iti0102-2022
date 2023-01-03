@@ -179,14 +179,14 @@ class World:
             if self.powers['adventurers'] > self.powers['monsters']:
                 for m in self.active_monster_list:
                     self.graveyard.append(m)
-                    self.active_monster_list.clear()
+                self.active_monster_list.clear()
                 self.calculate_experience(deadly=True)
                 self.adventurer_list += self.active_adventurer_list
                 self.active_adventurer_list.clear()
             elif self.powers['adventurers'] < self.powers['monsters']:
                 for a in self.active_adventurer_list:
                     self.graveyard.append(a)
-                    self.active_adventurer_list.clear()
+                self.active_adventurer_list.clear()
                 self.monster_list += self.active_monster_list
                 self.active_monster_list.clear()
             elif self.powers['adventurers'] == self.powers['monsters']:
