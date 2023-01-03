@@ -215,7 +215,7 @@ class World:
         self.powers = None
 
     def calculate_powers(self) -> dict:
-        return {'adventurers': sum([a.power for a in self.active_adventurer_list]),
+        return {'adventurers': sum([a.power if a else 0 for a in self.active_adventurer_list]),
                 'monsters': sum([m.power if m else 0 for m in self.active_monster_list])}
 
     def calculate_experience(self, tie: bool = False, deadly: bool = False):
