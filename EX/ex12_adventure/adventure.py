@@ -18,6 +18,7 @@ class World:
         self.necromancers_active_status = False
 
     def necromancers_active(self, active: bool):
+        """docstring."""
         self.necromancers_active_status = active
 
     def get_python_master(self):
@@ -29,6 +30,7 @@ class World:
         return self.graveyard
 
     def revive_graveyard(self):
+        """docstring."""
         if self.necromancers_active_status:
             for c in self.graveyard:
                 if type(c) == Adventurer:
@@ -304,6 +306,7 @@ class Monster:
 
     @property
     def name(self):
+        """docstring."""
         return f'Undead {self._name}' if self.type == 'Zombie' else self._name
 
     @name.setter
