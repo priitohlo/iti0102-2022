@@ -264,9 +264,11 @@ class Adventurer():
 
     def add_experience(self, experience: int):
         """docstring."""
+        if experience <= 0:
+            return
         self.experience += experience if experience >= 0 else 0
         if self.experience > 99:
-            self.add_power(math.floor(self.experience / 10))
+            self.add_power(math.floor(self.experience // 10))
             self.experience = 0
 
 
@@ -294,12 +296,7 @@ class Monster():
 
 if __name__ == "__main__":
     world = World('asd')
-    adv1 = Adventurer('asd1', 'Fighter', 11, 10)
-    adv2 = Adventurer('asd1', 'Fighter', 10, 11)
+    adv1 = Adventurer('asd1', 'Fighter', 11, 1)
 
-    world.add_adventurer(adv1)
-    world.add_adventurer(adv2)
-
-    world.add_least_experienced_adventurer('Fighter')
-    print(world.active_adventurer_list)
-    print(world.adventurer_list)
+    adv1.add_experience(99)
+    print(adv1)
