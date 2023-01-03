@@ -178,31 +178,31 @@ class World:
                     self.graveyard.append(m)
                 self.active_monster_list.clear()
                 self.calculate_experience(deadly=True)
-                self.adventurer_list += self.active_adventurer_list
-                self.active_adventurer_list.clear()
+                self.deactivate_characters('adventurer')
             elif self.powers['adventurers'] < self.powers['monsters']:
                 for a in self.active_adventurer_list:
                     self.graveyard.append(a)
                 self.active_adventurer_list.clear()
-                self.monster_list += self.active_monster_list
-                self.active_monster_list.clear()
+                self.deactivate_characters('monster')
             elif self.powers['adventurers'] == self.powers['monsters']:
                 self.calculate_experience(tie=True)
-        elif not deadly and self.powers['adventurers'] != self.powers['monsters']:
+        elif not deadly:
             if self.powers['adventurers'] > self.powers['monsters']:
                 self.calculate_experience()
-            self.adventurer_list += self.active_adventurer_list
-            self.active_adventurer_list.clear()
-            self.monster_list += self.active_monster_list
-            self.active_monster_list.clear()
-        elif not deadly and self.powers['adventurers'] == self.powers['monsters']:
-            self.calculate_experience(tie=True)
-            self.adventurer_list += self.active_adventurer_list
-            self.active_adventurer_list.clear()
-            self.monster_list += self.active_monster_list
-            self.active_monster_list.clear()
+            elif self.powers['adventurers'] == self.powers['monsters']:
+                self.calculate_experience(tie=True)
+            self.deactivate_characters('adventurer')
+            self.deactivate_characters('monster')
 
         self.powers = None
+
+    def deactivate_characters(self, character_type: str):
+        if character_type == 'adventurer':
+            self.adventurer_list += self.active_adventurer_list
+            self.active_adventurer_list.clear()
+        elif character_type == 'monster':
+            self.monster_list += self.active_monster_list
+            self.active_monster_list.clear()
 
     def calculate_powers(self) -> dict:
         return {'adventurers': sum([a.power if a else 0 for a in self.active_adventurer_list]),
