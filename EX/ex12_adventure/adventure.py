@@ -164,7 +164,7 @@ class World:
                         return
 
         if name in [c.name for c in self.graveyard]:
-            for i, c in enumerate(self.graveyard):
+            for i, c in enumerate(self.graveyard[:]):
                 if c.name == name:
                     self.graveyard.pop(i)
                     return
