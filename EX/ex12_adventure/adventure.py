@@ -236,7 +236,7 @@ class World:
     def enhance_adventurers_by_monster_effect(self):
         check_monsters = ["Zombie", "Zombie Fighter", "Zombie Druid", "Zombie Paladin", "Zombie Wizard"]
         if (m for m in check_monsters if m in [m.type for m in self.active_monster_list]):
-            for a in self.active_adventurer_list[:]:
+            for a in self.active_adventurer_list:
                 if a.class_type == "Paladin":
                     a.power *= 2
                     self.adventurers_upgraded = True
@@ -297,6 +297,37 @@ class Monster():
 
 
 if __name__ == "__main__":
-    adv1 = Adventurer('asd', 'Fighter', 99, 10)
-    adv1.add_experience(1000)
-    print(adv1)
+    adv1 = Adventurer('asd', 'Fighter', 400, 10)
+    adv2 = Adventurer('asd1', 'Paladin', 400, 10)
+    adv3 = Adventurer('asd1', 'Paladin', 400, 10)
+    adv4 = Adventurer('asd1', 'Paladin', 400, 10)
+    adv5 = Adventurer('asd1', 'Paladin', 400, 10)
+    adv6 = Adventurer('asd1', 'Paladin', 400, 10)
+    adv7 = Adventurer('asd1', 'Paladin', 400, 10)
+    adv8 = Adventurer('asd1', 'Paladin', 400, 10)
+    mon1 = Monster('asd', 'taba', 40)
+    mon2 = Monster('asd1', 'taba', 40)
+
+    world = World('asd')
+
+    world.add_adventurer(adv1)
+    world.add_adventurer(adv2)
+    world.add_adventurer(adv3)
+    world.add_adventurer(adv4)
+    world.add_adventurer(adv5)
+    world.add_adventurer(adv6)
+    world.add_adventurer(adv7)
+    world.add_adventurer(adv8)
+
+    world.add_monster(mon1)
+    world.add_monster(mon2)
+
+    world.add_all_adventurers()
+    world.add_all_monsters()
+
+    world.go_adventure(True)
+
+    print(world.adventurer_list)
+    print(world.monster_list)
+
+    print(world.get_graveyard())
