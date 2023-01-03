@@ -253,7 +253,8 @@ class Adventurer():
         self.class_type = class_type if class_type in allowed_classes else 'Fighter'
         self.power = power if power < 99 else 10
         self.experience = 0
-        self.add_experience(experience)
+        if experience > 0:
+            self.add_experience(experience)
 
     def __repr__(self):
         """docstring."""
@@ -296,5 +297,5 @@ class Monster():
 
 
 if __name__ == "__main__":
-    adv1 = Adventurer('asd', 'Fighter', 50, 149)
+    adv1 = Adventurer('asd', 'Fighter', 999, 1)
     print(adv1)
