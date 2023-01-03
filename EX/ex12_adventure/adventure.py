@@ -93,7 +93,6 @@ class World:
             if a.name == name:
                 self.active_adventurer_list.append(a)
                 self.adventurer_list.remove(a)
-                # return
 
     def add_all_adventurers_of_class_type(self, class_type: str):
         """docstring."""
@@ -117,7 +116,6 @@ class World:
             if a.name == name:
                 self.active_monster_list.append(a)
                 self.monster_list.remove(a)
-                # return
 
     def add_strongest_monster(self):
         """docstring."""
@@ -161,7 +159,6 @@ class World:
             for c in self.graveyard[:]:
                 if c.name == name:
                     self.graveyard.remove(c)
-            # return
 
     def go_adventure(self, deadly: bool = False):
         """docstring."""
