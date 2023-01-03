@@ -54,7 +54,7 @@ class World:
 
     def get_active_monsters(self):
         """docstring."""
-        return sorted(self.active_monster_list, key=lambda x: x.power, reverse=True)
+        return list(sorted(self.active_monster_list, key=lambda x: x.power, reverse=True))
 
     def add_adventurer(self, character):
         """docstring."""
