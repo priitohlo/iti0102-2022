@@ -8,6 +8,7 @@ class World:
 
     def __init__(self, python_master: str):
         """docstring."""
+        self.powers = None
         self.adventurers_upgraded = False
         self.python_master = python_master
         self.graveyard = list()
@@ -172,36 +173,32 @@ class World:
         """docstring."""
         self.remove_active_monsters_by_character_effect()
         self.enhance_adventurers_by_monster_effect()
-        powers = self.calculate_powers()
+        self.powers = self.calculate_powers()
 
         if deadly:
-            if powers['adventurers'] > powers['monsters']:
+            if self.powers['adventurers'] > self.powers['monsters']:
                 for m in self.active_monster_list:
                     self.graveyard.append(m)
                     self.active_monster_list.clear()
-                for a in self.active_adventurer_list:
-                    a.experience += math.floor(powers['monsters'] / len(self.active_adventurer_list) * 2)
+                self.calculate_experience(deadly=True)
                 self.adventurer_list += self.active_adventurer_list
                 self.active_adventurer_list.clear()
-            elif powers['adventurers'] < powers['monsters']:
+            elif self.powers['adventurers'] < self.powers['monsters']:
                 for a in self.active_adventurer_list:
                     self.graveyard.append(a)
                     self.active_adventurer_list.clear()
                 self.monster_list += self.active_monster_list
                 self.active_monster_list.clear()
-            elif powers['adventurers'] == powers['monsters']:
-                for a in self.active_adventurer_list:
-                    a.experience += math.floor(powers['monsters'] / len(self.active_adventurer_list) / 2)
-        elif not deadly and powers['adventurers'] != powers['monsters']:
-            for a in self.active_adventurer_list:
-                a.experience += math.floor(powers['monsters'] / len(self.active_adventurer_list))
+            elif self.powers['adventurers'] == self.powers['monsters']:
+                self.calculate_experience(tie=True)
+        elif not deadly and self.powers['adventurers'] != self.powers['monsters']:
+            self.calculate_experience()
             self.adventurer_list += self.active_adventurer_list
             self.active_adventurer_list.clear()
             self.active_monster_list += self.active_monster_list
             self.active_monster_list.clear()
-        elif not deadly and powers['adventurers'] == powers['monsters']:
-            for a in self.active_adventurer_list:
-                a.experience += math.floor(powers['monsters'] / len(self.active_adventurer_list) / 2)
+        elif not deadly and self.powers['adventurers'] == self.powers['monsters']:
+            self.calculate_experience(tie=True)
             self.adventurer_list += self.active_adventurer_list
             self.active_adventurer_list.clear()
             self.active_monster_list += self.active_monster_list
@@ -213,9 +210,20 @@ class World:
                     a.power /= 2
             self.adventurers_upgraded = False
 
+        self.powers = None
+
     def calculate_powers(self) -> dict:
         return {'adventurers': sum([a.power for a in self.active_adventurer_list]),
                 'monsters': sum([m.power if m else 0 for m in self.active_monster_list])}
+
+    def calculate_experience(self, tie: bool = False, deadly: bool = False):
+        for a in self.active_adventurer_list:
+            if tie:
+                a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list) / 2)
+            elif deadly:
+                a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list) * 2)
+            else:
+                a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list))
 
     def remove_active_monsters_by_character_effect(self):
         if "Druid" in [a.class_type for a in self.active_adventurer_list]:
