@@ -298,4 +298,3 @@ class Monster:
     @name.setter
     def name(self, value):
         self._name = value
-
