@@ -121,22 +121,18 @@ class World:
                 self.monster_list.remove(a)
 
     def add_strongest_monster(self):
-        try:
+        if len(self.monster_list) > 0:
             strongest_monster = list(
                 sorted(self.monster_list, key=lambda x: x.power, reverse=True))[0]
             self.active_monster_list.append(strongest_monster)
             self.monster_list.remove(strongest_monster)
-        except IndexError:
-            pass
 
     def add_weakest_monster(self):
-        try:
+        if len(self.monster_list) > 0:
             weakest_monster = list(
                 sorted(self.monster_list, key=lambda x: x.power, reverse=False))[0]
             self.active_monster_list.append(weakest_monster)
             self.monster_list.remove(weakest_monster)
-        except IndexError:
-            pass
 
     def add_all_monsters_of_type(self, type: str):
         for m in self.monster_list[:]:
