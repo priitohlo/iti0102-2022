@@ -219,9 +219,9 @@ class World:
 
     def calculate_experience(self, tie: bool = False, deadly: bool = False):
         for a in self.active_adventurer_list:
-            if tie:
+            if tie and not deadly:
                 a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list) / 2)
-            elif deadly:
+            elif not tie and deadly:
                 a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list) * 2)
             else:
                 a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list))
