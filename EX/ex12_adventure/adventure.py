@@ -295,8 +295,4 @@ class Monster():
 
 
 if __name__ == "__main__":
-    world = World('asd')
-    adv1 = Adventurer('asd1', 'Fighter', 11, 1)
-
-    adv1.add_experience(99)
-    print(adv1)
+    pass
