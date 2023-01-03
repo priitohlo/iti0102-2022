@@ -30,13 +30,13 @@ def get_links_from_spreadsheet(id: str, token_file_name: str):
         service = build('sheets', 'v4', credentials=creds)
 
         sheet = service.spreadsheets()
-        result = sheet.values().get(spreadsheetId=id, range='Songs!A:A').execute()
-        values = result.get('values', [])
+        result = sheet.values().get(spreadsheetId=id, range='Songs!A:A', majorDimension='COLUMNS').execute()
+        values = result.get('values')
 
         if not values:
             return 'No data.'
         else:
-            return values
+            return values[0]
 
     except HttpError as err:
         print(err)
