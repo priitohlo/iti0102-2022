@@ -1,12 +1,11 @@
-import string
-
-import pytest, random
+import pytest
 
 from adventure import World, Adventurer, Monster
 
 
 @pytest.fixture
 def world() -> World:
+    """docstring."""
     world = World('example')
     adv1 = Adventurer('adv1', 'Fighter', 25, 10)
     adv2 = Adventurer('adv2', 'Fighter', 40, 15)
@@ -25,18 +24,22 @@ def world() -> World:
 
 
 def test_necromancers_not_active(world):
+    """docstring."""
     assert world.necromancers_active_status is False
 
 
 def test_hero_in_world(world):
+    """docstring."""
     assert 'adv1' in [a.name for a in world.adventurer_list]
 
 
 def test_monster_in_world(world):
+    """docstring."""
     assert 'mon1' in [a.name for a in world.monster_list]
 
 
 def test_druids(world):
+    """docstring."""
     world.add_adventurer_by_name('druid')
     world.add_monster_by_name('animal')
     world.go_adventure()
@@ -45,16 +48,19 @@ def test_druids(world):
 
 
 def test_adventurers_of_class_type_added(world):
+    """docstring."""
     world.add_all_adventurers_of_class_type('Fighter')
     assert ['Fighter', 'Fighter'] == [a.class_type for a in world.get_active_adventurers()]
 
 
 def test_monster_defeated_non_deadly(world):
+    """docstring."""
     world.go_adventure(False)
     assert 'mon1' in [m.name for m in world.get_monster_list()]
 
 
 def test_monster_defeated_deadly(world):
+    """docstring."""
     world.add_monster_by_name('mon1')
     world.add_adventurer_by_name('adv1')
     world.go_adventure(True)
@@ -62,6 +68,7 @@ def test_monster_defeated_deadly(world):
 
 
 def test_adventurer_defeated_deadly(world):
+    """docstring."""
     world.add_monster_by_name('mon2')
     world.add_adventurer_by_name('adv1')
     world.go_adventure(True)
@@ -69,6 +76,7 @@ def test_adventurer_defeated_deadly(world):
 
 
 def test_hero_xp_gained_deadly(world):
+    """docstring."""
     world.add_monster_by_name('mon1')
     world.add_adventurer_by_name('adv1')
     world.go_adventure(True)
@@ -77,6 +85,7 @@ def test_hero_xp_gained_deadly(world):
 
 
 def test_hero_xp_gained_non_deadly(world):
+    """docstring."""
     world.add_monster_by_name('mon1')
     world.add_adventurer_by_name('adv1')
     world.go_adventure(False)
@@ -85,17 +94,20 @@ def test_hero_xp_gained_non_deadly(world):
 
 
 def test_adventurer_removed_by_name(world):
+    """docstring."""
     world.remove_character('adv1')
     assert 'adv1' in [m.name for m in world.get_graveyard()]
 
 
 def test_adventurer_removed_from_graveyard_by_name(world):
+    """docstring."""
     world.remove_character('adv1')
     world.remove_character('adv1')
     assert 'adv1' not in [m.name for m in world.get_graveyard()]
 
 
 def test_monster_revived(world):
+    """docstring."""
     world.add_monster_by_name('mon1')
     world.add_adventurer_by_name('adv1')
     world.go_adventure(True)
@@ -105,35 +117,42 @@ def test_monster_revived(world):
 
 
 def test_strongest_adventurer_added(world):
+    """docstring."""
     world.add_strongest_adventurer('Fighter')
     assert 'adv2' in [a.name for a in world.get_active_adventurers()]
 
 
 def test_weakest_adventurer_added(world):
+    """docstring."""
     world.add_weakest_adventurer('Fighter')
     assert 'adv1' in [a.name for a in world.get_active_adventurers()]
 
 
 def test_most_experienced_adventurer_added(world):
+    """docstring."""
     world.add_most_experienced_adventurer('Fighter')
     assert 'adv2' in [a.name for a in world.get_active_adventurers()]
 
 
 def test_least_experienced_adventurer_added(world):
+    """docstring."""
     world.add_least_experienced_adventurer('Fighter')
     assert 'adv1' in [a.name for a in world.get_active_adventurers()]
 
 
 def test_strongest_monster_added(world):
+    """docstring."""
     world.add_strongest_monster()
     assert 'mon2' in [m.name for m in world.get_active_monsters()]
 
 
 def test_weakest_monster_added(world):
+    """docstring."""
     world.add_weakest_monster()
     assert 'mon1' in [m.name for m in world.get_active_monsters()]
 
 
 def test_all_monsters_added(world):
+    """docstring."""
     world.add_all_monsters()
     assert sorted(['animal', 'mon1', 'mon2']) == sorted([m.name for m in world.get_active_monsters()])
