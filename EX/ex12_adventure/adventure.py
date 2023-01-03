@@ -127,10 +127,13 @@ class World:
         self.monster_list.append(character) if type(character) == Monster else None
 
     def add_monster_by_name(self, name: str):
-        for a in self.monster_list[:]:
-            if a.name == name:
-                self.active_monster_list.append(a)
-                self.monster_list.remove(a)
+        try:
+            for a in self.monster_list[:]:
+                if a.name == name:
+                    self.active_monster_list.append(a)
+                    self.monster_list.remove(a)
+        except IndexError:
+            pass
 
     def add_strongest_monster(self):
         try:
