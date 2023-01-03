@@ -266,7 +266,6 @@ class Adventurer():
 
     def add_experience(self, experience: int):
         """docstring."""
-        return
         if experience <= 0:
             return
         self.experience += experience if experience >= 0 else 0
