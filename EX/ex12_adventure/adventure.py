@@ -3,7 +3,7 @@ import math
 
 
 class World:
-    """docstring."""
+    """docstring.."""
 
     def __init__(self, python_master: str):
         """docstring."""
