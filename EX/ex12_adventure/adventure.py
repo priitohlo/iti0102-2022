@@ -195,7 +195,7 @@ class World:
             self.active_adventurer_list.clear()
             self.active_monster_list += self.active_monster_list
             self.active_monster_list.clear()
-        elif not deadly and self.powers['adventurers'] == self.powers['monsters']:
+        elif not deadly and self.powers['adventurerss'] == self.powers['monsters']:
             self.calculate_experience(tie=True)
             self.adventurer_list += self.active_adventurer_list
             self.active_adventurer_list.clear()
