@@ -181,7 +181,7 @@ class World:
         self.powers = self.calculate_powers()
 
         if self.adventurers_upgraded:
-            for a in [a for a in self.adventurer_list if a.class_type == 'Paladin']:
+            for a in [a for a in self.active_adventurer_list if a.class_type == 'Paladin']:
                 a.power //= 2
             self.adventurers_upgraded = False
 
