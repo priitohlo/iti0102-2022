@@ -63,42 +63,29 @@ class World:
 
     def add_strongest_adventurer(self, class_type: str):
         """docstring."""
-        if class_type in [a.class_type for a in self.adventurer_list]:
-            strongest_adventurer = list(
-                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
-                       reverse=True))[0]
-            self.active_adventurer_list.append(strongest_adventurer)
-            self.adventurer_list.remove(strongest_adventurer)
+        self.add_adventurer_by_stat('power', True, class_type)
 
     def add_weakest_adventurer(self, class_type: str):
         """docstring."""
-        if class_type in [a.class_type for a in self.adventurer_list]:
-            weakest_adventurer = list(
-                sorted([a for a in self.adventurer_list if
-                        a.class_type == class_type], key=lambda x: x.power,
-                       reverse=False))[0]
-            self.active_adventurer_list.append(weakest_adventurer)
-            self.adventurer_list.remove(weakest_adventurer)
+        self.add_adventurer_by_stat('power', False, class_type)
 
     def add_most_experienced_adventurer(self, class_type: str):
         """docstring."""
-        if class_type in [a.class_type for a in self.adventurer_list]:
-            most_experienced_adventurer = list(
-                sorted([a for a in self.adventurer_list if
-                        a.class_type == class_type], key=lambda x: x.experience,
-                       reverse=True))[0]
-            self.active_adventurer_list.append(most_experienced_adventurer)
-            self.adventurer_list.remove(most_experienced_adventurer)
+        self.add_adventurer_by_stat('experience', True, class_type)
 
     def add_least_experienced_adventurer(self, class_type: str):
         """docstring."""
+        self.add_adventurer_by_stat('experience', False, class_type)
+
+    def add_adventurer_by_stat(self, stat: str, hi_lo: bool, class_type: str):
+        """docstring."""
         if class_type in [a.class_type for a in self.adventurer_list]:
-            least_experienced_adventurer = list(
+            character_to_add = list(
                 sorted([a for a in self.adventurer_list if
-                        a.class_type == class_type], key=lambda x: x.experience,
-                       reverse=False))[0]
-            self.active_adventurer_list.append(least_experienced_adventurer)
-            self.adventurer_list.remove(least_experienced_adventurer)
+                        a.class_type == class_type], key=(lambda x, stat=stat: x.stat),
+                       reverse=hi_lo))[0]
+            self.active_adventurer_list.append(character_to_add)
+            self.adventurer_list.remove(character_to_add)
 
     def add_adventurer_by_name(self, name: str):
         """docstring."""
