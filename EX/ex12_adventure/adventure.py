@@ -215,10 +215,10 @@ class World:
 
     def calculate_powers(self) -> dict:
         return {'adventurers': sum([a.power for a in self.active_adventurer_list]),
-                'monsters': sum([m.power for m in self.active_monster_list])}
+                'monsters': sum([m.power if m else 0 for m in self.active_monster_list])}
 
     def remove_active_monsters_by_character_effect(self):
-        if "Druid" in [a.name for a in self.active_adventurer_list]:
+        if "Druid" in [a.class_type for a in self.active_adventurer_list]:
             for m in self.active_monster_list[:]:
                 if m.type in ["Animal", "Ent"]:
                     self.monster_list.append(m)
