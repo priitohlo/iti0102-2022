@@ -63,7 +63,7 @@ class World:
         if class_type in [a.class_type for a in self.adventurer_list]:
             strongest_adventurer = list(
                 sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
-                       reverse=True))[1]
+                       reverse=True))[0]
             self.active_adventurer_list.append(strongest_adventurer)
             self.adventurer_list.remove(strongest_adventurer)
 
