@@ -221,10 +221,12 @@ class World:
         for a in self.active_adventurer_list:
             if tie and not deadly:
                 a.add_experience(math.floor(self.powers['monsters'] / len(self.active_adventurer_list) / 2))
-            elif not tie and deadly:
-                a.add_experience(math.floor(self.powers['monsters'] / len(self.active_adventurer_list) * 2))
-            else:
+            elif tie and deadly:
+                a.add_experience(math.floor(self.powers['monsters'] / len(self.active_adventurer_list) / 2))
+            elif not tie and not deadly:
                 a.add_experience(math.floor(self.powers['monsters'] / len(self.active_adventurer_list)))
+            else not tie and deadly:
+                a.add_experience(math.floor(self.powers['monsters'] / len(self.active_adventurer_list) * 2))
 
     def remove_active_monsters_by_character_effect(self):
         if "Druid" in [a.class_type for a in self.active_adventurer_list]:
@@ -297,6 +299,6 @@ class Monster():
 
 
 if __name__ == "__main__":
-    adv1 = Adventurer('asd', 'Fighter', 1, 10)
-    adv1.add_experience(700)
+    adv1 = Adventurer('asd', 'Fighter', 99, 10)
+    adv1.add_experience(1000)
     print(adv1)
