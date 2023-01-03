@@ -192,7 +192,8 @@ class World:
             elif self.powers['adventurers'] == self.powers['monsters']:
                 self.calculate_experience(tie=True)
         elif not deadly and self.powers['adventurers'] != self.powers['monsters']:
-            self.calculate_experience()
+            if self.powers['adventurers'] > self.powers['monsters']:
+                self.calculate_experience()
             self.adventurer_list += self.active_adventurer_list
             self.active_adventurer_list.clear()
             self.active_monster_list += self.active_monster_list
@@ -219,9 +220,9 @@ class World:
     def calculate_experience(self, tie: bool = False, deadly: bool = False):
         for a in self.active_adventurer_list:
             if tie:
-                a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list) / 5000)
+                a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list) / 2)
             elif deadly:
-                a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list) * 5000)
+                a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list) * 2)
             else:
                 a.experience += math.floor(self.powers['monsters'] / len(self.active_adventurer_list))
 
