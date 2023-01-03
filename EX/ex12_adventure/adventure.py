@@ -266,6 +266,7 @@ class Adventurer():
 
     def add_experience(self, experience: int):
         """docstring."""
+        return
         if experience <= 0:
             return
         self.experience += experience if experience >= 0 else 0
@@ -297,5 +298,6 @@ class Monster():
 
 
 if __name__ == "__main__":
-    adv1 = Adventurer('asd', 'Fighter', 999, 1)
+    adv1 = Adventurer('asd', 'Fighter', 1, 10)
+    adv1.add_experience(700)
     print(adv1)
