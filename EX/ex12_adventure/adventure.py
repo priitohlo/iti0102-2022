@@ -297,8 +297,3 @@ class Monster:
     @name.setter
     def name(self, value):
         self._name = value
-
-
-if __name__ == "__main__":
-    adv1 = Adventurer('ndtaqfwbnfvgdzquqmvlctjrfduuxv', 'Paladin', 99, 10)
-    print(adv1)
