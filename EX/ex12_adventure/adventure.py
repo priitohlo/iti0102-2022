@@ -179,6 +179,8 @@ class World:
                 for m in self.active_monster_list:
                     self.graveyard.append(m)
                     self.active_monster_list.clear()
+                for a in self.active_adventurer_list:
+                    a.experience += math.floor(powers['monsters'] / len(self.active_adventurer_list) * 2)
                 self.adventurer_list += self.active_adventurer_list
                 self.active_adventurer_list.clear()
             elif powers['adventurers'] < powers['monsters']:
@@ -187,7 +189,19 @@ class World:
                     self.active_adventurer_list.clear()
                 self.monster_list += self.active_monster_list
                 self.active_monster_list.clear()
+            elif powers['adventurers'] == powers['monsters']:
+                for a in self.active_adventurer_list:
+                    a.experience += math.floor(powers['monsters'] / len(self.active_adventurer_list) / 2)
         elif not deadly and powers['adventurers'] != powers['monsters']:
+            for a in self.active_adventurer_list:
+                a.experience += math.floor(powers['monsters'] / len(self.active_adventurer_list))
+            self.adventurer_list += self.active_adventurer_list
+            self.active_adventurer_list.clear()
+            self.active_monster_list += self.active_monster_list
+            self.active_monster_list.clear()
+        elif not deadly and powers['adventurers'] == powers['monsters']:
+            for a in self.active_adventurer_list:
+                a.experience += math.floor(powers['monsters'] / len(self.active_adventurer_list) / 2)
             self.adventurer_list += self.active_adventurer_list
             self.active_adventurer_list.clear()
             self.active_monster_list += self.active_monster_list
