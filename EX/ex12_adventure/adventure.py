@@ -61,48 +61,39 @@ class World:
         self.adventurer_list.append(character) if type(character) == Adventurer else None
 
     def add_strongest_adventurer(self, class_type: str):
-        try:
+        if class_type in [a.class_type for a in self.adventurer_list]:
             strongest_adventurer = list(
-                sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
-                        a.class_type == class_type], key=lambda x: x.power,
+                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
                        reverse=True))[0]
             self.active_adventurer_list.append(strongest_adventurer)
             self.adventurer_list.remove(strongest_adventurer)
-        except IndexError:
-            print('jama')
 
     def add_weakest_adventurer(self, class_type: str):
-        try:
+        if class_type in [a.class_type for a in self.adventurer_list]:
             weakest_adventurer = list(
                 sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
                         a.class_type == class_type], key=lambda x: x.power,
                        reverse=False))[0]
             self.active_adventurer_list.append(weakest_adventurer)
             self.adventurer_list.remove(weakest_adventurer)
-        except IndexError:
-            return
 
     def add_most_experienced_adventurer(self, class_type: str):
-        try:
+        if class_type in [a.class_type for a in self.adventurer_list]:
             most_experienced_adventurer = list(
                 sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
                         a.class_type == class_type], key=lambda x: x.experience,
                        reverse=True))[0]
             self.active_adventurer_list.append(most_experienced_adventurer)
             self.adventurer_list.remove(most_experienced_adventurer)
-        except IndexError:
-            return
 
     def add_least_experienced_adventurer(self, class_type: str):
-        try:
+        if class_type in [a.class_type for a in self.adventurer_list]:
             least_experienced_adventurer = list(
                 sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
                         a.class_type == class_type], key=lambda x: x.experience,
                        reverse=False))[0]
             self.active_adventurer_list.append(least_experienced_adventurer)
             self.adventurer_list.remove(least_experienced_adventurer)
-        except IndexError:
-            return
 
     def add_adventurer_by_name(self, name: str):
         for a in self.adventurer_list[:]:
