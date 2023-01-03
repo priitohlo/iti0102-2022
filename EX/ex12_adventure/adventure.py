@@ -1,5 +1,4 @@
 """docstring."""
-import copy
 import math
 
 
@@ -296,14 +295,14 @@ if __name__ == "__main__":
     world = World('asd')
 
     a1 = Adventurer('asd', 'asd1', 10, 10)
-    a2 = Adventurer('asd', 'asd1', 10, 10)
+    # a2 = Adventurer('asd', 'asd1', 10, 10)
     m1 = Monster('asd21', 'asd3', 10)
 
     world.add_adventurer(a1)
-    world.add_adventurer(a2)
+    # world.add_adventurer(a2)
     # world.add_monster(m1)
 
-    world.add_strongest_adventurer('asd1')
+    world.add_strongest_adventurer('Fighter')
     # world.add_weakest_adventurer('asd')
     # world.add_most_experienced_adventurer('asd')
     # world.add_least_experienced_adventurer('asd')
