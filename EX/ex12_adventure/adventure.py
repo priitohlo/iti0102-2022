@@ -117,7 +117,7 @@ class World:
             if a.name == name:
                 self.active_monster_list.append(a)
                 self.monster_list.remove(a)
-                return
+                # return
 
     def add_strongest_monster(self):
         """docstring."""
