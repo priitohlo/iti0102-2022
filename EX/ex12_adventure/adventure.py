@@ -63,17 +63,19 @@ class World:
     def add_strongest_adventurer(self, class_type: str):
         try:
             strongest_adventurer = list(
-                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
+                sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
+                        a.class_type == class_type], key=lambda x: x.power,
                        reverse=True))[0]
             self.active_adventurer_list.append(strongest_adventurer)
             self.adventurer_list.remove(strongest_adventurer)
         except IndexError:
-            return
+            print('jama')
 
     def add_weakest_adventurer(self, class_type: str):
         try:
             weakest_adventurer = list(
-                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.power,
+                sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
+                        a.class_type == class_type], key=lambda x: x.power,
                        reverse=False))[0]
             self.active_adventurer_list.append(weakest_adventurer)
             self.adventurer_list.remove(weakest_adventurer)
@@ -83,7 +85,8 @@ class World:
     def add_most_experienced_adventurer(self, class_type: str):
         try:
             most_experienced_adventurer = list(
-                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.experience,
+                sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
+                        a.class_type == class_type], key=lambda x: x.experience,
                        reverse=True))[0]
             self.active_adventurer_list.append(most_experienced_adventurer)
             self.adventurer_list.remove(most_experienced_adventurer)
@@ -93,7 +96,8 @@ class World:
     def add_least_experienced_adventurer(self, class_type: str):
         try:
             least_experienced_adventurer = list(
-                sorted([a for a in self.adventurer_list if a.class_type == class_type], key=lambda x: x.experience,
+                sorted([a if a.class_type == class_type else 0 for a in self.adventurer_list if
+                        a.class_type == class_type], key=lambda x: x.experience,
                        reverse=False))[0]
             self.active_adventurer_list.append(least_experienced_adventurer)
             self.adventurer_list.remove(least_experienced_adventurer)
@@ -301,9 +305,21 @@ if __name__ == "__main__":
     world = World('asd')
 
     a1 = Adventurer('asd', 'asd1', 10, 10)
+    a2 = Adventurer('asd', 'asd1', 10, 10)
     m1 = Monster('asd21', 'asd3', 10)
 
-    # world.add_adventurer(a1)
-    world.add_monster(m1)
+    world.add_adventurer(a1)
+    world.add_adventurer(a2)
+    # world.add_monster(m1)
 
-    world.remove_character('asd21')
+    world.add_strongest_adventurer('asd1')
+    # world.add_weakest_adventurer('asd')
+    # world.add_most_experienced_adventurer('asd')
+    # world.add_least_experienced_adventurer('asd')
+    # world.add_adventurer_by_name('asd')
+    # world.add_all_adventurers()
+
+    print(world.adventurer_list)
+    print(world.active_adventurer_list)
+
+    world.go_adventure(True)
