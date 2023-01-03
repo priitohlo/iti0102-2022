@@ -93,7 +93,7 @@ class World:
             if a.name == name:
                 self.active_adventurer_list.append(a)
                 self.adventurer_list.remove(a)
-                return
+                # return
 
     def add_all_adventurers_of_class_type(self, class_type: str):
         """docstring."""
