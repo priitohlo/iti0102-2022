@@ -49,8 +49,12 @@ def get_links_from_spreadsheet(id: str, token_file_name: str):
 
 
 def get_links_from_playlist(link: str, developer_key: str) -> list:
-    parsed_url = urlparse(link)
-    playlist_id = parse_qs(parsed_url.query)['list'][0]
+    try:
+        parsed_url = urlparse(link)
+        playlist_id = parse_qs(parsed_url.query)['list'][0]
+        pagetoken = parse_qs(parsed_url.query)['pageToken'][0]
+    except KeyError:
+        pagetoken = ''
 
     api_service_name = "youtube"
     api_version = "v3"
@@ -61,7 +65,8 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
     request = youtube.playlistItems().list(
         part="snippet",
         maxResults=50,
-        playlistId=playlist_id
+        playlistId=playlist_id,
+        pageToken=pagetoken
     )
     response = request.execute()
 
