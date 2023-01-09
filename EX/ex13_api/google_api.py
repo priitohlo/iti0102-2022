@@ -75,6 +75,18 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
     for r in response['items']:
         returnlinks.append(f"https://youtube.com/watch?v={r['snippet']['resourceId']['videoId']}")
 
+    while "nextPageToken" in response:
+        request = youtube.playlistItems().list(
+            part="snippet",
+            maxResults=50,
+            playlistId=playlist_id,
+            pageToken=response["nextPageToken"]
+        )
+        response = request.execute()
+
+        for r in response['items']:
+            returnlinks.append(f"https://youtube.com/watch?v={r['snippet']['resourceId']['videoId']}")
+
     return returnlinks
 
 
