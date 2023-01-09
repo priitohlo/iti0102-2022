@@ -21,10 +21,10 @@ def drive_to_line(robot: FollowerBot):
 
     :param FollowerBot robot: instance of the robot that you need to make move
     """
-    robot.set_wheels_speed(20)
+    robot.set_wheels_speed(17)
     while robot.get_left_line_sensor() != 0 and robot.get_right_line_sensor() != 0:
         robot.sleep(1)
-    robot.sleep(3)
+    robot.sleep(1)
     robot.done()
 
 
@@ -45,4 +45,6 @@ def the_true_follower(robot: FollowerBot):
     :param FollowerBot robot: instance of the robot that you need to make move
     """
 
-# drive_to_line(FollowerBot(track_image='to_line.png', starting_orientation=90))
+
+if __name__ == '__main__':
+    drive_to_line(FollowerBot(track_image='to_line.png', starting_orientation=90))
