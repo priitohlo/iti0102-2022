@@ -84,4 +84,6 @@ if __name__ == '__main__':
     with open('apikey') as f:
         apikey = list(f)[0].strip()
 
-    print(get_links_from_playlist('https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK', apikey))
+    print(
+        get_links_from_playlist('https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK&pageToken=a',
+                                apikey))
