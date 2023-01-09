@@ -66,7 +66,7 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
         part="snippet",
         maxResults=50,
         playlistId=playlist_id,
-        pageToken=pagetoken
+        # pageToken=pagetoken
     )
     response = request.execute()
 
@@ -85,5 +85,5 @@ if __name__ == '__main__':
         apikey = list(f)[0].strip()
 
     print(
-        get_links_from_playlist('https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK&pageToken=a',
+        get_links_from_playlist('https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK',
                                 apikey))
