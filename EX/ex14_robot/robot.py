@@ -1,3 +1,5 @@
+import time
+
 from FollowerBot import FollowerBot
 
 robot = FollowerBot()
