@@ -45,5 +45,4 @@ def the_true_follower(robot: FollowerBot):
     :param FollowerBot robot: instance of the robot that you need to make move
     """
 
-
-drive_to_line(FollowerBot(track_image='to_line.png', starting_orientation=90))
+# drive_to_line(FollowerBot(track_image='to_line.png', starting_orientation=90))
