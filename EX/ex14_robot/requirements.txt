@@ -1,1 +1,1 @@
-FollowerBot
+FollowerBot @ git+https://github.com/Hattyot/FollowerBot.git@984d3b02da146cea1e7c1326ae3c0ca47d7f01ff
