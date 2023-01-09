@@ -66,7 +66,7 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
         part="snippet",
         maxResults=50,
         playlistId=playlist_id,
-        # pageToken=pagetoken
+        pageToken=pagetoken
     )
     response = request.execute()
 
