@@ -132,7 +132,7 @@ def sort_people_by_popularity_of_name(people: list[Person]) -> list:
     :param people: Input list of people (Objects of the Person class).
     :return: Sorted list of people.
     """
-    return sorted(people, key=lambda x: (-len(re.findall(x.name, ','.join(map(str, people)))), x.name))
+    return sorted(people, key=lambda x: (-len(re.findall(x.name, ','.join(map(str, people)), flags=re.A)), x.name))
 
 
 if __name__ == '__main__':
