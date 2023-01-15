@@ -1,6 +1,5 @@
 """Sorting."""
 import re
-from collections import Counter
 
 def sort_numbers_using_sort(numbers: list[int]):
     """
@@ -132,7 +131,7 @@ def sort_people_by_popularity_of_name(people: list[Person]) -> list:
     :param people: Input list of people (Objects of the Person class).
     :return: Sorted list of people.
     """
-    return sorted(people, key=lambda x: (len(re.findall(x.name, ' '.join(map(str, people)))), x.name), reverse=True)
+    return sorted(people, key=lambda x: (-len(re.findall(x.name, ' '.join(map(str, people)))), x.name))
 
 
 if __name__ == '__main__':
