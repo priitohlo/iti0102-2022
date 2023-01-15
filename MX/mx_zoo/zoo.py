@@ -1,7 +1,6 @@
 """A small exercise in zookeeping."""
 import math
 from statistics import mean
-from functools import reduce
 
 
 class Animal:
