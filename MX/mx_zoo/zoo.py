@@ -1,4 +1,5 @@
 """A small exercise in zookeeping."""
+import math
 from statistics import mean
 from functools import reduce
 
@@ -58,7 +59,8 @@ def find_how_many_pumpkins_are_needed_to_feed_animals(animal_list: list) -> int:
     :return: amount of pumpkins needed to sustain all the animals over the winter (rounded up).
     """
     return sum(list(
-        map(lambda x: round(mean(x.weight_range) * .06 * 90 / 3 * 2) if x.diet in ('omnivorous', 'herbivorous') else 0,
+        map(lambda x: math.ceil(mean(x.weight_range) * .06 * 90 / 3 * 2) if x.diet in (
+        'omnivorous', 'herbivorous') else 0,
             animal_list)))
 
 
