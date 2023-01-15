@@ -123,7 +123,7 @@ def create_animal_descriptions(animal_list: list) -> list:
     :return: list of animal description strings
     """
     return list(map(lambda
-            x: f"{x.species} ({x.scientific_name}) lives in {x.habitat} and its diet is {x.diet}. These animals can live up to {x.age_up_to} years and they weigh between {x.weight_range[0]} kg and {x.weight_range[1]} kg as adults.",
+                x: f"{x.species} ({x.scientific_name}) lives in {x.habitat} and its diet is {x.diet}. These animals can live up to {x.age_up_to} years and they weigh between {x.weight_range[0]} kg and {x.weight_range[1]} kg as adults.",
                 animal_list))
 
 
