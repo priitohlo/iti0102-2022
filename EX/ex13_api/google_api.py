@@ -1,9 +1,9 @@
+"""docstring."""
 from __future__ import print_function
 
 import os.path
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
-import json
 
 import googleapiclient
 from google.auth.transport.requests import Request
@@ -13,12 +13,11 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 
-
-# If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 
 def get_links_from_spreadsheet(id: str, token_file_name: str):
+    """docstring."""
     creds = None
     if os.path.exists(token_file_name):
         creds = Credentials.from_authorized_user_file(token_file_name, SCOPES)
@@ -49,6 +48,7 @@ def get_links_from_spreadsheet(id: str, token_file_name: str):
 
 
 def get_links_from_playlist(link: str, developer_key: str) -> list:
+    """docstring."""
     try:
         parsed_url = urlparse(link)
         playlist_id = parse_qs(parsed_url.query)['list'][0]
