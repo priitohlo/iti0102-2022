@@ -1,5 +1,5 @@
 """Sorting."""
-
+from collections import Counter
 
 def sort_numbers_using_sort(numbers: list[int]):
     """
@@ -131,7 +131,7 @@ def sort_people_by_popularity_of_name(people: list[Person]) -> list:
     :param people: Input list of people (Objects of the Person class).
     :return: Sorted list of people.
     """
-    return sorted(people, key=[x.name for x in people].count, reverse=True)
+    return sorted(people, key=lambda x: [y.name for y in people].count(x))
 
 
 if __name__ == '__main__':
@@ -146,3 +146,5 @@ if __name__ == '__main__':
     print(sort_people_by_name(people))  # -> [alex, ellie, lukas, lukas2, sebastian]
     print(sort_people_by_age_name_height(people))  # -> [sebastian, alex, lukas2, lukas, ellie]
     print(sort_people_by_popularity_of_name(people))  # -> [lukas, lukas2, alex, ellie, sebastian]
+
+    print([x.name for x in people].count('Lukas'))
