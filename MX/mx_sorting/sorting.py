@@ -24,7 +24,7 @@ def sort_numbers_using_sorted(numbers: list[int]) -> list:
     :param numbers: List of integers in a random order.
     :return: Sorted list of numbers in ascending order.
     """
-    pass
+    return sorted(numbers)
 
 
 def sort_numbers_reversed(numbers: list[int]) -> list:
@@ -37,7 +37,7 @@ def sort_numbers_reversed(numbers: list[int]) -> list:
     :param numbers: List of integers in a random order.
     :return: Sorted list of numbers in descending order.
     """
-    pass
+    return sorted(numbers, reverse=True)
 
 
 def sort_tuples_by_length(tuples: list[tuple]) -> list:
@@ -57,7 +57,7 @@ def sort_tuples_by_length(tuples: list[tuple]) -> list:
     :param tuples: List of tuples in a random order.
     :return: Sorted list of tuples in descending order based on their length.
     """
-    pass
+    return sorted(tuples, key=lambda x: len(x), reverse=True)
 
 
 class Person:
