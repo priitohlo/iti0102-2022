@@ -132,18 +132,25 @@ def sort_people_by_popularity_of_name(people: list[Person]) -> list:
     :param people: Input list of people (Objects of the Person class).
     :return: Sorted list of people.
     """
-    return sorted(people, key=lambda x: (-len(re.findall(x.name, ' '.join(map(str, people)))), x.name))
+    return sorted(people, key=lambda x: (-len(re.findall(x.name, ''.join(map(str, people)))), x.name))
 
 
 if __name__ == '__main__':
-    ellie = Person("Ellie", 20, 1.74)
-    sebastian = Person("Sebastian", 15, 1.7)
-    lukas = Person("Lukas", 19, 1.82)
-    lukas2 = Person("Lukas", 19, 1.81)
-    alex = Person("Alex", 19, 1.8)
+    nb1 = Person('nb', 1, 1)
+    nb2 = Person('nb', 1, 1)
+    nb3 = Person('nb', 1, 1)
+    nb4 = Person('nb', 1, 1)
+    nb5 = Person('nb', 1, 1)
+    pb1 = Person('pb', 1, 1)
+    pb2 = Person('pb', 1, 1)
+    pb3 = Person('pb', 1, 1)
+    pb4 = Person('pb', 1, 1)
+    pb5 = Person('pb', 1, 1)
+    oj = Person('oj', 1, 1)
+    lf = Person('lf', 1, 1)
 
-    people = [ellie, sebastian, lukas, lukas2, alex]
+    people = [nb1, nb2, nb3, nb4, nb5, pb1, pb2, pb3, pb4, pb5, oj, lf]
 
-    print(sort_people_by_name(people))  # -> [alex, ellie, lukas, lukas2, sebastian]
-    print(sort_people_by_age_name_height(people))  # -> [sebastian, alex, lukas2, lukas, ellie]
+    # print(sort_people_by_name(people))  # -> [alex, ellie, lukas, lukas2, sebastian]
+    # print(sort_people_by_age_name_height(people))  # -> [sebastian, alex, lukas2, lukas, ellie]
     print(sort_people_by_popularity_of_name(people))  # -> [lukas, lukas2, alex, ellie, sebastian]
