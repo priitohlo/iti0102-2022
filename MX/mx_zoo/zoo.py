@@ -1,5 +1,5 @@
 """A small exercise in zookeeping."""
-import math
+from statistics import mean
 from functools import reduce
 
 
@@ -19,7 +19,7 @@ class Animal:
 
     def __repr__(self):
         """Animal object representation."""
-        return f"{self.species},{self.scientific_name}"
+        return self.species
 
 
 def find_smallest_animal_by_weight(animal_list: list) -> Animal:
@@ -42,7 +42,7 @@ def list_species_and_scientific_names(animal_list: list) -> list:
     :param animal_list: input list of animals
     :return: list of tuples, where we have the species name and scientific name
     """
-    return list(map(tuple, map(lambda x: repr(x).split(','), animal_list)))
+    return list(map(tuple, map(lambda x: (x.species, x.scientific_name), animal_list)))
 
 
 def find_how_many_pumpkins_are_needed_to_feed_animals(animal_list: list) -> int:
@@ -57,7 +57,9 @@ def find_how_many_pumpkins_are_needed_to_feed_animals(animal_list: list) -> int:
     :param animal_list: input list
     :return: amount of pumpkins needed to sustain all the animals over the winter (rounded up).
     """
-    pass
+    return sum(list(
+        map(lambda x: round(mean(x.weight_range) * .06 * 90 / 3 * 2) if x.diet in ('omnivorous', 'herbivorous') else 0,
+            animal_list)))
 
 
 def sort_alphabetically_by_scientific_name(animal_list: list) -> list:
