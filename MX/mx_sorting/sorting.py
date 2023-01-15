@@ -1,4 +1,5 @@
 """Sorting."""
+import re
 from collections import Counter
 
 def sort_numbers_using_sort(numbers: list[int]):
@@ -87,7 +88,7 @@ class Person:
 
         :return: A way to represent the Person object as a str when printing it in a list.
         """
-        return f"<name={self.name}, age={self.age}, height={self.height}>"
+        return f"{self.name}"
 
 
 def sort_people_by_name(people: list[Person]) -> list:
@@ -131,7 +132,7 @@ def sort_people_by_popularity_of_name(people: list[Person]) -> list:
     :param people: Input list of people (Objects of the Person class).
     :return: Sorted list of people.
     """
-    return sorted(people, key=lambda x: [y.name for y in people].count(x))
+    return sorted(people, key=lambda x: (len(re.findall(x.name, ' '.join(map(str, people)))), x.name), reverse=True)
 
 
 if __name__ == '__main__':
@@ -147,4 +148,3 @@ if __name__ == '__main__':
     print(sort_people_by_age_name_height(people))  # -> [sebastian, alex, lukas2, lukas, ellie]
     print(sort_people_by_popularity_of_name(people))  # -> [lukas, lukas2, alex, ellie, sebastian]
 
-    print([x.name for x in people].count('Lukas'))
