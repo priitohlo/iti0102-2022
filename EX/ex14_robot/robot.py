@@ -1,3 +1,4 @@
+"""docstring."""
 from FollowerBot import FollowerBot
 
 
@@ -36,6 +37,30 @@ def follow_the_line(robot: FollowerBot):
 
     :param FollowerBot robot: instance of the robot that you need to make move
     """
+    robot.set_wheels_speed(6)
+
+    while robot.get_left_line_sensor() != 0 and robot.get_right_line_sensor() != 0:
+        robot.sleep(1)
+        print(robot.get_line_sensors())
+
+    while robot.get_left_line_sensor() == 0 and robot.get_right_line_sensor() == 0:
+        if all(v == 0 for v in robot.get_right_line_sensors()):
+            robot.set_wheels_speed(0)
+            robot.set_left_wheel_speed(1)
+            robot.sleep(1)
+            robot.set_left_wheel_speed(0)
+            robot.set_wheels_speed(6)
+        robot.sleep(1)
+        print(robot.get_line_sensors())
+
+    print(robot.get_line_sensors())
+
+    # while 0 in robot.get_line_sensors():
+    #     if all(v == 0 for v in robot.get_left_line_sensors()) and \
+    #             all(v == 0 for v in robot.get_right_line_sensors()):
+    #         robot.sleep(1)
+
+    robot.done()
 
 
 def the_true_follower(robot: FollowerBot):
@@ -47,4 +72,4 @@ def the_true_follower(robot: FollowerBot):
 
 
 if __name__ == '__main__':
-    drive_to_line(FollowerBot(track_image='to_line.png', starting_orientation=90))
+    follow_the_line(FollowerBot(track_image='uturn.png', starting_orientation=90, start_x=122, start_y=270))
