@@ -1,6 +1,7 @@
 """Sorting."""
 import re
 
+
 def sort_numbers_using_sort(numbers: list[int]):
     """
     Sort numbers in ascending order, using sort() list method.
@@ -146,4 +147,3 @@ if __name__ == '__main__':
     print(sort_people_by_name(people))  # -> [alex, ellie, lukas, lukas2, sebastian]
     print(sort_people_by_age_name_height(people))  # -> [sebastian, alex, lukas2, lukas, ellie]
     print(sort_people_by_popularity_of_name(people))  # -> [lukas, lukas2, alex, ellie, sebastian]
-
