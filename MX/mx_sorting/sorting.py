@@ -1,5 +1,4 @@
 """Sorting."""
-import re
 
 
 def sort_numbers_using_sort(numbers: list[int]):
